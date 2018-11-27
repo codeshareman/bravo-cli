@@ -1,2 +1,2 @@
-# -bravo-cli
+# bravo-cli
 bravo-cli is for backstage

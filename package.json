@@ -1,0 +1,36 @@
+{
+  "name": "bravo-cli",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "codeshareman <305168898@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:codeshareman/bravo-cli.git"
+  },
+  "bin": {
+    "brcoccli-cli": "./bin/broccoli-cli.js"
+  },
+  "scripts": {
+    "build": "node bin/broccoli-cli.js -c"
+  },
+  "keywords": [
+    "bravo",
+    "bravo-cli",
+    "cli",
+    "front-end"
+  ],
+  "bugs": {
+    "url": "https://github.com/codeshareman/bravo-cli/issues"
+  },
+  "homepage": "https://github.com/codeshareman/bravo-cli",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "download-git-repo": "^1.1.0",
+    "inquirer": "^6.2.0",
+    "node-cmd": "^3.0.0",
+    "ora": "^3.0.0",
+    "prompts": "^1.2.1"
+  }
+}
