@@ -9,7 +9,7 @@
     "url": "git@github.com:codeshareman/bravo-cli.git"
   },
   "bin": {
-    "brcoccli-cli": "./bin/bravo-cli.js"
+    "bravo-cli": "./bin/bravo-cli.js"
   },
   "scripts": {
     "build": "node bin/bravo-cli.js"
@@ -31,6 +31,7 @@
     "inquirer": "^6.2.0",
     "node-cmd": "^3.0.0",
     "ora": "^3.0.0",
-    "prompts": "^1.2.1"
+    "prompts": "^1.2.1",
+    "user": "0.0.0"
   }
 }
