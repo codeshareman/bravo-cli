@@ -65,14 +65,14 @@ function downloadProject() {
   });
 }
 
-// 拷贝本地模版文件
-function copyTpl() {
+// 拷贝模版文件
+function copyTemplate() {
     return new Promise((resolve, reject) => {
       spinner.start("正在拷贝模版到你的项目");
       const fromSrc = path.join(process.cwd() + '/template');
       const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
       copyDir(fromSrc, toSrc).then((res) => {
-        spinner.succeed("项目拷贝成功");
+        spinner.succeed("模版创建成功");
         resolve();
       });
     });
@@ -114,7 +114,7 @@ function installDependence() {
 async function initialize() {
   await start();
   await initQuestion();
-  await copyTpl();
+  await copyTemplate();
   // await downloadProject();
   await installDependence();
 
