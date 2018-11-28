@@ -8,9 +8,9 @@ const download = require("download-git-repo");
 
 const package = require("../package.json");
 const question = require("../lib/question");
-const nodeCmd = require("../lib/nodeCmd");
-const clearConsole = require("../lib/clearConsole");
-const fileFunc = require('../lib/file-system');
+const nodeCmd = require("../lib/node-cmd");
+const clearConsole = require("../lib/clear-console");
+const copyDir = require('../lib/copy-dir');
 const spinner = new ora();
 // 配置参数
 const configs = {
@@ -48,7 +48,7 @@ function initQuestion() {
     });
 }
 
-// 检出项目到指定目录
+// 检出项目到指定目录--git
 function downloadProject() {
   return new Promise((resolve, reject) => {
     spinner.start("正在下载项目模版...");
@@ -63,6 +63,19 @@ function downloadProject() {
       }
     );
   });
+}
+
+// 拷贝本地模版文件
+function copyTpl() {
+    return new Promise((resolve, reject) => {
+      spinner.start("正在拷贝模版到你的项目");
+      const fromSrc = path.join(process.cwd() + '/template');
+      const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
+      copyDir(fromSrc, toSrc).then((res) => {
+        spinner.succeed("项目拷贝成功");
+        resolve();
+      });
+    });
 }
 
 // 安装项目依赖
@@ -86,7 +99,7 @@ function installDependence() {
         break;
     }
     nodeCmd(
-      [`cd ${configs.anwsers.name}/demo.me/demo-back-stage`, installCmd],
+      [`cd ${configs.anwsers.name}`, installCmd],
       spinner,
       installTips
     ).then(res => {
@@ -97,15 +110,14 @@ function installDependence() {
   });
 }
 
-function changeVersion() {
-    fileFunc();
-}
 
 async function initialize() {
   await start();
   await initQuestion();
-  await downloadProject();
+  await copyTpl();
+  // await downloadProject();
   await installDependence();
+
 }
 
 initialize();
