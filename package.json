@@ -9,10 +9,10 @@
     "url": "git@github.com:codeshareman/bravo-cli.git"
   },
   "bin": {
-    "brcoccli-cli": "./bin/broccoli-cli.js"
+    "brcoccli-cli": "./bin/bravo-cli.js"
   },
   "scripts": {
-    "build": "node bin/broccoli-cli.js -c"
+    "build": "node bin/bravo-cli.js"
   },
   "keywords": [
     "bravo",

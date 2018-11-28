@@ -36,7 +36,6 @@ function start() {
 
 // 初始化项目选项
 function initQuestion() {
-  if (program.create) {
     return new Promise(resolve => {
       inquirer
         .prompt([question.name, question.package, question.version])
@@ -47,9 +46,6 @@ function initQuestion() {
           resolve();
         });
     });
-  } else {
-    console.log(chalk.red("请检查您的参数是否正确！"));
-  }
 }
 
 // 检出项目到指定目录
