@@ -1,67 +1,56 @@
-const menu = [
-    {
-        id: 1,
-        sort: 1,
-        path: '/user',
-        name: '用户登录',
-        isShow: true,
-        authority: ['user', 'admin'],
-        children: [
-            { path: '/user', redirect: '/user/login' },
-            { path: '/user/login', component: '/user/Login' },
-            { path: '/user/register', component: '/user/Register' },
-            { path: '/user/register/result', component: '/user/register/result' },
-        ]
-    },
-    {
-        id: 2,
-        sort: 2,
-        path: '/',
-        name: '侧边栏菜单',
-        component: '',
-        isShow: true,
-        authority: ['user', 'admin'],
-        children: [{
-            id: 1002,
-            title: '用户管理',
-            path: '/userManage',
-            iconClass: 'dashboard',
-            sort: 1,
-            children: [
-                { path: '/user/authority', component: '../containers/User/AuthManage' },
-                { path: '/user/manage', component: '../containers/User/UserManage' }
-            ]
-        }, {
-            id: 1002,
-            title: 'DashBoard',
-            path: '/dashboard',
-            component: '',
-            iconClass: 'dashboard',
-            sort: 2,
-            hidden: false,
-            children: [
-                { path: '/dashboard/workbench', component: '../containers/DashBoard/Workbench' },
-                { path: '/dashboard/data-analyse', component: '../containers/DashBoard/DataAnalyse' },
-                { path: '/dashboard/realtime-watch', component: '../containers/DashBoard/RealtimeWatch' },
-            ]
-        }, {
-            id: 1003,
-            title: '表单页',
-            path: '/dashboard',
-            component: '',
-            iconClass: 'dashboard',
-            sort: 2,
-            hidden: false,
-            children: [{
-                id: 1003,
-                title: 'Form表单',
-                path: '/dashboard',
-                component: '',
-                iconClass: 'dashboard',
-                sort: 2,
-                hidden: false,      
-            }]       
-        }]
-    }
-]
-export default menu;
+import { BrcoccoliChart, BroccoliForm } from "./component.config";
+
+const BASE_PATH = "/wws-b/v2/broccoli";
+const MENU = [
+  {
+    id: 1,
+    sort: 1,
+    title: "",
+    name: "entry",
+    path: '/',
+    redirectPath: '/chart',
+  },
+  {
+    id: 2,
+    sort: 3,
+    title: "可视化图表库",
+    name: "broccoli_chart",
+    isExact: true,
+    path: "/chart",
+    component: BrcoccoliChart.AllCharts,
+    children: [
+      {
+        title: "柱形图",
+        name: "Bar",
+        path: "/charts/bar",
+        component: BrcoccoliChart.BarChart
+      },
+      { title: "饼图", name: "Pie", path: "/charts/pie", component: "" }
+    ]
+  },
+  {
+    id: 3,
+    sort: 3,
+    title: "分步表单",
+    name: "step_form",
+    isExact: true,
+    path: "/step/:step",
+    component: BroccoliForm.StepForm,
+    children: [
+      {
+        title: "步骤1",
+        name: "step_1",
+        path: "/step/1",
+        component: BroccoliForm.StepForm1
+      },
+      {
+        title: "步骤2",
+        name: "step_2",
+        path: "/step/2",
+        component: BroccoliForm.StepForm2
+      }
+    ]
+  }
+];
+
+export { BASE_PATH, MENU };

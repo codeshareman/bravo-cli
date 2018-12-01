@@ -1,10 +1,8 @@
 
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWepackPlugin = require('clean-webpack-plugin');
 
 function resolve(dir) {
     return path.join(__dirname, '../../', dir);
@@ -13,8 +11,8 @@ function resolve(dir) {
 module.exports = {
     mode: "development",
     entry: {
-        // 'reacts': ['react', 'react-dom', 'react-router-dom', 'react-router', 'redux', 'react-redux', 'redux-saga'],
-        'app-broccoli': './src/index.js',
+        // 'reacts': ['react', 'react-dom', 'react-router-dom', 'react-router'],
+        'main-broccoli': './src/index.js',
     },
     output: {
         publicPath: '/',
@@ -108,6 +106,7 @@ module.exports = {
     },
     devServer: {
         // contentBase: path.join(__dirname, './'),
+        host: '192.168.2.243',
         historyApiFallback: {
             disabledDotRule: true
         },
@@ -165,17 +164,6 @@ module.exports = {
         ],
     },
     plugins: [
-        // new webpack.NamedModulesPlugin(),
-        // new webpack.NamedChunksPlugin(),
-        new  webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, '../../', 'dll/reacts.manifest.json'),
-        }),
-        new  webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, '../../', 'dll/biz_charts.manifest.json'),
-        }),
-        new  webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, '../../', 'dll/ant_icon.manifest.json'),
-        }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[name].css'

@@ -1,6 +1,6 @@
 
 // 公共接口
-import COMMON_API from "@/store/request/common";
+import COMMON_API from "@/api/common";
 
 // 非公共接口
 import poetry from "@/store/request/poetry";

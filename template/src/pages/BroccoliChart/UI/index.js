@@ -2,11 +2,10 @@ import React, { PureComponent } from "react";
 import { Row, Col } from "antd";
 import "./index.scss";
 // bussiness components
-import BroccoliChart from "@/components/BroccoliChart";
+import { PieChart, BarChart } from "@/components/BroccoliChart";
 
 class ChartLayout extends PureComponent {
   render() {
-    const { PieChart, BarChart } = BroccoliChart;
     return (
       <div>
         <Row type="flex" justify="start" gutter={15}>

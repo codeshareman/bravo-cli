@@ -18,7 +18,7 @@ import ChartLayout from "@/pages/BroccoliChart/UI";
     };
   }
 )
-export default class BroccoliChart extends Component {
+export default class extends Component {
   state = {};
   componentDidMount = async() => {
     this.props.getRandomPoetry();

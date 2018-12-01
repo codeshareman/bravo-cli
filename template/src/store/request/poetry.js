@@ -1,4 +1,4 @@
-import axios from "./base";
+import axios from "@/api/base";
 
 /**
  * @msg: 随机请求一首诗
@@ -14,9 +14,16 @@ function getRandomPoetry(data){
     });
 }
 
+function testMock() {
+    return axios({
+        type: 'get',
+        url: 'http://192.168.2.243:3000/mock/user',
+    }); 
+}
 
 const poetry = {
-    getRandomPoetry
+    getRandomPoetry,
+    testMock
 }
 
 export default poetry;
