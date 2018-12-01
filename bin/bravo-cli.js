@@ -69,7 +69,7 @@ function downloadProject() {
 function copyTemplate() {
     return new Promise((resolve, reject) => {
       spinner.start("正在拷贝模版到你的项目");
-      const fromSrc = path.join(process.cwd() + '/template');
+      const fromSrc = path.join(path.join(__dirname, '../', 'template'));
       const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
       copyDir(fromSrc, toSrc).then((res) => {
         spinner.succeed("模版创建成功");
