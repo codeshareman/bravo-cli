@@ -1,29 +1,29 @@
 {
-  "name": "backstage-cli",
+  "name": "bravo-cli",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "author": "codeshareman <305168898@qq.com>",
   "repository": {
     "type": "git",
-    "url": "git@gitlab.ximalaya.com:codeshareman/backstage-cli.git"
+    "url": "git@github.com:codeshareman/bravo-cli.git"
   },
   "bin": {
-    "backstage-cli": "./bin/backstage-cli.js"
+    "bravo-cli": "./bin/bravo-cli.js"
   },
   "scripts": {
-    "build": "node bin/backstage-cli.js"
+    "build": "node bin/bravo-cli.js"
   },
   "keywords": [
-    "backstage",
-    "backstage-cli",
+    "bravo",
+    "bravo-cli",
     "cli",
     "front-end"
   ],
   "bugs": {
-    "url": "http://gitlab.ximalaya.com/codeshareman/backstage-cli/issues"
+    "url": "https://github.com/codeshareman/bravo-cli/issues"
   },
-  "homepage": "http://gitlab.ximalaya.com/codeshareman/backstage-cli",
+  "homepage": "https://github.com/codeshareman/bravo-cli.git",
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
