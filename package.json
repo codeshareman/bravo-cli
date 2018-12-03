@@ -1,29 +1,29 @@
 {
-  "name": "bravo-cli",
+  "name": "backstage-cli",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "author": "codeshareman <305168898@qq.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:codeshareman/bravo-cli.git"
+    "url": "git@gitlab.ximalaya.com:codeshareman/backstage-cli.git"
   },
   "bin": {
-    "brcoccli-cli": "./bin/broccoli-cli.js"
+    "backstage-cli": "./bin/backstage-cli.js"
   },
   "scripts": {
-    "build": "node bin/broccoli-cli.js -c"
+    "build": "node bin/backstage-cli.js"
   },
   "keywords": [
-    "bravo",
-    "bravo-cli",
+    "backstage",
+    "backstage-cli",
     "cli",
     "front-end"
   ],
   "bugs": {
-    "url": "https://github.com/codeshareman/bravo-cli/issues"
+    "url": "http://gitlab.ximalaya.com/codeshareman/backstage-cli/issues"
   },
-  "homepage": "https://github.com/codeshareman/bravo-cli",
+  "homepage": "http://gitlab.ximalaya.com/codeshareman/backstage-cli",
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
@@ -31,6 +31,7 @@
     "inquirer": "^6.2.0",
     "node-cmd": "^3.0.0",
     "ora": "^3.0.0",
-    "prompts": "^1.2.1"
+    "prompts": "^1.2.1",
+    "user": "0.0.0"
   }
 }

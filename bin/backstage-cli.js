@@ -8,9 +8,9 @@ const download = require("download-git-repo");
 
 const package = require("../package.json");
 const question = require("../lib/question");
-const nodeCmd = require("../lib/nodeCmd");
-const clearConsole = require("../lib/clearConsole");
-const fileFunc = require('../lib/file-system');
+const nodeCmd = require("../lib/node-cmd");
+const clearConsole = require("../lib/clear-console");
+const copyDir = require('../lib/copy-dir');
 const spinner = new ora();
 // 配置参数
 const configs = {
@@ -36,7 +36,6 @@ function start() {
 
 // 初始化项目选项
 function initQuestion() {
-  if (program.create) {
     return new Promise(resolve => {
       inquirer
         .prompt([question.name, question.package, question.version])
@@ -47,12 +46,9 @@ function initQuestion() {
           resolve();
         });
     });
-  } else {
-    console.log(chalk.red("请检查您的参数是否正确！"));
-  }
 }
 
-// 检出项目到指定目录
+// 检出项目到指定目录--git
 function downloadProject() {
   return new Promise((resolve, reject) => {
     spinner.start("正在下载项目模版...");
@@ -67,6 +63,19 @@ function downloadProject() {
       }
     );
   });
+}
+
+// 拷贝模版文件
+function copyTemplate() {
+    return new Promise((resolve, reject) => {
+      spinner.start("正在拷贝模版到你的项目");
+      const fromSrc = path.join(path.join(__dirname, '../', 'template'));
+      const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
+      copyDir(fromSrc, toSrc).then((res) => {
+        spinner.succeed("模版创建成功");
+        resolve();
+      });
+    });
 }
 
 // 安装项目依赖
@@ -90,7 +99,7 @@ function installDependence() {
         break;
     }
     nodeCmd(
-      [`cd ${configs.anwsers.name}/demo.me/demo-back-stage`, installCmd],
+      [`cd ${configs.anwsers.name}`, installCmd],
       spinner,
       installTips
     ).then(res => {
@@ -101,15 +110,14 @@ function installDependence() {
   });
 }
 
-function changeVersion() {
-    fileFunc();
-}
 
 async function initialize() {
   await start();
   await initQuestion();
-  await downloadProject();
+  await copyTemplate();
+  // await downloadProject();
   await installDependence();
+
 }
 
 initialize();
