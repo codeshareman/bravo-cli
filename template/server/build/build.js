@@ -4,9 +4,9 @@ const ora = require('ora');
 const rf = require('rimraf')
 const webpack = require('webpack');
 const configs = require('../config');
-const env =  process.env.APP_ENV;
+const env =  "production";
 const webpackConfig =
-  process.env.APP_ENV === "production"
+  (process.env.APP_ENV === "production" || process.env.APP_ENV === "test")
     ? require("./webpack.prod.config")
     : require("./webpack.dev.config");
 

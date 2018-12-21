@@ -2,6 +2,7 @@
  * Helper.js
  * 工具函数
  */
+const areaData = require('./common-data');
 const Helper = {
     timerEnd: null,
     timerStart: null
@@ -511,6 +512,19 @@ Helper.prePageCountDown = function(leftTime) {
     return _timeObj;
 };
 
+Helper.getIPAdress = function() {
+    var interfaces = require('os').networkInterfaces()
+    for (var devName in interfaces) {
+      var iface = interfaces[devName]
+      for (var i = 0; i < iface.length; i++) {
+        var alias = iface[i]
+        if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+          return alias.address
+        }
+      }
+    }
+}
+
 Helper.getQuery = function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
@@ -518,4 +532,20 @@ Helper.getQuery = function(name) {
     return null;
 };
 
+// 获取地区信息
+Helper.getAreaInfo = function(province, city) {
+    const { provinceArray, citiesArray } = areaData;
+    const crtProvince = provinceArray.filter((item) => {
+        return item.code === province
+    });
+    const crtCity = citiesArray.filter((item) => {
+        return item.code === city
+    });
+
+    return {
+        province: crtProvince[0].name,
+        city: crtCity[0].name
+    }
+  
+}
 export default Helper;

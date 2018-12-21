@@ -1,53 +1,34 @@
-import { BrcoccoliChart, BroccoliForm } from "./component.config";
+import { BrcoccoliChart, BroccoliForm, ProfitCenter } from "./component.config";
+import { APP_CONFIG } from "@SRC/utils/constant";
 
-const BASE_PATH = "/wws-b/v2/broccoli";
+const { registerName } = APP_CONFIG;
+const BASE_PATH = `/wws-b/v2/${registerName}`;
 const MENU = [
   {
     id: 1,
     sort: 1,
     title: "",
     name: "entry",
-    path: '/',
-    redirectPath: '/chart',
+    path: "/",
+    redirectPath: "/mine"
   },
   {
     id: 2,
-    sort: 3,
-    title: "可视化图表库",
-    name: "broccoli_chart",
+    sort: 2,
+    title: "收益中心",
+    name: "profit_center",
+    iconClass: 'money-collect',
     isExact: true,
-    path: "/chart",
-    component: BrcoccoliChart.AllCharts,
+    path: "/mine",
+    component: ProfitCenter.MyProfit,
     children: [
       {
-        title: "柱形图",
-        name: "Bar",
-        path: "/charts/bar",
-        component: BrcoccoliChart.BarChart
-      },
-      { title: "饼图", name: "Pie", path: "/charts/pie", component: "" }
-    ]
-  },
-  {
-    id: 3,
-    sort: 3,
-    title: "分步表单",
-    name: "step_form",
-    isExact: true,
-    path: "/step/:step",
-    component: BroccoliForm.StepForm,
-    children: [
-      {
-        title: "步骤1",
-        name: "step_1",
-        path: "/step/1",
-        component: BroccoliForm.StepForm1
-      },
-      {
-        title: "步骤2",
-        name: "step_2",
-        path: "/step/2",
-        component: BroccoliForm.StepForm2
+        id: 2001,
+        sort: 1,
+        title: "我的收益",
+        name: "my_profit",
+        path: "/mine",
+        component: ProfitCenter.MyProfit
       }
     ]
   }

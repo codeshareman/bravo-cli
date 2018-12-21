@@ -1,6 +1,13 @@
 const path = require('path')
 const webpack = require('webpack');
 const CleanWepackPlugin = require('clean-webpack-plugin');
+
+// 项目名配置
+const appName = {
+    prefix: "profit",
+    suffix: "center",
+};
+
 module.exports = {
     mode: 'production',
     entry: {
@@ -9,7 +16,7 @@ module.exports = {
         ant_icon: ['@ant-design/icons/lib/dist.js']
     },
     output: {
-        publicPath: "http://static2.pp.ximalaya.com/lib/broccoli-stage/last/dll",
+        publicPath: `http://static2.pp.ximalaya.com/lib/${appName.prefix}-${appName.suffix}/last/dll`,
         path: path.resolve(__dirname, '../../', 'dll'),
         filename: "[name].dll.js",
         library: "[name]_dll"

@@ -1,4 +1,4 @@
-import BarChart from "@/components/BroccoliChart/Bar";
-import PieChart from "@/components/BroccoliChart/Pie";
+import BarChart from "@SRC/components/BroccoliChart/Bar";
+import PieChart from "@SRC/components/BroccoliChart/Pie";
 
 export { BarChart, PieChart };

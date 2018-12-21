@@ -1,8 +1,18 @@
 import axios from "axios";
 
+const { config: { env } } = window;
+const useTestEnv = true;
+const basePath =
+  env === "DEV"
+    ? useTestEnv
+      ? "//wws.test.ximalaya.com/wws-b/v2/api/"
+      : "localhost:3000/mock"
+    : "//wws.ximalaya.com/wws-b/v2/api/";
+
+
 const API = axios.create({
-  baseURL: "",
-  timeout: 1500,
+  baseURL: basePath,
+  timeout: 10000,
   headers: {}
 });
 

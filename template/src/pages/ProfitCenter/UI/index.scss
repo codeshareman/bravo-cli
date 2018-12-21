@@ -1,0 +1,195 @@
+@import "@xmly/voi/src/scss/theme.scss";
+@import "./theme.scss";
+
+$pingfang: 'PingFangSC-Regular';
+input::placeholder{
+  color: #333 !important
+}
+p {
+  margin: 0;
+}
+.profit-detail .detail-item {
+  margin-bottom: 20px;
+  span {
+    label {
+      display: block;
+      width: 120px;
+      margin-right: 20px;
+      float: left;
+      word-break: break-word;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+.ant-table-body{
+  overflow-x: auto !important;
+  > tr {
+    > td {
+      .ant-tooltip-open{
+        background: #fff !important;
+      }
+    }
+  }
+}
+.header-bg{
+  background: url(../../../assets/images/bg-header.jpg) no-repeat center;
+  height: 188px;
+  background-size: 100% 100%;
+  padding-top: 30px;
+  h1{
+    font-size: 36px;
+  }
+  h1, p{
+    padding: 0 74px;
+    color: #fff;
+  }
+}
+.ant-tooltip-inner{
+  background: #fff;
+  color: #333;
+}
+.ant-tooltip-placement-top .ant-tooltip-arrow, .ant-tooltip-placement-topLeft .ant-tooltip-arrow, .ant-tooltip-placement-topRight .ant-tooltip-arrow{
+  border-top-color: #fff !important;
+}
+.ant-card-head{
+  border: none;
+}
+
+.profit-table {
+  .ant-table-tbody{
+    > tr {
+      > td{
+         >span {
+           &.ordernum{
+              display: block;
+              // width: 220px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;  
+           }
+         }
+      }
+    }
+  }
+}
+
+.profit-wrapper {
+  min-height: 85vh;
+  padding: 0;
+  background: #f6f6f6;
+  .profit-plus{
+    color: #f00;
+  }
+  .title {
+    text-align: left;
+    margin-bottom: 5px;
+    background: #fff;
+    color: #333;
+    padding: 24px;
+  }
+  .profit-panel {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0 0 0;
+    .ant-card-body {
+      padding-bottom: 10px;
+      padding: 10px 24px;
+    }
+    .panel-item {
+      padding-right: 20px;
+      margin-bottom: 10px;
+      float: left;
+      .ant-card-head-title {
+        color: #999;
+        font-family: $pingfang
+      }
+      .content {
+        height: 80px;
+        font-family: $pingfang;
+        > span {
+          font-size: 36px;
+          &.money-prefix {
+            margin-right: 15px;
+          }
+        }
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #999;
+        > span {
+          &.rate-percent,
+          &.money-prefix {
+            margin-left: 15px;
+          }
+          &.money-prefix {
+            color: #333;
+          }
+          &.money-num {
+            color: #333;
+          }
+        }
+      }
+    }
+
+    .split-line {
+      position: absolute;
+      width: 1px;
+      height: 50%;
+      background: #000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+    }
+  }
+  .table-wrapper{
+    background: #fff;
+    padding: 0 20px;
+    font-family: $pingfang;
+  }
+  .month-picker {
+    text-align: left;
+  }
+  .table-pannel {
+    .profit-plus{
+      color: #ED3434;
+    }
+    .data-operation {
+      text-align: right;
+      border-bottom: 0.5px solid #eee;
+      padding-bottom: 10px;
+      padding: 20px 0;
+    }
+    .data-total {
+      text-align: left;
+      float: left;
+    }
+  }
+  .primary_trans_main {
+    background: none;
+    cursor: pointer;
+    border: none;
+  }
+  .download-xls {
+    color: $main_lighter;
+  }
+  .ant-calendar-month-panel-selected-cell button {
+    background: rgb(24, 144, 255) !important;
+  }
+  .ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
+    height: auto;
+  }
+  .trade-succes {
+    color: green;
+  }
+  .trade-failed {
+    color: red;
+  }
+  .real-income {
+    color: red;
+  }
+}

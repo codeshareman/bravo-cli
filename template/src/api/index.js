@@ -1,12 +1,12 @@
 
 // 公共接口
-import COMMON_API from "@/api/common";
+import COMMON_API from "@SRC/api/common";
 
 // 非公共接口
-import poetry from "@/store/request/poetry";
+import profit from "@SRC/api/request/profit";
 
 const API_OTHER = {
-  ...poetry
+  ...profit
 };
 
 // 统一请求入口

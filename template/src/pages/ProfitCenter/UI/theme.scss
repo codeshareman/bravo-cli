@@ -1,0 +1,77 @@
+#root{
+  font-family: 'PingFangSC-Regular'
+}
+.ant-layout-sider,
+.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  background: $main_deep;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background: $main_lighter;
+}
+.ant-layout-sider-children .logo {
+  height: 64px;
+  line-height: 64px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  background: #bf3b3b;
+}
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
+  background: $main_lighter;
+  color: #fff;
+}
+.ant-calendar-header a:hover {
+  color: $main_deep;
+}
+.ant-calendar-month-panel-month:hover {
+  background: #26bda21f;
+}
+::selection {
+  border-color: $main_lighter !important;
+}
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month:hover {
+  background: $main_lighter;
+}
+.ant-input {
+  &:focus,
+  &:hover {
+    border-color: $main_lighter;
+  }
+}
+.ant-pagination-item-active,
+.ant-pagination-item-active:focus,
+.ant-pagination-item-active:hover {
+  background: $main_lighter;
+  border-color: $main_lighter;
+  a {
+    color: #fff;
+  }
+}
+
+.ant-calendar-month-panel-cell-disabled .ant-calendar-month-panel-month,
+.ant-calendar-month-panel-cell-disabled .ant-calendar-month-panel-month:hover {
+  cursor: not-allowed;
+  color: #bcbcbc;
+  background: #f5f5f5;
+}
+
+.ant-layout-header .trigger {
+  padding-left: 15px;
+}
+.ant-layout-content {
+  background: $main_bg;
+}
+.ant-card-body {
+  position: relative;
+}
+.ant-table-thead{
+  tr{
+    th{
+      color: #999;
+    }
+  }
+}

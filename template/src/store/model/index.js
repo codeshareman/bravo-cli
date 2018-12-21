@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 
-// state
-import user from './user'
+// stores
+import profit from './profit'
+import loading from './loading'
 
 export default combineReducers({
-    user
+    profit,
+    loading
 })

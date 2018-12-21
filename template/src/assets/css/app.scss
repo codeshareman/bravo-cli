@@ -1,0 +1,43 @@
+@import "@xmly/voi/src/scss/theme.scss";
+
+body{
+    background: $main_bg
+}
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month{
+    background: $main_lighter;
+    color: #fff;
+}
+.ant-calendar-header a:hover{
+    color: $main_deep
+}
+.ant-calendar-month-panel-month:hover{
+    background: #26bda21f;
+}
+::selection{
+    border-color: $main_lighter !important;
+}
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month:hover{
+    background: $main_lighter;
+}
+.ant-input{
+    &:focus, &:hover{
+        border-color: $main_lighter;
+
+    }
+}
+.ant-pagination-item-active,
+.ant-pagination-item-active:focus,
+.ant-pagination-item-active:hover {
+  background: $main_lighter;
+  border-color: $main_lighter;
+  a {
+    color: #fff;
+  }
+}
+
+.ant-calendar-month-panel-cell-disabled .ant-calendar-month-panel-month,
+.ant-calendar-month-panel-cell-disabled .ant-calendar-month-panel-month:hover {
+  cursor: not-allowed;
+  color: #bcbcbc;
+  background: #f5f5f5;
+}

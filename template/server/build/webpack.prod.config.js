@@ -4,28 +4,39 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWepackPlugin = require("clean-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const config = require("../config");
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 function resolve(dir) {
   return path.join(__dirname, "../../", dir);
 }
+
+// 项目名配置
+const appName = config.production.appName;
+
 module.exports = {
   mode: "production",
   entry: {
-    "main-broccoli": "./src/index.js"
+    //   reacts: ['react', 'react-dom', 'react-router', 'react-router-dom'],
+    //   biz_charts: ['bizcharts'],
+    //   ant_icon: ['@ant-design/icons/lib/dist.js'],
+    main: "./src/index.js"
   },
   output: {
-    // publicPath: '/',
-    publicPath: "http://static2.pp.ximalaya.com/lib/broccoli-stage/last/dist/",
+    publicPath:
+      process.env.APP_ENV === "production"
+        ? `//s1.xmcdn.com/lib/${appName.prefix}-${appName.suffix}/last/dist/`
+        : `http://static2.pp.ximalaya.com/lib/${appName.prefix}-${
+            appName.suffix
+          }/last/dist/`,
     path: resolve("dist"),
     filename: "js/[name].js",
-    chunkFilename: "js/[name].js"
+    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`
   },
   resolve: {
     alias: {
-      "@": resolve("src")
+      "@SRC": resolve("src")
     }
   },
   module: {
@@ -33,6 +44,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: "babel-loader",
+        include: [
+          path.join(__dirname, "../../src"),
+          path.join(__dirname, "../../node_modules/@xmly")
+        ],
         exclude: /node_modules/
       },
       {
@@ -107,7 +122,27 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: {
-      name: "manifest-broccoli"
+      name: `manifest-${appName.prefix}`
+    },
+    splitChunks: {
+      chunks: "async",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: "~",
+      name: false
+      // cacheGroups: {
+      //   vendors: {
+      //     test: /[\\/]node_modules[\\/]/,
+      //     priority: -10
+      //   },
+      //   default: {
+      //     minChunks: 2,
+      //     priority: -20,
+      //     reuseExistingChunk: true
+      //   }
+      // }
     },
     minimizer: [
       new TerserPlugin({
@@ -139,38 +174,23 @@ module.exports = {
         cache: true,
         sourceMap: false
       })
-    ],
+    ]
     // splitChunks: {
     //     chunks: 'initial',
     // },
-    runtimeChunk: {
-      name: "manifest-broccoli"
-    }
   },
   plugins: [
+    // new webpack.NamedChunksPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new CleanWepackPlugin(["dist"], {
       root: path.join(__dirname, "../../")
     }),
     new CopyWebpackPlugin([
       {
         from: resolve("static"),
-        to: 'static'
+        to: "static"
       }
     ]),
-    // new BundleAnalyzerPlugin(),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, "../../", "dll/reacts.manifest.json")
-    }),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(
-        __dirname,
-        "../../",
-        "dll/biz_charts.manifest.json"
-      )
-    }),
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, "../../", "dll/ant_icon.manifest.json")
-    }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
       chunkFilename: "css/[name].css"

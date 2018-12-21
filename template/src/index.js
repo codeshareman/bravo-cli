@@ -1,17 +1,26 @@
-import React, { Component, lazy, Suspense, PureComponent } from "react";
+// 库
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import reducer from "@/store/model";
-import rootSaga from "@/store/saga";
-import { getFirstLevelMenu, getSecondLevelMenu } from "@/utils/common";
-import { BASE_PATH } from "@/configs/router.config";
+import { Plugins } from '@xmly/voi'
 
-// 根组件
-import IndexComponent from "@/routes/Index";
+// 本地文件
+import reducer from "@SRC/store/model";
+import rootSaga from "@SRC/store/saga";
+import { getFirstLevelMenu, getSecondLevelMenu } from "@SRC/utils/common";
+import { BASE_PATH } from "@SRC/configs/router.config";
+import { APP_CONFIG } from "@SRC/utils/constant";
 
+import '@SRC/assets/css/theme.scss'
+import '@SRC/assets/css/app.scss'
+
+
+// 设置appName
+const { registerName } = APP_CONFIG
+const { BaseEffect } =  Plugins
 
 // 入口路由
 const EntryRoute = function() {
@@ -55,7 +64,8 @@ const EntryRoute = function() {
 
 // redux
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(function*() {
   yield rootSaga();
 });
@@ -66,9 +76,16 @@ class Index extends Component {
       <div className="app-container">
         <Provider store={store}>
           <BrowserRouter>
-            <IndexComponent>
+
+            {/* 开发版 */}
+            {/* <IndexComponent>
               <EntryRoute />
-            </IndexComponent>
+            </IndexComponent> */}
+
+            {/* 提测版 */}
+            <BaseEffect appName={registerName}>
+              <EntryRoute />
+            </BaseEffect>
           </BrowserRouter>
         </Provider>
       </div>
@@ -78,6 +95,6 @@ class Index extends Component {
 const registParams = {
   Children: Index
 };
-window.ws.regist("broccoli", registParams);
+window.voi.regist(registerName, registParams);
 
 ReactDOM.render(<Index />, document.getElementById("root"));
