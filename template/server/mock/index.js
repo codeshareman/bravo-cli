@@ -20,7 +20,6 @@ server.use((req, res, next) => {
   if (req.method === "POST") {
     req.body.createdAt = Date.now();
   }
-  req.path
   res.writeHead(200, {
     'content-type': 'application/json;charset=UTF-8'
   })

@@ -4,17 +4,21 @@ const ora = require('ora');
 const rf = require('rimraf')
 const webpack = require('webpack');
 const configs = require('../config');
-const env =  "production";
-const webpackConfig =
-  (process.env.APP_ENV === "production" || process.env.APP_ENV === "test")
-    ? require("./webpack.prod.config")
-    : require("./webpack.dev.config");
 
+
+const env =  process.env.APP_ENV;
 const spinner = ora('Build For ' + process.env.APP_ENV);
+const webpackFile = {
+    production: require('./webpack.prod.config.js'),
+    test: require('./webpack.test.config.js'),
+    uat: require('./webpack.uat.config.js')
+}
+const webpackConfig =  webpackFile[env];
+
 spinner.color = 'yellow';
 spinner.start();
 
-rf(path.join(configs[env].assetsRoot, configs[env].assetsSubDictionary), err => {
+rf(path.join(configs[env].assetsRoot, configs[env].assetsPublicPath), err => {
     if (err) throw err
     webpack(webpackConfig, function (err, stats) {
       spinner.stop()

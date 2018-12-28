@@ -5,34 +5,22 @@ const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWepackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const config = require("../config");
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const config = require('../config');
 
 function resolve(dir) {
   return path.join(__dirname, "../../", dir);
 }
 
-// 项目名配置
-const appName = config.production.appName;
-
 module.exports = {
   mode: "production",
   entry: {
-    //   reacts: ['react', 'react-dom', 'react-router', 'react-router-dom'],
-    //   biz_charts: ['bizcharts'],
-    //   ant_icon: ['@ant-design/icons/lib/dist.js'],
     main: "./src/index.js"
   },
   output: {
-    publicPath:
-      process.env.APP_ENV === "production"
-        ? `//s1.xmcdn.com/lib/${appName.prefix}-${appName.suffix}/last/dist/`
-        : `http://static2.pp.ximalaya.com/lib/${appName.prefix}-${
-            appName.suffix
-          }/last/dist/`,
-    path: resolve("dist"),
+    publicPath: config.production.assetsPublicPath,
+    path: resolve('dist'),
     filename: "js/[name].js",
-    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`
+    chunkFilename: config.production.chunkFilename
   },
   resolve: {
     alias: {
@@ -122,7 +110,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: {
-      name: `manifest-${appName.prefix}`
+      name: config.production.manifestName
     },
     splitChunks: {
       chunks: "async",
@@ -162,15 +150,10 @@ module.exports = {
           output: {
             ecma: 5,
             comments: false,
-            // Turned on because emoji and regex is not minified properly using default
-            // https://github.com/facebook/create-react-app/issues/2488
             ascii_only: true
           }
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
-        // Enable file caching
         cache: true,
         sourceMap: false
       })

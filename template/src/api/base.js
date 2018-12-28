@@ -2,13 +2,14 @@ import axios from "axios";
 
 const { config: { env } } = window;
 const useTestEnv = true;
-const basePath =
-  env === "DEV"
-    ? useTestEnv
-      ? "//wws.test.ximalaya.com/wws-b/v2/api/"
-      : "localhost:3000/mock"
-    : "//wws.ximalaya.com/wws-b/v2/api/";
 
+const requestPath = {
+  'DEV': '//wws.test.ximalaya.com/wws-b/v2/api/',
+  'PROD': '//wws.ximalaya.com/wws-b/v2/api/',
+  'UAT': '//wws.uat.com/wws-b/v2/api/'
+}
+
+const basePath = requestPath[env];
 
 const API = axios.create({
   baseURL: basePath,

@@ -1,3 +1,5 @@
+
+
 function getIPAdress () {
     var interfaces = require('os').networkInterfaces()
     for (var devName in interfaces) {
@@ -11,6 +13,8 @@ function getIPAdress () {
     }
 }
 
+
+
 exports = module.exports = {
-    getIPAdress
+    getIPAdress,
 }

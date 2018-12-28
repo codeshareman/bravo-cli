@@ -14,22 +14,12 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npmjs.org/@xmly%2fvoi: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:61073:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:120166:22)
-      at emitTwo (events.js:126:13)
-      at Request.emit (events.js:214:7)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:121138:10)
-      at emitOne (events.js:116:13)
-      at Request.emit (events.js:211:7)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:121060:12)
-      at Object.onceWrapper (events.js:313:30)
-      at emitNone (events.js:111:20)
+  Error: EINVAL: invalid argument, mkdir '/Users/codeshareman/front-end/codeshareman.xmly/gitlab-project/profit-center/node_modules/babel-runtime/node_modules'
 
 npm manifest: 
   {
     "name": "profit-center",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "index.js",
     "repository": "http://gitlab.ximalaya.com/WWS-FEM/profit-center.git",
     "author": "codeshareman <305168898@qq.com>",
@@ -38,7 +28,10 @@ npm manifest:
       "start": "webpack-dev-server --config ./server/build/webpack.dev.config.js",
       "build:test": "cross-env APP_ENV=test node ./server/build/build.js",
       "build:prod": "cross-env APP_ENV=production node ./server/build/build.js",
+      "build:uat": "cross-env APP_ENV=uat bode ./server/build/build.js",
       "build:dll": "cross-env APP_ENV=production webpack --config ./server/build/webpack.dll.config.js",
+      "xpm3:test": "xpm3 pp",
+      "xpm3:prod": "xpm3 pe",
       "mock": "cross-env APP_ENV=development hotnode server/mock/index.js"
     },
     "devDependencies": {
@@ -74,7 +67,6 @@ npm manifest:
       "webpack-dev-server": "^3.1.10"
     },
     "dependencies": {
-      "@xmly/voi": "^0.0.4",
       "antd": "^3.10.8",
       "axios": "^0.18.0",
       "bizcharts": "^3.4.0",
@@ -1264,8 +1256,8 @@ Lockfile:
   
   "@xmly/voi@^0.0.4":
     version "0.0.4"
-    resolved "http://xnpm.ximalaya.com/@xmly%2fvoi/-/voi-0.0.4.tgz#1fae8dc3bb8a985ad9fe527f22661dfe00adbf13"
-    integrity sha512-nAPAP8i/h8+9C4bbkUU86o8QrHT9scZdsKIOU0F+ZCCtwqxG575PjSEuom0N8sQ9x9ZQ57B3UrXcDrg4+bCaDQ==
+    resolved "http://xnpm.ximalaya.com/@xmly%2fvoi/-/voi-0.0.4.tgz#9723b80a1ddcb575605b4b3122390ea6d9cbf6c9"
+    integrity sha1-lyO4Ch3ctXVgW0sxIjkOptnL9sk=
     dependencies:
       "@babel/core" "^7.1.6"
       "@babel/plugin-external-helpers" "^7.0.0"

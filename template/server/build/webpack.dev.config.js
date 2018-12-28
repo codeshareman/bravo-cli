@@ -11,17 +11,15 @@ function resolve(dir) {
 }
 
 // 项目名配置
-const appName = config.development.appName
 
 module.exports = {
   mode: "development",
   entry: {
-    // 'reacts': ['react', 'react-dom', 'react-router-dom', 'react-router'],
-    [`${appName.prefix}_main`]: "./src/index.js"
+    [config.development.mainEntryKey]: "./src/index.js"
   },
   output: {
     publicPath:  `http://${config.development.host}:9002/`,
-    path: resolve("dist"),
+    path: resolve('dist'),
     filename: "js/[name].js",
     chunkFilename: "js/[name].js"
   },
@@ -113,7 +111,7 @@ module.exports = {
       disabledDotRule: true
     },
     compress: true,
-    port: 9002,
+    port: 8888,
     proxy: {
       "/api": {
         target: "http://wws.test.ximalaya.com/wws-b/v2/api/",
@@ -131,7 +129,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: {
-      name: `manifest-${appName.prefix}`
+      name: config.development.manifestName
     },
     minimizer: [
       new TerserPlugin({
@@ -151,15 +149,10 @@ module.exports = {
           output: {
             ecma: 5,
             comments: false,
-            // Turned on because emoji and regex is not minified properly using default
-            // https://github.com/facebook/create-react-app/issues/2488
             ascii_only: true
           }
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
-        // Enable file caching
         cache: true,
         sourceMap: false
       })

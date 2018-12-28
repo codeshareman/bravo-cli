@@ -17,6 +17,8 @@ import { APP_CONFIG } from "@SRC/utils/constant";
 import '@SRC/assets/css/theme.scss'
 import '@SRC/assets/css/app.scss'
 
+// 根组件
+// import IndexComponent from "@SRC/routes/Index";
 
 // 设置appName
 const { registerName } = APP_CONFIG
@@ -70,6 +72,7 @@ sagaMiddleware.run(function*() {
   yield rootSaga();
 });
 
+// document.cookie = "4&_token=81614&27DE3580D6904NdV32BEE1922E317E35D0C4E2E2CAEBF5BEF228B170662AE5A3B322A254ABFC050D; path=/; domain=.ximalaya.com; Expires=Tue, 19 Jan 2038 03:14:07 GMT;"
 class Index extends Component {
   render() {
     return (

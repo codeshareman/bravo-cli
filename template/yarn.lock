@@ -1146,10 +1146,10 @@
     "@webassemblyjs/wast-parser" "1.7.11"
     "@xtuc/long" "4.2.1"
 
-"@xmly/voi@^0.0.4":
-  version "0.0.4"
-  resolved "http://xnpm.ximalaya.com/@xmly%2fvoi/-/voi-0.0.4.tgz#9723b80a1ddcb575605b4b3122390ea6d9cbf6c9"
-  integrity sha1-lyO4Ch3ctXVgW0sxIjkOptnL9sk=
+"@xmly/voi@^0.0.5":
+  version "0.0.5"
+  resolved "http://xnpm.ximalaya.com/@xmly%2fvoi/-/voi-0.0.5.tgz#38c59e931f95055a80dd56f52e666869e3480840"
+  integrity sha1-OMWekx+VBVqA3Vb1LmZoaeNICEA=
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-external-helpers" "^7.0.0"

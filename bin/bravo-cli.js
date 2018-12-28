@@ -5,12 +5,12 @@ const chalk = require("chalk");
 const inquirer = require("inquirer");
 const program = require("commander");
 const download = require("download-git-repo");
-
+const cmd = require("node-cmd");
 const package = require("../package.json");
 const question = require("../lib/question");
 const nodeCmd = require("../lib/node-cmd");
 const clearConsole = require("../lib/clear-console");
-const copyDir = require('../lib/copy-dir');
+const copyDir = require("../lib/copy-dir");
 const spinner = new ora();
 // 配置参数
 const configs = {
@@ -36,16 +36,16 @@ function start() {
 
 // 初始化项目选项
 function initQuestion() {
-    return new Promise(resolve => {
-      inquirer
-        .prompt([question.name, question.package, question.version])
-        .then(result => {
-          configs.anwsers.name = result.name;
-          configs.anwsers.package = result.package;
-          configs.anwsers.version = result.version;
-          resolve();
-        });
-    });
+  return new Promise(resolve => {
+    inquirer
+      .prompt([question.name, question.package, question.version])
+      .then(result => {
+        configs.anwsers.name = result.name;
+        configs.anwsers.package = result.package;
+        configs.anwsers.version = result.version;
+        resolve();
+      });
+  });
 }
 
 // 检出项目到指定目录--git
@@ -67,15 +67,15 @@ function downloadProject() {
 
 // 拷贝模版文件
 function copyTemplate() {
-    return new Promise((resolve, reject) => {
-      spinner.start("正在拷贝模版到你的项目");
-      const fromSrc = path.join(path.join(__dirname, '../', 'template'));
-      const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
-      copyDir(fromSrc, toSrc).then((res) => {
-        spinner.succeed("模版创建成功");
-        resolve();
-      });
+  return new Promise((resolve, reject) => {
+    spinner.start("正在拷贝模版到你的项目");
+    const fromSrc = path.join(path.join(__dirname, "../", "template"));
+    const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
+    copyDir(fromSrc, toSrc).then(res => {
+      spinner.succeed("模版创建成功");
+      resolve();
     });
+  });
 }
 
 // 安装项目依赖
@@ -110,6 +110,32 @@ function installDependence() {
   });
 }
 
+// 安装其他插件
+async function installExtraPlugin() {
+  return new Promise((resolve, reject) => {
+    inquirer.prompt(question.extraPlugins).then(result => {
+      configs.anwsers.extraPlugins = result.extraPlugins;
+      const installTips = `正在安装${result.extraPackage}...`;
+      spinner.start(installTips);
+      cmd.get(
+        `
+          nrm use xnpm
+          cd ${configs.anwsers.name}
+          npm i @xmly/voi --save
+        `
+      ),
+        (err, data, stderr) => {
+          if (!err) {
+            spinner.succeed([`项目插件${result.extraPackage}安装完成.`]);
+            spinner.clear();
+            resolve();
+          } else {
+            spinner.succeed([`项目插件${result.extraPackage}安装失败.`]);
+          }
+        };
+    });
+  });
+}
 
 async function initialize() {
   await start();
@@ -117,7 +143,7 @@ async function initialize() {
   await copyTemplate();
   // await downloadProject();
   await installDependence();
-
+  // await installExtraPlugin();
 }
 
 initialize();

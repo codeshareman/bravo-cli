@@ -2,8 +2,8 @@
 // APP配置
 const { env } = window.config;
 const APP_CONFIG = {
-    appName: 'bravo-stage',
-    registerName: 'bravo',
+    appName: 'profit-center',
+    registerName: 'profit',
     basePath: env === "DEV"
       ? "http://wws.test.ximalaya.com/wws-b/v2/api/"
       : "https://wws.ximalaya.com/wws-b/v2/api/"
