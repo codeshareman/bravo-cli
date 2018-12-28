@@ -1,0 +1,85 @@
+{
+    "appList": [
+        {
+            "permissionId": 10001,
+            "title": "bravo-stage",
+            "appName": "profit",
+            "isIframe": false,
+            "appId": 10001,
+            "version": "0.1.1",
+            "iconType": "pay-circle",
+            "cdn-dev": "//static2.pp.ximalaya.com/lib",
+            "cdn-prod": "//s1.xmcdn.com/lib",
+            "sources": {
+                "js": [
+                    "/profit-center/last/dist/js/manifest-profit.js",
+                    "/profit-center/last/dist/js/profit_main.js"
+                ],
+                "css": [
+                    "/profit-center/last/dist/css/main.css"
+                ]
+            },
+            "ipSources": {
+                "js": [
+                    "/js/manifest-profit.js",
+                    "/js/profit_main.js"
+                ],
+                "css": [
+                    "/profit_main.css"
+                ]
+            },
+            "router": {
+                "path": "/wws-b/v2/profit",
+                "children": [
+                    {
+                        "path": "/mine",
+                        "title": "我的收益",
+                        "id": 100011
+                    }
+                ]
+            }
+        },
+        {
+            "permissionId": 10002,
+            "title": "PP环境测试-TEST",
+            "appName": "test",
+            "isIframe": false,
+            "appId": 10002,
+            "version": "0.1",
+            "iconType": "book",
+            "cdn-dev": "//static2.pp.ximalaya.com/lib",
+            "cdn-prod": "//s1.xmcdn.com/lib",
+            "sources": {
+                "js": [
+                    "/test/last/dist/js/manifest-test.js",
+                    "/test/last/dist/js/app-test.js"
+                ],
+                "css": [
+                    "/test/last/dist/static/css/app-test.chunk.css"
+                ]
+            },
+            "ipSources": {
+                "js": [
+                    "/js/manifest-test.js",
+                    "/js/app-test.js"
+                ],
+                "css": []
+            },
+            "router": {
+                "path": "/wws-b/v2/test",
+                "children": [
+                    {
+                        "path": "/home",
+                        "title": "主页",
+                        "id": 100021
+                    },
+                    {
+                        "path": "/editor",
+                        "title": "工作台",
+                        "id": 100022
+                    }
+                ]
+            }
+        }
+    ]
+}
