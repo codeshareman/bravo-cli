@@ -7,9 +7,13 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config ./server/build/webpack.dev.config.js",
-    "build": "cross-env APP_ENV=production node ./server/build/build.js",
+    "build:test": "cross-env APP_ENV=test node ./server/build/build.js",
+    "build:prod": "cross-env APP_ENV=production node ./server/build/build.js",
+    "build:uat": "cross-env APP_ENV=uat node ./server/build/build.js",
     "build:dll": "cross-env APP_ENV=production webpack --config ./server/build/webpack.dll.config.js",
-    "mock": "cross-env APP_ENV=development json-server --host 192.168.2.243 --watch ./src/mock/db.json"
+    "xpm3:test": "xpm3 pp",
+    "xpm3:prod": "xpm3 pe",
+    "mock": "cross-env APP_ENV=development hotnode server/mock/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
