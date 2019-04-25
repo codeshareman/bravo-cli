@@ -1,0 +1,37 @@
+{
+  "appList": [
+    {
+      "permissionId": 108,
+      "title": "万物声服能平台",
+      "appName": "template",
+      "isIframe": false,
+      "appId": 108,
+      "version": "0.1.1",
+      "iconType": "compass",
+      "cdn-dev": "//static2.pp.ximalaya.com/lib",
+      "cdn-prod": "//s1.xmcdn.com/lib",
+      "cdn-uat": "//s1.uat.xmcdn.com/lib",
+      "sources": {
+        "js": [
+          "/wws-template/last/dist/js/manifest-wws.js",
+          "/wws-template/last/dist/js/wws_main.js"
+        ],
+        "css": ["/wws-template/last/dist/css/main.css"]
+      },
+      "ipSources": {
+        "js": ["/js/manifest-wws.js", "/js/wws_main.js"],
+        "css": ["/main.css"]
+      },
+      "router": {
+        "path": "/wws-workbench/v1/template",
+        "children": [
+          {
+            "path": "/dashboard",
+            "title": "脚手架主页",
+            "id": 108110
+          }
+        ]
+      }
+    }
+  ]
+}

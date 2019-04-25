@@ -1,0 +1,11 @@
+.wws-cust-textarea {
+  position: relative;
+  textarea {
+    padding-bottom: 30px;
+  }
+  &-suffix {
+    position: absolute;
+    right: 10px;
+    bottom: 1px;
+  }
+}

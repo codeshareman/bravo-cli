@@ -20,7 +20,7 @@ const configs = {
 
 program
   .version(package.version)
-  .option("-c, --create", "初始化broccoli项目")
+  .option("-c, --create", "初始化bravo-cli项目")
   .parse(process.argv);
 
 // 清空控制台
@@ -28,7 +28,7 @@ function start() {
   return new Promise((resolve, reject) => {
     clearConsole(
       "blue",
-      "\n-------------------- BROCCOLI-CLI --------------------\n"
+      "\n-------------------- bravo-cli --------------------\n"
     );
     resolve();
   });
@@ -38,11 +38,12 @@ function start() {
 function initQuestion() {
   return new Promise(resolve => {
     inquirer
-      .prompt([question.name, question.package, question.version])
+      .prompt([question.name, question.package, question.template, question.version])
       .then(result => {
         configs.anwsers.name = result.name;
         configs.anwsers.package = result.package;
         configs.anwsers.version = result.version;
+        configs.anwsers.template = result.template;
         resolve();
       });
   });
@@ -67,9 +68,10 @@ function downloadProject() {
 
 // 拷贝模版文件
 function copyTemplate() {
+  const templateDir = configs.anwsers.template === "TS" ? "TS" : "JS";
   return new Promise((resolve, reject) => {
     spinner.start("正在拷贝模版到你的项目");
-    const fromSrc = path.join(path.join(__dirname, "../", "template"));
+    const fromSrc = path.join(path.join(__dirname, "../template", templateDir));
     const toSrc = path.join(process.cwd(), `/${configs.anwsers.name}`);
     copyDir(fromSrc, toSrc).then(res => {
       spinner.succeed("模版创建成功");

@@ -1,0 +1,12 @@
+.cli-container {
+  .page-container {
+    background: #fff;
+    margin: 24px;
+    min-width: 900px;
+    min-height: 80vh;
+    overflow: auto;
+    .main-content {
+        padding: 24px 40px 40px 40px;
+    }
+  }
+}

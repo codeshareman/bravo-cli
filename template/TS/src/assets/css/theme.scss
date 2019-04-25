@@ -1,0 +1,288 @@
+$main-color: #e1a661;
+#root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", SimSun, sans-serif;
+  .voi_primary_normal {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #e1a661;
+  }
+  .voi_primary_normal:hover {
+    border: 1px solid #f0ab5c;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #f0ab5c;
+  }
+  .voi_primary_normal:active {
+    border: 1px solid #d28936;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #d28936;
+  }
+  .voi_primary_normal:focus {
+    border: 1px solid #d28936;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #d28936;
+  }
+  .voi_primary_normal.disable {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #bebebe;
+  }
+
+  .voi_primary_normal_hover {
+    border: 1px solid #f0ab5c;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #f0ab5c;
+  }
+
+  .voi_primary_normal_active {
+    border: 1px solid #d28936;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #d28936;
+  }
+
+  .voi_primary_normal_disabled {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    background-color: #bebebe;
+  }
+
+  .voi_default_normal {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.12);
+  }
+  .voi_default_normal:hover {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.04);
+  }
+  .voi_default_normal:active {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.24);
+  }
+  .voi_default_normal:focus {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.24);
+  }
+  .voi_default_normal.disable {
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #bebebe;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .voi_default_normal_hover {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.04);
+  }
+
+  .voi_default_normal_active {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.24);
+  }
+
+  .voi_default_normal_disabled {
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #bebebe;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .voi_default_lighter {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: #fff;
+  }
+  .voi_default_lighter:hover {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.04);
+  }
+  .voi_default_lighter:active {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.12);
+  }
+  .voi_default_lighter:focus {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.12);
+  }
+
+  .voi_default_lighter_hover {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.04);
+  }
+
+  .voi_default_lighter_active {
+    border: 1px solid #e1a661;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #e1a661;
+    text-align: center;
+    background-color: rgba(225, 166, 97, 0.12);
+  }
+
+  .voi_default_black {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #fff;
+  }
+  .voi_default_black:hover {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #f6f6f6;
+  }
+  .voi_default_black:active {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  .voi_default_black:focus {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .voi_default_black_hover {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #f6f6f6;
+  }
+
+  .voi_default_black_active {
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #333333;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .voi_button_small {
+    padding: 0 16px;
+    height: 32px;
+  }
+
+  .voi_button_medium {
+    padding: 0 20px;
+    height: 36px;
+  }
+
+  .voi_button_large {
+    padding: 0 20px;
+    height: 40px;
+  }
+
+}
+
