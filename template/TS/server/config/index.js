@@ -10,11 +10,11 @@ const appName = {
 module.exports = {
   production: {
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//s1.xmcdn.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsPublicPath: `//s1.xmcdn.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dist/`,
-    assetsDllPath: `//s1.xmcdn.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsDllPath: `//s1.xmcdn.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dll/`,
     assetsSubDictionary: "",
     chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
@@ -32,11 +32,11 @@ module.exports = {
   test: {
     host: func.getIPAdress() || "localhost",
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//static2.pp.ximalaya.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsPublicPath: `//static2.pp.ximalaya.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dist/`,
-    assetsDllPath: `//static2.pp.ximalaya.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsDllPath: `//static2.pp.ximalaya.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dll/`,
     assetsSubDictionary: "",
     chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
@@ -45,11 +45,11 @@ module.exports = {
   uat: {
     host: func.getIPAdress() || "localhost",
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//s1.uat.xmcdn.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsPublicPath: `//s1.uat.xmcdn.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dist/`,
-    assetsDllPath: `//s1.uat.xmcdn.com/lib/${appName.prefix}-${
-      appName.suffix
+    assetsDllPath: `//s1.uat.xmcdn.com/sr012018/${appName.suffix}-${
+      appName.prefix
     }/last/dll/`,
     assetsSubDictionary: "",
     chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
