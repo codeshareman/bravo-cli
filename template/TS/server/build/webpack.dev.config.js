@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-16 06:03:07
+ * @LastEditTime: 2019-08-19 15:48:10
+ * @LastEditors: Please set LastEditors
+ */
 const merge = require("webpack-merge");
 const common = require("./webpack.common.config");
 const { resolve } = require("../config/func");
@@ -10,9 +17,9 @@ module.exports = merge(common, {
     [config.development.mainEntryKey]: "./src/index.tsx"
   },
   output: {
-    //publicPath: `http://${config.development.host}:8000/`,
+    publicPath: `http://${config.development.host}:9001/`,
     //publicPath:config.development.assetsPublicPath,
-    publicPath: "/",
+    // publicPath: "/",
     path: resolve("dist"),
     filename: "js/[name].js",
     chunkFilename: "js/[name].js"
@@ -40,15 +47,19 @@ module.exports = merge(common, {
     hot: false,
     disableHostCheck: true,
     compress: true,
-    //color: true,
-    port: 8888,
+    port: 9001,
     proxy: {
-      "/wws-scan-play": {
-        target: "http://192.168.1.3:3000/wws-scan-play",
+      "/wws-dashboard": {
+        target: "http://wws.test.ximalaya.com/wws-dashboard",
         pathRewrite: { "^/wws-scan-play": "" },
         changeOrigin: true,
-        secure: false
       }
+      // "/wws-scan-play": {
+      //   target: "http://192.168.1.3:3000/wws-scan-play",
+      //   pathRewrite: { "^/wws-scan-play": "" },
+      //   changeOrigin: true,
+      //   secure: false
+      // }
       // "/": {
       //   target: "http://172.31.24.231:8081/wws-library-web",
       //   pathRewrite: { "^/": "" },

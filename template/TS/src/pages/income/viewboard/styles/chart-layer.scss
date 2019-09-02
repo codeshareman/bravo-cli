@@ -1,0 +1,39 @@
+.chart-wrapper {
+  margin-top: 20px;
+  h2 {
+    position: relative;
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.65);
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 12px;
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 0px 8px 8px;
+      border-style: none solid solid;
+      border-color: transparent transparent rgba(0, 0, 0, 0.65) transparent;
+      transform: rotate(90deg);
+    }
+  }
+  .attention {
+    color: #da5151;
+    padding-left: 10px;
+    p {
+      position: relative;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      &::before {
+        content: "※";
+        position: absolute;
+        left: -10px;
+      }
+    }
+  }
+  .item {
+    margin-top: 20px;
+  }
+}

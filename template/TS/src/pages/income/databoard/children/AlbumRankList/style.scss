@@ -1,0 +1,106 @@
+.album-rank-wrapper {
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+  .table-wrapper {
+    .thead-border {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 50px;
+      background: linear-gradient(
+        90deg,
+        rgba(148, 207, 255, 0) 0%,
+        rgba(148, 207, 255, 1) 50%,
+        rgba(148, 207, 255, 0) 100%
+      );
+    }
+  }
+
+  table {
+    width: 100%;
+    thead {
+      height: 54px;
+      line-height: 54px;
+      background: rgba(59, 136, 185, 0.13);
+      th {
+        color: #6ad6ff;
+        &:first-child {
+          width: 50px;
+          text-align: center;
+        }
+        &:last-child {
+          text-align: center;
+        }
+      }
+    }
+    tbody {
+      td {
+        color: #a5b6cd;
+        font-size: 14px;
+        padding: 11px 0 0 0;
+        &:first-child {
+          text-align: center;
+        }
+        &:nth-child(2) {
+          padding-right: 15px;
+        }
+        &:last-child {
+          text-align: center;
+        }
+        .rank-num {
+          font-family: DINCondensed-Bold;
+          font-size: 18px;
+          &.rank-1,
+          &.rank-2,
+          &.rank-3{
+            font-size: 30px;
+          }
+          &.rank-1 {
+            color: #eaff91;
+          }
+          &.rank-2 {
+            color: #6ad6ff;
+          }
+          &.rank-3 {
+            color: #f88f42;
+          }
+          &.rank-4,
+          &.rank-5 {
+            color: #fff;
+          }
+        }
+        .album-name {
+          display: flex;
+          img {
+            width: 38px;
+            height: 38px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  .bd-img {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: url(../../assets/ic_corner@2x.png) no-repeat center;
+    background-size: 100% 100%;
+    &.tr-img {
+      transform: rotate(90deg);
+      top: 0;
+      right: 0;
+    }
+    &.bl-img {
+      transform: rotate(-90deg);
+      bottom: 0;
+      left: 0;
+    }
+    &.br-img {
+      transform: rotate(180deg);
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

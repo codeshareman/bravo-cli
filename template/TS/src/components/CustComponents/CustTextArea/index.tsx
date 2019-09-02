@@ -25,6 +25,14 @@ export default class CustTextArea extends Component<P, S> {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({
+        textCount: nextProps.value.length
+      });
+    }
+  }
+
   handleChange = e => {
     const { value } = e.target;
     this.setState({

@@ -1,4 +1,10 @@
-const path = require("path");
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-16 06:03:07
+ * @LastEditTime: 2019-08-30 15:42:32
+ * @LastEditors: Please set LastEditors
+ */
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -6,6 +12,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWepackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const tsImportPluginFactory = require("ts-import-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { resolve } = require("../config/func");
 const config = require("../config");
 
@@ -18,7 +25,7 @@ module.exports = {
     alias: {
       "@": resolve("src"),
       //antd icon 优化
-      "@ant-design/icons/lib/dist$": resolve("src/icons/index")
+      "@ant-design/icons/lib/dist$": resolve("src/assets/icons/index")
     },
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
@@ -56,6 +63,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {
+          //     minimize: true
+          //   }
+          // },
           { loader: "style-loader" },
           {
             loader: "css-loader",
@@ -77,12 +90,22 @@ module.exports = {
               modifyVars: config.cssModifyVars
             }
           }
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {
+          //     minimize: true
+          //   }
+          // }
         ]
       },
       {
         test: /\.scss$/,
         use: [
           "style-loader",
+          // {
+          //   loader: MiniCssExtractPlugin.loader,
+          //   options: {}
+          // },
           "css-loader",
           {
             loader: "sass-loader",
@@ -177,10 +200,21 @@ module.exports = {
       filename: "css/[name].css?v=[hash:8]",
       chunkFilename: "css/[name].css?v=[hash:8]"
     }),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css\.*(?!.*map)/g, //注意不要写成 /\.css$/g
+      cssProcessor: require("cssnano"),
+      cssProcessorOptions: {
+        discardComments: { removeAll: true },
+        // 避免 cssnano 重新计算 z-index
+        safe: true
+      },
+      canPrint: true
+    }),
     new HtmlWebpackPlugin({
       path: resolve("dist"),
       template: resolve("index.html"),
       filename: "index.html",
+      chunksSortMode: "none",
       minify: true
     }),
     //去除moment中除去中文之外的其他语言

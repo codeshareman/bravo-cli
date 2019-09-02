@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
 
-// common store
-import common from "./common/reducers";
+import common from "./reducers/common";
+import saleRevenue from "./reducers/sale-revenue";
+import lockRevenue from "./reducers/lock-revenue";
+import viewBoard from "./reducers/viewboard";
 
 export default combineReducers({
-  common
+  common,
+  saleRevenue,
+  lockRevenue,
+  viewBoard
 });

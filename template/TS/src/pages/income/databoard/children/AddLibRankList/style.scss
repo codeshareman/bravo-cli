@@ -1,0 +1,35 @@
+.libadd-wrapper {
+  padding: 15px 30px;
+  min-height: 40%;
+  h3 {
+    display: flex;
+    color: #6ad6ff;
+    .icon-increase {
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin-right: 15px;
+      background: url(../../assets/ic_increase@2x.png) no-repeat center;
+      background-size: 100% 100%;
+    }
+  }
+  .chart-area {
+    table {
+      width: 100%;
+      margin-top: 15px;
+      tbody {
+        td {
+          &:first-child {
+            color: #a5b6cd;
+          }
+          &:last-child {
+            color: #6ad6ff;
+            text-align: right;
+          }
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}

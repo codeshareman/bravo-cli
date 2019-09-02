@@ -1,0 +1,18 @@
+.count {
+  font-size: 16px;
+  margin-top: 5px;
+}
+.data-card {
+  float: left;
+  width: 15.5%;
+  height: 100;
+  margin-right: 1%;
+  margin-bottom: 10px;
+  text-align: center;
+  .ant-card-body {
+    padding: 10px;
+    .title {
+      font-size: 12px;
+    }
+  }
+}

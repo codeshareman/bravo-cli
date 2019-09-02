@@ -1,0 +1,59 @@
+.rank-wrapper {
+  margin: 20px 0 30px 0;
+  h2 {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.65);
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 12px;
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 0px 8px 8px;
+      border-style: none solid solid;
+      border-color: transparent transparent rgba(0, 0, 0, 0.65) transparent;
+      transform: rotate(90deg);
+    }
+  }
+  .attention {
+    color: #da5151;
+    margin-top: 20px;
+    padding-left: 10px;
+    p {
+      position: relative;
+      padding-left: 10px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      &::before {
+        content: "※";
+        position: absolute;
+        left: -10px;
+      }
+    }
+  }
+  .rank {
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin: 0 auto;
+    &.rank-1 {
+      background: #f00;
+      border: 1px solid #f00;
+      color: #fff;
+    }
+    &.rank-2,
+    &.rank-3 {
+      background: #f57373;
+      border: 1px solid #f57373;
+      color: #fff;
+    }
+  }
+}

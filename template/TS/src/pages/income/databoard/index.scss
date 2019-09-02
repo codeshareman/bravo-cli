@@ -1,0 +1,183 @@
+.dbd {
+  display: flex;
+  height: 100vh;
+  background: url(./assets/bg.png) no-repeat center;
+  background-size: 100% 100%;
+  > .left {
+    display: flex;
+    flex: 1.5;
+    flex-direction: column;
+    padding: 20px;
+    .lib-rank-wrapper {
+      flex: 0.7;
+      overflow: hidden;
+    }
+    .album-rank-wrapper {
+      flex: 1;
+      overflow: hidden;
+    }
+  }
+  > .mid {
+    height: 100%;
+    flex: 3;
+    .bottom {
+      height: 40%;
+      overflow: auto;
+    }
+    .top {
+      height: 12%;
+      h1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 40px;
+        .datetime {
+          float: right;
+          color: #6ad6ff;
+          font-size: 16px;
+          .dw {
+            color: #fff;
+          }
+          .week {
+            margin-left: 20px;
+            color: #fff;
+          }
+        }
+      }
+      p {
+        font-size: 14px;
+        color: #6ad6ff;
+      }
+    }
+    .center {
+      display: flex;
+      height: 45%;
+      width: 100%;
+      .left {
+        flex: 0.4;
+        .item {
+          margin-top: 20px;
+          .title {
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            color: #6ad6ff;
+            text-align: center;
+            font-size: 16px;
+            background: rgba(106, 214, 255, 0.1);
+            .tl-border {
+              position: absolute;
+              span {
+                display: block;
+                background: #45d8ff;
+                &:first-child {
+                  width: 12px;
+                  height: 1px;
+                }
+                &:last-child {
+                  width: 1px;
+                  height: 12px;
+                }
+              }
+              &.tl{
+                left: 0;
+                top: 0;
+              }
+              &.tr {
+                top: 0;
+                right: 0;
+                transform: rotate(90deg);
+              }
+              &.br {
+                right: 0;
+                bottom: 0;
+                transform: rotate(180deg);
+              }
+              &.bl {
+                left: 0;
+                bottom: 0;
+                transform: rotate(-90deg);
+              }
+            }
+          }
+          .stastics {
+            overflow: hidden;
+            > div {
+              width: 50%;
+              float: left;
+              text-align: center;
+              color: #6affe4;
+              .num {
+                font-size: 50px;
+              }
+            }
+          }
+          &:first-child {
+            .title {
+              width: 210px;
+            }
+          }
+          &:last-child {
+            .title {
+              width: 150px;
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+        .map {
+          height: 444px;
+          background: url(./assets/img_map@2x.png) no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
+  > .right {
+    display: flex;
+    flex-direction: column;
+    flex: 1.5;
+    height: 100%;
+    padding: 20px;
+    .br-rank-block {
+      position: relative;
+      overflow: hidden;
+      height: 70%;
+      margin-top: 22px;
+      background: rgba(41, 131, 223, 0.04);
+      box-shadow: 0px 0px 5px 3px rgba(118, 242, 255, 0.05);
+      .activity-wrapper {
+        flex: 1;
+      }
+      .br-rank-block {
+        flex: 4;
+      }
+      .bd-img {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: url(./assets/ic_corner@2x.png) no-repeat center;
+        background-size: 100% 100%;
+        &.tr-img {
+          transform: rotate(90deg);
+          top: 0;
+          right: 0;
+        }
+        &.bl-img {
+          transform: rotate(-90deg);
+          bottom: 0;
+          left: 0;
+        }
+        &.br-img {
+          transform: rotate(180deg);
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}

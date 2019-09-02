@@ -1,0 +1,53 @@
+.province-wrapper {
+  height: 100%;
+}
+#province {
+  height: 100%;
+  .map {
+    position: relative;
+    top: 40px;
+    background: url(../../../pages/income/databoard/assets/img_map@2x.png)
+      no-repeat center;
+    background-size: 100% 100%;
+    .sub-area {
+      position: absolute;
+      .columns-wrapper {
+        position: relative;
+        width: 200px;
+        height: 92px;
+      }
+      .column {
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+        width: 20px;
+        height: 92px;
+        background: linear-gradient(
+          180deg,
+          rgba(106, 255, 224, 1) 0%,
+          rgba(0, 97, 183, 0.5) 100%
+        );
+        border-radius: 10px 10px 0px 0px;
+      }
+      p {
+        position: absolute;
+        width: 60px;
+        left: -18px;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+    }
+    .legend {
+      position: absolute;
+      bottom: 50px;
+      right: 0;
+      height: 300px;
+      width: 500px;
+      background: url(../../../pages/income/databoard/assets/legend.png)
+        no-repeat center;
+      background-size: 100% 100%;
+    }
+  }
+}

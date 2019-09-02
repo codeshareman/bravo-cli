@@ -1,12 +1,19 @@
-.cli-container {
+.cps-data-center-container {
   .page-container {
-    background: #fff;
-    margin: 24px;
+    margin: 0;
     min-width: 900px;
-    min-height: 80vh;
     overflow: auto;
+    border-top: 2px solid #f0f2f5;
+    background: #f0f2f5;
     .main-content {
-        padding: 24px 40px 40px 40px;
+      margin: 8px;
+      padding: 20px 40px;
+      background: #fff;
+    }
+  }
+  .board-conten{
+    .ant-breadcrumb{
+      margin-bottom: 0;
     }
   }
 }

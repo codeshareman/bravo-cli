@@ -1,23 +1,22 @@
-const path = require("path");
 const func = require("./func");
 
 // 项目名配置
 const appName = {
-  prefix: "wws",
-  suffix: "template"
+  prefix: "cps-data",
+  suffix: "center"
 };
 
 module.exports = {
   production: {
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//s1.xmcdn.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsPublicPath: `//s1.xmcdn.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dist/`,
-    assetsDllPath: `//s1.xmcdn.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsDllPath: `//s1.xmcdn.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dll/`,
     assetsSubDictionary: "",
-    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
+    chunkFilename: `js/${appName.prefix}_[name].js?v=${Date.now()}`,
     manifestName: `manifest-${appName.prefix}`
   },
   development: {
@@ -26,33 +25,33 @@ module.exports = {
     assetsRoot: func.resolve("dist"),
     assetsSubDictionary: "",
     assetsPublicPath: "/",
-    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
+    chunkFilename: `js/${appName.prefix}_[name].js?v=${Date.now()}`,
     manifestName: `manifest-${appName.prefix}`
   },
   test: {
     host: func.getIPAdress() || "localhost",
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//static2.pp.ximalaya.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsPublicPath: `//static2.pp.ximalaya.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dist/`,
-    assetsDllPath: `//static2.pp.ximalaya.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsDllPath: `//static2.pp.ximalaya.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dll/`,
     assetsSubDictionary: "",
-    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
+    chunkFilename: `js/${appName.prefix}_[name].js?v=${Date.now()}`,
     manifestName: `manifest-${appName.prefix}`
   },
   uat: {
     host: func.getIPAdress() || "localhost",
     assetsRoot: func.resolve("dist"),
-    assetsPublicPath: `//s1.uat.xmcdn.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsPublicPath: `//s1.uat.xmcdn.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dist/`,
-    assetsDllPath: `//s1.uat.xmcdn.com/sr012018/${appName.suffix}-${
-      appName.prefix
+    assetsDllPath: `//s1.uat.xmcdn.com/sr012018/${appName.prefix}-${
+      appName.suffix
     }/last/dll/`,
     assetsSubDictionary: "",
-    chunkFilename: `js/${appName.prefix}_[name].js?v=[hash:8]`,
+    chunkFilename: `js/${appName.prefix}_[name].js?v=${Date.now()}`,
     manifestName: `manifest-${appName.prefix}`
   },
   mock: {
@@ -60,8 +59,8 @@ module.exports = {
     port: 3000
   },
   cssModifyVars: {
-    "primary-color": "#E1A661", // 全局主色
-    "link-color": "#5699D7", // 链接色
+    "primary-color": "#13C2C2", // 全局主色
+    "link-color": "#13c2c2", // 链接色
     "success-color": "#6EB64B", // 成功色
     "warning-color": "#E35A5A", // 警告色
     "error-color": "#E35A5A", // 错误色
