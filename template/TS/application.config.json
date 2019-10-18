@@ -1,45 +1,37 @@
 {
-  "permissionId": 108,
-  "title": "城市服务商--数据中心",
-  "appName": "data",
-  "isIframe": false,
-  "appId": 108,
-  "version": "1.0.0",
-  "iconType": "compass",
-  "cdn-dev": "//static2.pp.ximalaya.com/sr012018",
-  "cdn-prod": "//s1.xmcdn.com/sr012018",
-  "cdn-uat": "//s1.uat.xmcdn.com/sr012018",
-  "sources": {
-    "js": [
-      "/cps-data-center/last/dist/js/manifest-cps-data.js",
-      "/cps-data-center/last/dist/js/cps-data_main.js"
-    ],
-    "css": ["/cps-data-center/last/dist/css/main.css"]
-  },
-  "ipSources": {
-    "js": ["/js/manifest-cps-data.js", "/js/cps-data_main.js"],
-    "css": ["/main.css"]
-  },
-  "router": {
-    "path": "/wws-cps/v1/data",
-    "children": [
-      {
-        "path": "/income",
-        "title": "收益中心",
-        "id": 108110,
+  "appList": [
+    {
+      "permissionId": 108,
+      "title": "万物声服能平台",
+      "appName": "template",
+      "isIframe": false,
+      "appId": 108,
+      "version": "0.1.1",
+      "iconType": "compass",
+      "cdn-dev": "//static2.pp.ximalaya.com/lib",
+      "cdn-prod": "//s1.xmcdn.com/lib",
+      "cdn-uat": "//s1.uat.xmcdn.com/lib",
+      "sources": {
+        "js": [
+          "/wws-template/last/dist/js/manifest-wws.js",
+          "/wws-template/last/dist/js/wws_main.js"
+        ],
+        "css": ["/wws-template/last/dist/css/main.css"]
+      },
+      "ipSources": {
+        "js": ["/js/manifest-wws.js", "/js/wws_main.js"],
+        "css": ["/main.css"]
+      },
+      "router": {
+        "path": "/wws-workbench/v1/template",
         "children": [
           {
-            "id": 100102,
-            "title": "销售收益",
-            "path": "/income/sell"
-          },
-          {
-            "id": 100103,
-            "title": "锁订单收益",
-            "path": "/income/lock"
+            "path": "/dashboard",
+            "title": "脚手架主页",
+            "id": 108110
           }
         ]
       }
-    ]
-  }
+    }
+  ]
 }

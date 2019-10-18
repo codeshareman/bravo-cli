@@ -15,8 +15,8 @@ export type ItemType = "Input" | "TextArea";
 type P = FormComponentProps &
   FormItemProps & {
     children?: React.ReactNode;
-    options?: GetFieldDecoratorOptions;
-    filed: string;
+    options: GetFieldDecoratorOptions;
+    field: string;
     itemType?: ItemType;
     validator?: any;
   };
@@ -24,7 +24,7 @@ type P = FormComponentProps &
 type S = {};
 
 const FormItemChildren = {
-  input: <Input />
+  Input: <Input />
 };
 
 const FormItem = Form.Item;
@@ -33,10 +33,10 @@ class FormItemDecorator extends Component<P, S> {
     const {
       children,
       form,
-      options = {},
+      options,
       label,
       required,
-      filed,
+      field,
       validator,
       itemType,
       ...rest
@@ -64,8 +64,8 @@ class FormItemDecorator extends Component<P, S> {
       : null;
 
     return (
-      <FormItem required={required} label={label} {...rest}>
-        {getFieldDecorator(filed, options)(ele)}
+      <FormItem required label={label} {...rest}>
+        {getFieldDecorator(field, options)(ele)}
       </FormItem>
     );
   }
