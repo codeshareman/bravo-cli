@@ -1,0 +1,58 @@
+.apply-from {
+  width: 752px;
+  margin: 0 auto;
+  h3 {
+    font-size: 28px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    line-height: 40px;
+    padding-bottom: 28px;
+  }
+  .ant-form {
+    .form-item-title {
+      font-size: 18px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #324150;
+      padding-bottom: 24px;
+      &::before {
+        content: "";
+        display: inline-block;
+        margin-right: 16px;
+        vertical-align: middle;
+        width: 4px;
+        height: 20px;
+        background: rgba(33, 95, 255, 1);
+        border-radius: 1px;
+      }
+    }
+    .ant-form-item {
+      display: flex;
+      .ant-form-item-label {
+        width: 120px;
+        text-align: left;
+        padding-left: 20px;
+      }
+      .ant-form-item-control-wrapper {
+        flex: 1;
+      }
+      .ant-form-explain,
+      .ant-form-extra {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+.apply-confirm {
+  p {
+    font-size: 14px;
+    text-align: center;
+    color: #324150;
+    line-height: 22px;
+    padding-bottom: 48px;
+  }
+  > div{
+    text-align: center;
+  }
+}

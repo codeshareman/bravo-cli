@@ -1,0 +1,182 @@
+.company-info {
+  > div {
+    display: inline-block;
+    margin-right: 48px;
+    > span {
+      font-weight: 600;
+      color: #324150;
+      margin-right: 16px;
+    }
+  }
+}
+.modal-priceset {
+  margin-top: 16px;
+  .tb-head {
+    height: 40px;
+    line-height: 40px;
+    background: rgba(250, 251, 254, 1);
+    > div {
+      display: inline-block;
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+      &.col-0 {
+        padding-left: 40px;
+      }
+    }
+  }
+  .tb-body {
+    .table {
+      position: relative;
+      .col-expire {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24.4%;
+        right: 0;
+        top: 0;
+        height: 100%;
+        padding: 16px 0;
+        text-align: center;
+        border-left: 1px solid #eaeaed;
+        border-bottom: 1px solid #eaeaed;
+        p {
+          margin-bottom: 4px;
+        }
+        .ant-form-item{
+          margin-bottom: 6px;
+        }
+      }
+    }
+    .product {
+      .row-spu {
+        overflow: hidden;
+        > div {
+          display: flex;
+          align-items: center;
+          float: left;
+          height: 40px;
+          line-height: 40px;
+          background: #fff;
+          border-bottom: 1px solid #eaeaed;
+          &.col-0 {
+            padding: 0 8px;
+            .name {
+              margin-left: 16px;
+            }
+          }
+        }
+      }
+      .row-sku {
+        overflow: hidden;
+        > div {
+          display: flex;
+          align-items: center;
+          float: left;
+          background: #fff;
+          box-shadow: 0px -1px 0px 0px rgba(234, 234, 237, 1);
+          border-bottom: 1px solid #eaeaed;
+          .ant-form-item {
+            margin-bottom: 0;
+          }
+          &.col-0 {
+            padding: 0 8px;
+            height: 72px;
+            > .sku-info {
+              display: flex;
+              align-items: center;
+              margin-left: 16px;
+              vertical-align: middle;
+              .cover {
+                width: 38px;
+                height: 38px;
+                margin-right: 10px;
+                border: 1px solid #efefef;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .info {
+              }
+            }
+            .name {
+              margin-left: 16px;
+            }
+          }
+          &.col-1,
+          &.col-2,
+          &.col-3 {
+            height: 72px;
+            line-height: 72px;
+          }
+        }
+      }
+    }
+    .extra-info {
+      margin-top: 24px;
+      .approval {
+        margin-bottom: 20px;
+        span {
+          display: inline-block;
+          width: 70px;
+          text-align: right;
+          margin-right: 10px;
+        }
+      }
+      .ant-form-item {
+        .ant-form-item-label {
+          text-align: right;
+          float: left;
+        }
+        .ant-form-explain {
+          padding-left: 85px;
+        }
+      }
+      .remark {
+        .ant-form-item {
+          padding-left: 85px;
+        }
+        .ant-form-item-label {
+          position: absolute;
+          left: 0;
+          width: 85px;
+          text-align: right;
+          line-height: normal;
+        }
+      }
+    }
+    .actions {
+      margin: 11px 0;
+    }
+  }
+  .col-0 {
+    width: 50%;
+  }
+  .col-1 {
+    width: 25%;
+  }
+  .col-2 {
+    width: 25%;
+  }
+  .tb-head--special,
+  .tb-body--special {
+    .col-0 {
+      width: 33%;
+    }
+    .col-1 {
+      width: 14.2%;
+    }
+    .col-2 {
+      width: 14.2%;
+    }
+    .col-3 {
+      width: 14.2%;
+    }
+    .col-4 {
+      width: 24.4%;
+      text-align: center;
+    }
+  }
+}

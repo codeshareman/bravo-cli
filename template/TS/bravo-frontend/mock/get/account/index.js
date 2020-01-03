@@ -1,0 +1,61 @@
+module.exports = {
+  basic: {
+    code: 0,
+    message: "[OK]",
+    data: {
+      uid: 311527,
+      nickname: "yzh04",
+      logoPic: "group1/M00/1D/99/wKgD3l0wBiKAVL6fAABK0J6X8d4394.jpg",
+      ptitle: null,
+      personDescribe: null,
+      country: null,
+      province: null,
+      city: null,
+      personalSignature: null,
+      hasLive: false,
+      errorMsg: null,
+      errorCode: null,
+      success: true,
+      vipExpireTime: 0,
+      nicknameModifyAvailableCount: 0,
+      anchorGrade: -1,
+      userGrade: 0,
+      userTitle: null,
+      loginBan: null,
+      verified: null,
+      vcategoryId: null,
+      robot: null,
+      vip: null
+    }
+  },
+  detail: {
+    code: 0,
+    message: "[OK]",
+    data: {
+      uid: 311527,
+      developerId: 472,
+      companyName: "测试33",
+      spreaderId: null,
+      agentDistrict: "5101",
+      distributor: null,
+      cautionMoney: "231231",
+      balance: null,
+      freezeMoney: null,
+      contractNo: "231231",
+      contractStart: "2019-12-12 10:13:39",
+      contractEnd: "2020-01-26 10:13:39",
+      createTime: "2019-12-12 10:18:54",
+      updateTime: "2019-12-12 10:18:54",
+      status: 2,
+      role: 1,
+      nickName: "测试33",
+      companyWebsite: "http://qudao.test.ximalaya.com/app/entry/merchant/apply",
+      companyDesc: "1231313131231231231",
+      companyAddress: "财富又一城",
+      contactName: "测试33",
+      phone: "13568952709",
+      email: "676397876@qq.com",
+      address: "财富又一城"
+    }
+  }
+};

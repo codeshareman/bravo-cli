@@ -1,0 +1,47 @@
+.review {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-icon {
+      width: 100px;
+      height: 80px;
+    }
+    .icon-waiting {
+      background: #fff url(./assets/images/ico_waiting@2x.png) no-repeat
+        center/cover;
+    }
+    .icon-reject {
+      background: #fff url(./assets/images/ico_reject@2x.png) no-repeat
+        center/cover;
+    }
+    .icon-failed {
+      background: #fff url(./assets/images/ico_failed@2x.png) no-repeat
+        center/cover;
+    }
+    &-content {
+      padding-left: 32px;
+      flex: 1;
+      &-title {
+        font-size: 24px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #324150;
+        line-height: 33px;
+      }
+      &-desc {
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #7F8FA4;
+        line-height: 24px;
+      }
+    }
+  }
+}

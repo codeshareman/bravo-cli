@@ -1,0 +1,74 @@
+.purchase-info-layer {
+  position: relative;
+  margin-top: 24px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background: rgba(243, 244, 249, 1);
+  height: 60px;
+  padding: 0 8px;
+
+  .check-area {
+    flex: 0.5;
+    font-size: 12px;
+    .ant-checkbox-wrapper {
+      margin-right: 5px;
+    }
+  }
+  .purchase-info {
+    flex: 2.5;
+    > span {
+      font-size: 14px;
+      margin-right: 24px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #324150;
+      > span {
+        &.text-red {
+          margin-right: 5px;
+        }
+      }
+    }
+    .text-red {
+      color: #fe5461;
+    }
+    .total-price {
+      font-size: 16px;
+      color: #fe5461;
+    }
+    .ant-statistic-content-value-decimal {
+      font-size: 14px;
+    }
+  }
+  .action {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    button {
+      padding: 0;
+      width: 170px;
+      height: 100%;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      background: #bec7d2;
+      color: #fff;
+      transition: all 0.3s;
+      &:hover,
+      &.active {
+        background: #215fff;
+        color: #fff;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+    }
+  }
+  .cart-delete {
+    padding-left: 24px;
+    font-size: 12px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    line-height: 18px;
+  }
+}

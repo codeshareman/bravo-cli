@@ -1,0 +1,15 @@
+.input-warpper-upload {
+  display: flex;
+  .cust-upload-box {
+    position: relative;
+  }
+}
+.hidden-upload-btn {
+  .ant-upload-select-picture-card {
+    visibility: hidden;
+  }
+  .ant-upload-select-text,
+  .ant-upload-select-picture {
+    display: none;
+  }
+}

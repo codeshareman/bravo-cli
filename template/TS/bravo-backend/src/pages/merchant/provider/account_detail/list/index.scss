@@ -1,0 +1,32 @@
+.account-detail {
+  .query-area {
+    overflow: hidden;
+    margin: 15px 0;
+
+    .search-form-condition {
+      float: left;
+      .ant-form-item {
+        float: left;
+      }
+    }
+    .search-form-btn {
+      float: left;
+      margin-top: 4px;
+    }
+  }
+
+  .txt-income {
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #62c1ad;
+    font-size: 12px;
+    line-height: 17px;
+  }
+  .txt-expenditure {
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(254, 84, 97, 1);
+    line-height: 18px;
+  }
+}

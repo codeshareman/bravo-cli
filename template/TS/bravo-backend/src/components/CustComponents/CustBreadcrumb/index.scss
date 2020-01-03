@@ -1,0 +1,15 @@
+.cust-breadcrumb {
+  font-size: 12px;
+  margin-bottom: 24px;
+  span {
+    &.has-link {
+      color: #7f8fa4;
+      cursor: pointer;
+    }
+    color: #324150;
+  }
+  .cust-separator {
+    width: 6px;
+    height: 10px;
+  }
+}

@@ -1,0 +1,74 @@
+.profile {
+  padding: 0;
+  &-overview {
+    padding: 0 19px;
+    border-radius: 3px;
+    background-color: #fff;
+    margin-bottom: 13px;
+    &-warp {
+      display: flex;
+      align-items: center;
+      .overview-item {
+        padding: 25px 40px;
+        flex: 1;
+        display: flex;
+        &-content {
+          flex: 1;
+          .sub-title {
+            color: #7f8fa4;
+            font-size: 14px;
+            padding-bottom: 15px;
+            i {
+              margin-left: 3px;
+            }
+            p {
+              line-height: 30px;
+            }
+          }
+          .sub-desc {
+            color: #324150;
+            font-size: 24px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            .ant-statistic-content-prefix {
+              font-size: 0.7em;
+              color: #324150;
+            }
+            .ant-statistic-content-value-int {
+              font-size: 1em;
+            }
+            .ant-statistic-content-value-decimal {
+              font-size: 1em;
+            }
+          }
+        }
+        &-extra {
+          width: 150px;
+          .ant-btn {
+            display: block;
+          }
+          .withdraw {
+            margin-top: 21px;
+            border: 1px solid #215fff;
+            color: #215fff;
+          }
+        }
+      }
+    }
+  }
+  &-list {
+    padding: 0 19px;
+    border-radius: 3px;
+    background-color: #fff;
+    min-height: 60vh;
+    .query-form {
+      padding: 10px 0;
+      .download {
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 4px;
+        border: 1px solid rgba(220, 224, 224, 1);
+      }
+    }
+  }
+}

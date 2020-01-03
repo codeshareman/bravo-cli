@@ -1,0 +1,78 @@
+.purchase-settlement {
+  background: #fff;
+  min-height: 78vh;
+  padding: 0 24px;
+  &-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 16px 0;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: #215fff;
+      border-radius: 1px;
+      margin-right: 20px;
+      vertical-align: text-top;
+    }
+  }
+  &-otherInfo {
+    margin: 0;
+    padding: 16px 24px;
+    display: flex;
+    background-color: #f3f4f9;
+    &-remark {
+      flex: 1;
+      p{
+        font-size: 12px;
+        padding: 8px 0;
+      }
+    }
+    &-submit {
+      margin: 0;
+      padding: 0;
+      //width: 300px;
+      flex: 1;
+      list-style-type: none;
+      text-align: right;
+      li {
+        padding-bottom: 12px;
+        line-height: 1.5;
+        > span:first-child {
+          font-weight: 600;
+          color: #7f8fa4;
+        }
+        > span:last-child {
+          display: inline-block;
+          width: 137px;
+          font-weight: 600;
+          &.price{
+            color: #FE5461;
+            font-size:16px;
+            &:before{
+              content: "¥";
+              font-size: .5em;
+              margin-right: 1px;
+            }
+          }
+        }
+        button {
+          width: 200px;
+          height: 40px;
+          font-size: 16px;
+        }
+        .ant-btn-primary:hover,
+        .ant-btn-primary:active,
+        .ant-btn-primary:focus {
+          font-size: 16px;
+          height: 40px;
+        }
+        &:last-child{
+          padding: 0;
+        }
+      }
+    }
+  }
+}

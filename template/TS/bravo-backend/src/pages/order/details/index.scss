@@ -1,0 +1,58 @@
+.order-details {
+  background: #fff;
+  min-height: 78vh;
+  padding: 0 24px 50px 0;
+  .text-red {
+    color: #fe5461;
+  }
+
+  .order-info {
+    display: flex;
+    margin: 0 0 16px 0;
+    padding: 16px 0;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px -1px 0px 0px rgba(234, 234, 237, 1),
+      0px 1px 0px 0px rgba(234, 234, 237, 1),
+      -1px 0px 0px 0px rgba(234, 234, 237, 1),
+      1px 0px 0px 0px rgba(234, 234, 237, 1);
+    &-warp {
+      flex: 1;
+      padding: 0 24px;
+
+      h3 {
+        font-size: 16px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: rgba(127, 143, 164, 1);
+        line-height: 24px;
+        padding-bottom: 24px;
+      }
+
+      h4.ant-typography,
+      .ant-typography h4 {
+        display: inline-block;
+        width: 110px;
+        font-size: 12px;
+        color: #324150;
+        margin-right: 8px;
+        margin-bottom: 0;
+        font-weight: 600;
+      }
+      div.ant-typography,
+      .ant-typography p {
+        margin-bottom: 12px;
+        font-size: 12px;
+      }
+      div.ant-typography{
+        display: flex;
+      }
+      span.ant-typography{
+        flex: 1;
+      }
+    }
+    .ant-divider,
+    .ant-divider-vertical {
+      height: auto;
+    }
+  }
+}

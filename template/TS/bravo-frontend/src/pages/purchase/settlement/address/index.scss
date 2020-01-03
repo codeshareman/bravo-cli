@@ -1,0 +1,66 @@
+.my-address {
+  &-item,
+  &-operation {
+    padding: 12px 20px;
+    font-size: 12px;
+    span,
+    a {
+      height: 18px;
+      line-height: 18px;
+      margin-right: 24px;
+    }
+  }
+  &-select-default {
+    padding-left: 16px;
+    .ant-radio-group {
+      width: 100%;
+    }
+    .ant-radio-wrapper {
+      display: block;
+      padding: 0 16px;
+      .my-address-item {
+        display: inline-flex;
+        width: 100%;
+        padding-left: 6px;
+        font-size: 12px;
+        justify-content: space-between;
+        &-content {
+          flex: 1;
+        }
+        &-extra {
+          flex: 1;
+          text-align: right;
+        }
+      }
+    }
+    .ant-radio-wrapper-checked {
+      background-color: #bfd1ff;
+      border-radius: 4px;
+    }
+
+    .add-address {
+      padding: 8px 22px;
+      border-radius: 4px;
+      border: 1px solid rgba(220, 224, 224, 1);
+      font-size: 12px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: rgba(33, 95, 255, 1);
+      line-height: 18px;
+      i{
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .defalut-address {
+    display: block;
+    padding: 0 16px;
+    .my-address-item {
+      display: inline-flex;
+      width: 100%;
+      padding-left: 6px;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.header-wrapper {
+  .logo {
+    margin-top: 18px;
+  }
+
+  .ant-layout-header {
+    background: linear-gradient(
+      270deg,
+      rgba(75, 120, 200, 1) 0%,
+      rgba(37, 67, 151, 1) 100%
+    );
+    .ant-menu {
+      background: transparent;
+      .ant-menu-submenu-title,
+      .ant-menu-item a {
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        font-size: 16px;
+        color: #fff;
+        opacity: 0.7;
+      }
+      .ant-menu-item-selected, .ant-menu-item-active {
+        border-bottom: 4px solid #fff;
+        a {
+          color: #fff;
+          opacity: 1;
+        }
+      }
+
+      .ant-menu-submenu-selected, .ant-menu-submenu-active {
+        border-bottom: 4px solid #fff;
+        .ant-menu-submenu-title{
+          opacity: 1;
+        }
+      }
+
+    }
+  }
+}

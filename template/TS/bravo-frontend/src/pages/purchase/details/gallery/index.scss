@@ -1,0 +1,114 @@
+.cbp-gallery {
+  width: 424px;
+  &-view {
+    position: relative;
+    &-warp {
+      position: relative;
+      img {
+        width: 424px;
+        height: 424px;
+      }
+      .cbp-gallery-area-mask {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 212px;
+        height: 212px;
+        background: #215fff;
+        opacity: 0.3;
+      }
+      .cbp-gallery-event-mask {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 99999;
+        cursor: move;
+      }
+    }
+    #originalImageWarp {
+      display: none;
+      position: absolute;
+      left: 432px;
+      top: 0;
+      width: 424px;
+      height: 424px;
+      background: transparent;
+      cursor: default;
+      border: 1px solid #bec7d2;
+      z-index: 99999;
+      overflow: hidden;
+      #originalImage {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 848px;
+        height: 848px;
+      }
+    }
+  }
+  &-list {
+    margin: 16px 0;
+    padding: 0;
+    height: 64px;
+    overflow: hidden;
+    position: relative;
+    .wrapper {
+      width: 100%;
+      white-space: nowrap; //让子元素超出不换行
+      overflow: hidden;
+    }
+    &-warp {
+      margin: 0;
+      padding: 0;
+      height: 64px;
+      list-style-type: none;
+      display: inline-flex;
+      li {
+        width: 61px;
+        height: 61px;
+        padding: 0;
+        margin: 0 9px 0 1px;
+        cursor: pointer;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        img {
+          width: 61px;
+          height: 61px;
+        }
+        &:hover {
+          border: 1px solid #215fff;
+        }
+        &.active {
+          border: 1px solid #215fff;
+          width: 64px;
+          height: 64px;
+        }
+      }
+    }
+    .gallery-pre,
+    .gallery-next {
+      position: absolute;
+      height: 64px;
+      top: 0;
+      font-size: 20px;
+      padding-top: 18px;
+      padding-right: 10px;
+      background-color: #fff;
+      cursor: pointer;
+      &.disabled {
+        color: #bec7d2;
+        cursor: not-allowed;
+      }
+    }
+    .gallery-pre {
+      left: 0;
+    }
+    .gallery-next {
+      right: 0;
+    }
+  }
+}

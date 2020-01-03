@@ -1,0 +1,13 @@
+.global-avatar{
+    position: absolute;
+    right: 50px;
+    top: 0;
+    .ant-avatar-image{
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+    }
+    .ant-dropdown-link{
+        color: #fff;
+    }
+}

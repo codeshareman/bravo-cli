@@ -1,0 +1,21 @@
+@import './_var.scss';
+@import './_mixin.scss';
+@import './override.scss';
+
+// Button
+.ant-btn-primary {
+  &:hover,
+  &:active,
+  &:focus {
+    @include btn-normal('#fff', $primary-hover--color, $primary-hover--color);
+  }
+}
+
+.btn-defalut {
+  @include btn-normal($main-lighter, '#fff', $main-lighter);
+  &:hover,
+  &:active,
+  &:focus{
+    @include btn-normal('#fff', $default-hover--color, $main-lighter);
+  }
+}

@@ -1,0 +1,18 @@
+.real-order {
+  &-breadcrumb {
+    padding: 0 0 10px;
+  }
+  &-search-form {
+    display: flex;
+    .ant-form-item {
+      .ant-form-item-control-wrapper {
+        display: inline-block;
+        min-width: 200px;
+        max-width: 300px;
+      }
+    }
+    .search-form-btn {
+      padding-top: 5px;
+    }
+  }
+}

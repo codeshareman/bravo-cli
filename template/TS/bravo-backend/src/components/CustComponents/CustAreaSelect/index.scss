@@ -1,0 +1,26 @@
+.area-choose {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 20px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    color: #215fff;
+    border-color: #215fff;
+    transition: all 0.5s;
+  }
+}
+.selected-list{
+  margin-right: 10px;
+  .ant-tag{
+    height: 32px;
+    line-height: 32px;
+  }
+}
+.selected-list,
+.area-choose {
+  float: left;
+}

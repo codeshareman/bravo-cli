@@ -1,0 +1,22 @@
+.order-center {
+  background: #fff;
+  min-height: 78vh;
+  padding: 0 24px;
+  .ant-tabs-tab {
+    font-size: 16px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    line-height: 28px;
+    font-weight: 600;
+    padding: 16px 0;
+    color: #7f8fa4;
+    &-active {
+      color: #215fff;
+    }
+  }
+  .order-table-list {
+    margin-top: 24px;
+    .label-over {
+      color: #bec7d2;
+    }
+  }
+}

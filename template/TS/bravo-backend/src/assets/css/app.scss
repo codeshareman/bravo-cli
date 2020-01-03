@@ -1,0 +1,92 @@
+@import './theme.scss';
+
+h3 {
+  margin: 0;
+}
+
+.logo {
+  width: 182px;
+  height: 26px;
+  margin: 18px 140px 7px 0;
+  float: left;
+  background: url(../images/ico_logo@2x.png) no-repeat center;
+  background-size: 100%;
+}
+
+.price-text {
+  span {
+    padding: 10px 40px 10px 15px;
+    &:hover {
+      border: 1px dashed #ccc;
+      border-radius: 4px;
+    }
+  }
+}
+
+.main-content {
+  margin: 0 auto;
+  max-width: 1366px;
+  min-height: 80vh;
+  padding: 24px 50px;
+}
+
+.page-container {
+  min-height: 100vh;
+
+  .header-wrapper {
+    height: 64px;
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 3;
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    .sider-view {
+      z-index: 2;
+      flex: 0 0 220px;
+      max-width: 220px;
+      min-width: 220px;
+      box-shadow: -1px 0px 0px 0px rgba(234, 234, 237, 1);
+    }
+
+    .page-view {
+      flex: auto;
+      padding: 18px 25px;
+      background: #fff;
+      height: 100%;
+      width: calc(100% - 220px);
+      .stastic {
+        margin-bottom: 15px;
+        .total {
+          color: #215fff;
+        }
+      }
+    }
+  }
+
+  .footer-wrapper {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+.edit-form {
+  .ant-form-item {
+    display: flex;
+    .ant-form-item-label {
+      width: 80px;
+      text-align: left;
+    }
+    .ant-form-item-control-wrapper {
+      min-width: 350px;
+      .ant-btn {
+        margin-left: 200px;
+      }
+    }
+  }
+}

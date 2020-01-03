@@ -1,0 +1,43 @@
+.confirm-info-page {
+    width: 620px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 32px 48px;
+
+    .charge-title {
+        height: 40px;
+        font-size: 28px;
+        font-weight: 600;
+        color: rgba(50, 65, 80, 1);
+        line-height: 40px;
+        margin-bottom: 45px;
+    }
+
+    .charge-content {
+        display: flex;
+        margin-bottom: 45px;
+        font-size: 14px;
+
+        .charge-label {
+            width: 160px;
+            font-weight: 600;
+            color: rgba(50, 65, 80, 1);
+        }
+
+        .charge-detail {
+            flex: 1;
+            color: #324150;
+            max-height: 300px;
+            overflow-y: auto;
+            &>span{
+              display: inline-block;
+              width: 33.333%;
+              margin-bottom: 16px;
+            }
+        }
+    }
+
+    .btns {
+        text-align: center;
+    }
+}

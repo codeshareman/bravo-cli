@@ -1,0 +1,92 @@
+@import '../../assets/css/_var.scss';
+
+.sider-view {
+  .sider-view--children{
+    position: fixed;
+    width: 220px;
+    background: #eaeaed;
+    height: 100%;
+  }
+  .ant-menu-submenu-selected,
+  .ant-menu-submenu-title {
+    > span {
+      display: flex;
+      align-items: center;
+      i {
+        display: block;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-right: 8px;
+      }
+    }
+  }
+  .ant-menu-submenu-title {
+    .icon-approval {
+      background: url(../../assets/images/ico_nav_examine@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-merchant {
+      background: url(../../assets/images/ico_nav_service@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-setting {
+      background: url(../../assets/images/ico_nav_set@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-service {
+      background: url(../../assets/images/ico_nav_service@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-order {
+      background: url(../../assets/images/icon_nav_order.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+  .ant-menu-submenu-selected {
+    .icon-merchant {
+      background: url(../../assets/images/ico_nav_service_active@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-approval {
+      background: url(../../assets/images/ico_nav_examine_active@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-setting {
+      background: url(../../assets/images/ico_nav_set_active@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-order {
+      background: url(../../assets/images/icon_nav_order_active.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+  .ant-menu-item,
+  .ant-menu-item-selected {
+    > a {
+      display: flex;
+      align-items: center;
+      i {
+        display: block;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .ant-menu-item {
+    .icon-home {
+      background: url(../../assets/images/ico_nav_index@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+
+  .ant-menu-item-selected {
+    .icon-home {
+      background: url(../../assets/images/ico_nav_index_active@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+  }
+}

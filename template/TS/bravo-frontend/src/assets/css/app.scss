@@ -1,0 +1,106 @@
+@import "./reset.scss";
+@import "./theme.scss";
+
+h3 {
+  margin: 0;
+}
+
+.logo {
+  width: 182px;
+  height: 26px;
+  margin: 7px 140px 7px 0;
+  float: left;
+  background: url(../images/ico_logo@2x.png) no-repeat center;
+  background-size: 100%;
+}
+
+.main-content {
+  margin: 0 auto;
+  //max-width: 1280px;
+  min-height: 80vh;
+  padding: 24px 50px;
+  background-color: #F6F6F6;
+}
+
+.page-container {
+  min-height: 100vh;
+  //background: rgba(246, 246, 246, 1);
+  .sider-wrapper,
+  .page-view {
+    //background: #fff;
+    min-height: 80vh;
+  }
+  .page-view {
+   // padding: 16px 24px;
+   padding: 0;
+  }
+  .footer-wrapper {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+  .h-center {
+    .ant-menu-item {
+      margin-right: 32px;
+    }
+  }
+}
+
+.edit-form {
+  .ant-form-item {
+    display: flex;
+    .ant-form-item-label {
+      width: 80px;
+      text-align: left;
+    }
+    .ant-form-item-control-wrapper {
+      min-width: 350px;
+      .ant-btn {
+        margin-left: 200px;
+      }
+    }
+  }
+}
+
+.ant-form {
+  .form-item-title {
+    font-size: 18px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    // line-height: 22px;
+    padding-bottom: 24px;
+    &::before {
+      content: "";
+      display: inline-block;
+      margin-right: 16px;
+      vertical-align: middle;
+      width: 4px;
+      height: 20px;
+      background: rgba(33, 95, 255, 1);
+      border-radius: 1px;
+    }
+  }
+  .ant-form-item {
+    display: flex;
+    .ant-form-item-label {
+      width: 120px;
+      text-align: left;
+      padding-left: 20px;
+    }
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+  }
+}
+
+h2.title {
+  height: 60px;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-size: 14px;
+  font-weight: 600;
+  color: #324150;
+  line-height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaed;
+}

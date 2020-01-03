@@ -1,0 +1,50 @@
+.provider-list {
+  .stastic {
+    margin: 20px 0 10px 0;
+    .total {
+      color: #215fff;
+    }
+  }
+  .search-field {
+    width: 90%;
+    overflow: hidden;
+    > .ant-form-item {
+      float: left;
+    }
+  }
+  .search-btn {
+    margin-top: 20px;
+  }
+  .account-status {
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #fff;
+    &.account-disabled {
+      background: #bec7d2;
+    }
+    &.account-enabled {
+      background: #62c1ad;
+    }
+  }
+  .account-modal {
+    .ant-modal-body {
+      padding: 8px 24px;
+    }
+  }
+  .sub-info {
+    color: #7f8fa4;
+    font-size: 12px;
+  }
+  .table-list {
+    p {
+      margin-bottom: 0;
+    }
+    .table-actions {
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

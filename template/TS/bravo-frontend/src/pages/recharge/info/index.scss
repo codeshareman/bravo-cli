@@ -1,0 +1,102 @@
+.charge-info-page {
+    color: #324150;
+    padding: 0 24px 24px;
+    background-color: #fff;
+
+    .ant-select-selection-selected-value {
+        font-size: 14px;
+    }
+
+    .charge-info-title {
+        height: 60px;
+        line-height: 60px;
+        font-size: 18px;
+        font-weight: 600;
+        color: rgba(50, 65, 80, 1);
+    }
+
+    .charge-subtitle {
+        border-top: 1px solid #eaeaed;
+        padding-top: 24px;
+        margin-bottom: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: rgba(50, 65, 80, 1);
+        line-height: 28px;
+
+        &::before {
+            display: inline-block;
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: rgba(33, 95, 255, 1);
+            border-radius: 1px;
+            margin-right: 16px;
+        }
+        a{
+            font-size: 14px;
+            margin-left: auto;
+            span{
+                margin-left: 3px;
+            }
+        }
+    }
+
+    .charge-content {
+        padding-left: 20px;
+        margin-bottom: 24px;
+
+        input {
+            font-size: 14px;
+            width: 300px;
+        }
+
+        .ant-row.ant-form-item {
+            margin-right: 42px;
+        }
+
+        .ant-radio-group {
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        .ant-radio-wrapper {
+            margin-right: 32px;
+        }
+
+        .ant-form-item .ant-col.ant-form-item-label {
+            padding-left: 0;
+            padding-right: 15px;
+            width: auto;
+        }
+
+        .custom-label {
+            display: inline-block;
+            line-height: 40px;
+        }
+    }
+
+    .submit-wrapper {
+        padding-top: 48px;
+        text-align: center;
+
+        button {
+            width: 180px;
+            height: 40px;
+            background: rgba(33, 95, 255, 1);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            line-height: 40px;
+        }
+    }
+
+    .ant-select-selection__placeholder {
+        font-size: 14px !important;
+    }
+}

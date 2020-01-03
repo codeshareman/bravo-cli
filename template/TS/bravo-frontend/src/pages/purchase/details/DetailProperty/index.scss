@@ -1,0 +1,166 @@
+.purchase-details-content-property {
+  h4.ant-typography,
+  .ant-typography h4 {
+    display: inline-block;
+    width: 80px;
+    height: 18px;
+    text-align: left;
+    font-size: 12px;
+    color: #7f8fa4;
+    margin-right: 48px;
+    margin-bottom: 0;
+    padding-left: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    box-sizing: border-box;
+  }
+
+  .ant-typography span {
+    height: 18px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #7f8fa4;
+    line-height: 18px;
+  }
+  div.ant-typography,
+  .ant-typography p {
+    margin-bottom: 8px;
+  }
+
+  flex: 1 auto;
+  padding: 0 24px;
+  .product-title {
+    padding: 16px 0;
+    font-size: 18px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    line-height: 28px;
+    text-indent: 10px;
+  }
+
+  .buying-price {
+    height: 70px;
+    background-color: #fafafc;
+    display: flex;
+    align-items: center;
+    .price {
+      font-size: 32px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #fe5461;
+      line-height: 18px;
+
+      .ant-statistic-content-prefix {
+        font-size: 0.7em;
+      }
+    }
+    span {
+      font-size: 32px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #fe5461;
+      line-height: 18px;
+    }
+  }
+
+  .sku-warp {
+    display: flex;
+    .sku-list {
+      width: 100%;
+      list-style-type: none;
+      &-item {
+        height: 56px;
+        display: flex;
+        border-bottom: 1px solid #eaeaed;
+        align-items: center;
+        & > div {
+          flex: 1;
+        }
+        &-title {
+          display: flex;
+          img {
+            width: 38px;
+            height: 38px;
+          }
+          p {
+            padding-left: 10px;
+            span {
+              display: block;
+            }
+          }
+        }
+        &-price {
+          height: 18px;
+          line-height: 18px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #324150;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .has-selected {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background: #fafafc;
+    box-shadow: #eaeaed;
+    &-warp {
+      > span {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fe5461;
+        height: 18px;
+        line-height: 18px;
+        padding: 0 36px 0 16px;
+      }
+      &-price {
+        border-left: 1px solid #eaeaed;
+        padding-left: 36px !important;
+        &::before {
+          content: "¥";
+          margin-right: 4px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .purchase-details-action {
+    padding: 16px 0 16px 140px;
+    button {
+      width: 170px;
+      border-radius: 4px;
+      height: 40px;
+      font-size: 16px;
+      line-height: 24px;
+      &.add-purchase-order {
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        border: 1px solid #215fff;
+        background-color: #215fff;
+        color: #fff;
+        &.disabled {
+          background: #bec7d2;
+          border-color: #bec7d2;
+        }
+      }
+      &.buy-now {
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        margin-left: 32px;
+        border: 1px solid #215fff;
+        color: #215fff;
+        &.disabled {
+          color: #bec7d2;
+          background: #fff;
+          border-color: #dce0e0;
+        }
+      }
+    }
+  }
+}

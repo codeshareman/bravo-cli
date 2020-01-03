@@ -1,0 +1,7 @@
+a.input-disabled {
+  color: #999 !important;
+  cursor: not-allowed !important;
+  &:hover {
+    color: #999 !important;
+  }
+}

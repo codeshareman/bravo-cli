@@ -1,0 +1,94 @@
+// menu
+.ant-menu {
+  background: transparent;
+}
+
+.ant-layout-header,
+.ant-menu-dark {
+  background: linear-gradient(
+    270deg,
+    rgba(75, 120, 200, 1) 0%,
+    rgba(37, 67, 151, 1) 100%
+  );
+}
+
+.ant-menu-horizontal > .ant-menu-item > a {
+  color: rgba(255, 255, 255, 0.5);
+  &:hover {
+    color: #fff;
+  }
+}
+
+.ant-menu-submenu .ant-menu-submenu-title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ant-menu-submenu-open {
+  .ant-menu-submenu-title {
+    color: #fff;
+  }
+}
+
+.ant-menu-submenu-title {
+  &:hover {
+    color: #fff;
+  }
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected > a,
+.ant-menu-horizontal > .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: #fff;
+}
+
+.ant-menu-submenu-title,
+.ant-menu-item {
+  padding: 0;
+}
+
+.ant-menu-submenu {
+  margin-right: 32px;
+}
+
+.ant-menu-horizontal > .ant-menu-item,
+.ant-menu-horizontal > .ant-menu-submenu {
+  height: 65px;
+  top: 0;
+}
+
+.ant-menu-horizontal > .ant-menu-item:hover,
+.ant-menu-horizontal > .ant-menu-submenu:hover,
+.ant-menu-horizontal > .ant-menu-item-active,
+.ant-menu-horizontal > .ant-menu-submenu-active,
+.ant-menu-horizontal > .ant-menu-item-open,
+.ant-menu-horizontal > .ant-menu-submenu-open,
+.ant-menu-horizontal > .ant-menu-item-selected,
+.ant-menu-horizontal > .ant-menu-submenu-selected {
+  border-bottom: 4px solid #fff;
+  color: #fff;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background: transparent;
+}
+.ant-table {
+  .ant-table-thead {
+    .ant-table-column-title {
+      color: #7f8fa4;
+      font-weight: 600;
+    }
+  }
+}
+
+.ant-radio-checked {
+  .ant-radio-inner{
+    background-color: #215FFF;
+    &::after{
+      background-color: #fff;
+      top: 4px;
+      left: 4px;
+      width: 6px;
+      height: 6px;
+    }
+  }
+}

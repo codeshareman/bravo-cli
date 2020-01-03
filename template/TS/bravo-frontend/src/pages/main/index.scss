@@ -1,0 +1,41 @@
+.main-info{
+  margin: 30px auto;
+  width: 500px;
+  h3{
+    font-size: 28px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    line-height: 40px;
+    padding-bottom: 28px;
+    text-align: center;
+  }
+  p{
+    padding:0 0 30px 50px;
+    text-align: center;
+  }
+  img{
+    width: 500px;
+    height: 300px;
+  }
+  &-btns{
+    padding: 40px 0 0 0;
+    text-align: center;
+    button{
+      margin: 0 10px;
+    }
+  }
+}
+.account-confirm-modal {
+  .modal-btns {
+    text-align: center;
+    .ant-btn{
+      margin-right: 20px;
+    }
+  }
+}
+.apply-notes .ant-btn{
+  margin: 20px auto;
+  text-align: center;
+  display: block;
+}

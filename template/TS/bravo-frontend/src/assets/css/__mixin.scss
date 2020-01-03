@@ -1,0 +1,22 @@
+
+@mixin btn-normal($color, $bgcolor, $bdcolor) {
+  @if ($bdcolor) {
+    border: 1px solid $bdcolor;
+  }
+  border-radius: 4px;
+  @include btn-base($color, $bgcolor);
+}
+
+@mixin btn-base($color, $bgcolor) {
+  font-size: 14px;
+  color: $color;
+  text-align: center;
+  background-color: $bgcolor;
+}
+
+
+@mixin text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

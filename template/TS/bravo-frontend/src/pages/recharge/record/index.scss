@@ -1,0 +1,22 @@
+.recharge-record-page {
+  padding: 0 24px 24px;
+  background-color: #fff;
+
+  .charge-record-title {
+      height: 60px;
+      line-height: 60px;
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(50, 65, 80, 1);
+      border-bottom: 1px solid #eaeaed;
+      margin-bottom: 24px;
+  }
+
+  .ant-row.ant-form-item{
+    margin-bottom: 12px;
+
+    .ant-form-item-label{
+      text-align: right;
+    }
+  }
+}

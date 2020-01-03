@@ -1,1 +1,0 @@
-declare module "@xmly/voi"

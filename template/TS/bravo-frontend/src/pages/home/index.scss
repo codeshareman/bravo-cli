@@ -1,0 +1,162 @@
+.home {
+  &-top {
+    height: 470px;
+    background: transparent
+      url(//fdfs.xmcdn.com/group59/M06/37/F1/wKgLeF3vPSrRo9KxAANfes9F9Ho166.png) no-repeat
+      center/cover;
+  }
+  .home-header {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: #fff;
+    .login {
+      cursor: pointer;
+      line-height: 60px;
+    }
+    .user-info {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+      span {
+        padding: 0 10px;
+        line-height: 60px;
+      }
+      .dropdown-menu {
+        > .item {
+          cursor: pointer;
+          &-logout {
+            color: #dcd7d7;
+            &:hover {
+              color: #fff;
+            }
+            transition: all .5s;
+          }
+        }
+      }
+    }
+    &-intro {
+      padding: 110px 0 0;
+      margin: 0 auto;
+      max-width: 1200px;
+      h2 {
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-size: 48px;
+        line-height: 67px;
+        font-weight: 600;
+        color: #fff;
+        padding-bottom: 20px;
+      }
+      p {
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 400;
+        padding: 16px 0 60px 0;
+        color: #fff;
+        opacity: 0.8;
+      }
+      a {
+        padding: 14px 0;
+        display: inline-block;
+        width: 220px;
+        color: #fff;
+        background: linear-gradient(270deg, rgba(51, 211, 248, 1) 0%, rgba(28, 184, 242, 1) 100%);
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.08);
+        border-radius: 4px;
+        font-size: 24px;
+        line-height: 33px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+  }
+  .home-content {
+    margin: 0 auto;
+    width: 1200px;
+    padding: 32px 0 0 0;
+    h3 {
+      position: relative;
+      text-align: center;
+      font-size: 32px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: rgba(50, 65, 80, 1);
+      line-height: 45px;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        margin-left: -25px;
+        width: 50px;
+        height: 6px;
+        background: linear-gradient(270deg, rgba(28, 215, 242, 1) 0%, rgba(0, 164, 255, 1) 100%);
+        border-radius: 3px;
+      }
+    }
+    .content-awrp {
+      padding: 80px 0 20px;
+      display: flex;
+      list-style: none;
+      li {
+        cursor: pointer;
+        flex: 1;
+        margin: 0 24px;
+        padding: 32px;
+        .img-cover {
+          margin: 0 auto;
+          width: 185px;
+          height: 136px;
+        }
+        .cover-1 {
+          background: transparent url(./assets/images/image_intro1@2x.png) no-repeat center/cover;
+        }
+        .cover-2 {
+          background: transparent url(./assets/images/image_intro2@2x.png) no-repeat center/cover;
+        }
+        .cover-3 {
+          background: transparent url(./assets/images/image_intro3@2x.png) no-repeat center/cover;
+        }
+        h4 {
+          text-align: center;
+          padding: 32px 0 16px;
+          font-size: 24px;
+          font-family: PingFangSC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: rgba(50, 65, 80, 1);
+          line-height: 33px;
+        }
+        p {
+          font-size: 16px;
+          font-family: PingFangSC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: rgba(127, 143, 164, 1);
+          line-height: 28px;
+        }
+        &:hover {
+          box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.05);
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+  .footer {
+    padding: 30px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(190, 199, 210, 1);
+    line-height: 18px;
+    text-align: center;
+  }
+}

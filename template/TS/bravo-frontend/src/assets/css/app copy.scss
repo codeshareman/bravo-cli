@@ -1,0 +1,49 @@
+@import "./reset.scss";
+@import "./theme.scss";
+
+h3 {
+  margin: 0;
+}
+
+.page-container {
+  min-width: 1280px;
+  min-height: 100vh;
+  .sider-wrapper,
+  .page-view {
+    min-height: 80vh;
+  }
+  .page-view {
+    padding: 16px 24px;
+  }
+  .main-content {
+    margin: 0 auto;
+    max-width: 1366px;
+    min-height: 80vh;
+    padding: 24px 50px;
+  }
+  .full-screen {
+    max-width: 100vw;
+    padding: 0;
+  }
+  .footer-wrapper {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+.edit-form {
+  .ant-form-item {
+    display: flex;
+    .ant-form-item-label {
+      width: 80px;
+      text-align: left;
+    }
+    .ant-form-item-control-wrapper {
+      min-width: 350px;
+      .ant-btn {
+        margin-left: 200px;
+      }
+    }
+  }
+}

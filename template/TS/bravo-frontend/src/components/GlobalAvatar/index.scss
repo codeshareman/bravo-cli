@@ -1,0 +1,22 @@
+@import "../../assets/css/_mixin.scss";
+
+.global-avatar {
+  position: absolute;
+  right: 50px;
+  top: 0;
+  .ant-avatar-image {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+  }
+  .ant-dropdown-link {
+    display: inline-block;
+    height: 100%;
+    color: #fff;
+    span {
+      display: inline-block;
+      width: 60px;
+      @include text-ellipsis();
+    }
+  }
+}

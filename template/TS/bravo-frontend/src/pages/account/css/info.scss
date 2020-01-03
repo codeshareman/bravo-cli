@@ -1,0 +1,43 @@
+.account-info {
+  background-color: #fff;
+  padding: 0 19px 30px;
+  border-radius: 3px;
+  min-height: 80vh;
+  &-warp{
+   // margin: 10px 0;
+    padding: 10px 20px;
+    //border: 1px solid #f6f6f6;
+    border-radius: 3px;
+    .ant-typography, .account-info-sub-title{
+      font-size: 14px;
+      padding: 5px;
+    }
+    .account-info-sub-title{
+      text-align: right;
+      display: inline-block;
+      width: 100px;
+      &::after{
+        content: ":";
+        width: 4px;
+        display: inline-block;
+      }
+    }
+  }
+  &-title {
+    font-size: 14px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #324150;
+    padding-bottom: 24px;
+    &::before {
+      content: "";
+      display: inline-block;
+      margin-right: 16px;
+      vertical-align: middle;
+      width: 4px;
+      height: 20px;
+      background: rgba(33, 95, 255, 1);
+      border-radius: 1px;
+    }
+  }
+}
