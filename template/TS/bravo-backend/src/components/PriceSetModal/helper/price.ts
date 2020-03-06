@@ -10,9 +10,9 @@ class Price {
         ...rows,
         id: rows.productId ? rows.productId : rows.itemId,
         items: rows.items && rows.items.length > 0 ? this.getFilteredPriceList(rows.items) : [],
-      };
-    });
-  };
+      }
+    })
+  }
 
   /**
    * @description  根据sku_id获取spu信息
@@ -21,17 +21,17 @@ class Price {
    * @memberof Price
    */
   public getSpuBasedOnSkuId = (dataSource, skuId: number) => {
-    let spuInfo = null;
-    dataSource.forEach((spu, index) => {
-      const skuList = spu.items;
-      skuList.forEach((sku, index) => {
+    let spuInfo = null
+    dataSource.forEach(spu => {
+      const skuList = spu.items
+      skuList.forEach(sku => {
         if (sku.id === skuId) {
-          spuInfo = spu;
+          spuInfo = spu
         }
-      });
-    });
-    return spuInfo;
-  };
+      })
+    })
+    return spuInfo
+  }
 
   /**
    * @description  获取改变后的数据源
@@ -41,14 +41,14 @@ class Price {
    * @memberof Price
    */
   public getChangedDataSource = (spuId: number, dataSource: Array<any>, newData: any) => {
-    return dataSource.map((item: any, index) => {
-      let dataItem = item;
+    return dataSource.map((item: any) => {
+      let dataItem = item
       if (item.id === spuId) {
-        dataItem = newData;
+        dataItem = newData
       }
-      return dataItem;
-    });
-  };
+      return dataItem
+    })
+  }
 
   // public getChangedDataSource = (values: number, dataSource: Array<any>, newData: any) => {
   //   return dataSource.map((item: any, index) => {
@@ -61,4 +61,4 @@ class Price {
   // };
 }
 
-export default new Price();
+export default new Price()

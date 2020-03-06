@@ -1,0 +1,50 @@
+.scm-list{
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(50, 65, 80, 1);
+    }
+    .msg {
+      margin-left: 20px;
+    }
+  }
+  .account-status {
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #fff;
+    &.account-disabled {
+      background: #bec7d2;
+    }
+    &.account-enabled {
+      background: #62c1ad;
+    }
+  }
+  .table-actions{
+    a{
+      margin-left: 5px;
+    }
+  }
+}
+
+.modal-message-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size:14px;
+  .modal-message-title{
+    font-weight: 600;
+    color:rgba(50,65,80,1);
+  }
+  .modal-message-msg{
+    font-weight: 400;
+    color:rgba(127,143,164,1);
+  }
+}

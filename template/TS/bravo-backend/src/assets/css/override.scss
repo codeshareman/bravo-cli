@@ -4,12 +4,12 @@
 }
 
 .ant-layout-header {
-  padding: 0 24px;
+  padding: 0 24px !important;
 }
 
 .ant-layout-header,
 .ant-menu-dark {
-  background: linear-gradient(270deg, rgba(75, 120, 200, 1) 0%, rgba(37, 67, 151, 1) 100%);
+  background: linear-gradient(270deg, rgba(75, 120, 200, 1) 0%, rgba(37, 67, 151, 1) 100%) !important;
 }
 
 .ant-menu-inline,
@@ -18,8 +18,9 @@
   border-right: 0;
 }
 
+.ant-menu-root.ant-menu-inline,
 .ant-menu-sub.ant-menu-inline {
-  background: #eaeaed;
+  background: rgba(250, 251, 254, 1) !important;
 }
 
 .ant-table {
@@ -27,6 +28,9 @@
     .ant-table-column-title {
       color: #7f8fa4;
       font-weight: 600;
+    }
+    tr > th {
+      background: #fafbfe;
     }
   }
 }
@@ -36,4 +40,22 @@
 .ant-btn-primary:focus {
   font-size: 12px !important;
 }
+.ant-tooltip {
+  .ant-tooltip-inner {
+    max-width: 300px;
+    padding: 8px 16px;
+    background: #324150;
+  }
+}
 
+.ant-form {
+  .ant-form-item-label > label::after {
+    content: '';
+  }
+}
+.ant-table {
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    border-bottom: 1px solid rgba(234, 234, 237, 1);
+  }
+}

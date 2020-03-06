@@ -1,4 +1,5 @@
 @import './theme.scss';
+@import './icon.scss';
 
 h3 {
   margin: 0;
@@ -19,6 +20,51 @@ h3 {
     &:hover {
       border: 1px dashed #ccc;
       border-radius: 4px;
+    }
+  }
+}
+
+.company-info {
+  margin: 24px 0;
+  &--modal {
+    margin: 0 0 24px 0;
+  }
+  > .item {
+    display: inline-block;
+    margin-right: 48px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(50, 65, 80, 1);
+    font-weight: 400;
+    span {
+      color: #324150;
+      margin-right: 16px;
+      font-weight: 600;
+    }
+  }
+}
+
+.ant-table-tbody {
+  .product {
+    display: flex;
+    align-items: center;
+    .cover {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      margin-right: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .info {
+      > p:last-child {
+        color: #7f8fa4;
+        font-size: 12px;
+      }
     }
   }
 }
@@ -59,8 +105,11 @@ h3 {
       background: #fff;
       height: 100%;
       width: calc(100% - 220px);
+      .first-title{
+        margin: 6px 0 24px 0;
+      }
       .stastic {
-        margin-bottom: 15px;
+        margin: 15px 0;
         .total {
           color: #215fff;
         }

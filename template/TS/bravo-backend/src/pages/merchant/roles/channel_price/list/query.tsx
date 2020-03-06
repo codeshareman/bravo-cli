@@ -1,29 +1,23 @@
-import * as React from 'react';
-import { Form, Input, Select, DatePicker, Button, message } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
-
-import API from '@/api';
-
-import FormItemDecorator from '@/components/FormItemDecorator';
-import RangePrice from '@/components/RangePrice';
-import { AJAX_STATUS } from '@/shared/common/constants';
-import { Character } from '@/client/portal/service/oss/ChannelStrategyService';
-import CustRoleSelect from '@/components/CustComponents/CustRoleSelect';
+import * as React from 'react'
+import { Form, Input, Select, Button } from 'antd'
+import { FormComponentProps } from 'antd/lib/form'
+import FormItemDecorator from '@/components/FormItemDecorator'
+import { Character } from '@xmly/cbp-spec/lib/portal/service/oss/ChannelStrategyService'
+import CustRoleSelect from '@/components/CustComponents/CustRoleSelect'
 
 type P = FormComponentProps & {
-  currentRole: Character;
-  roleList: Array<Character>;
-  onSetCurrentRole(role: { id: number; name: string }): any;
-  onSubmit(params: any): any;
-};
+  currentRole: Character
+  roleList: Array<Character>
+  onSetCurrentRole(role: { id: number; name: string }): any
+  onSubmit(params: any): any
+}
 type S = {
-  productId: string | number;
-  visible: boolean;
+  productId: string | number
+  visible: boolean
   // roleList: Array<Character>;
-};
+}
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+const { Option } = Select
 
 // 列表查询
 class Query extends React.Component<P, S> {
@@ -31,7 +25,7 @@ class Query extends React.Component<P, S> {
     visible: false,
     productId: '',
     roleList: [],
-  };
+  }
 
   componentDidMount() {
     // this.getMerchantRoles();
@@ -47,32 +41,32 @@ class Query extends React.Component<P, S> {
               pageSize: 10,
               productId: ~~values.productId,
               ...values,
-            };
-            this.props.onSubmit(params);
+            }
+            this.props.onSubmit(params)
           }
-        });
-      });
-      resolve({ code: 0, message: '请求完成' });
-    });
-  };
+        })
+      })
+      resolve({ code: 0, message: '请求完成' })
+    })
+  }
 
   showBacthSetModal = () => {
     this.setState({
       visible: true,
-    });
-  };
+    })
+  }
 
-  handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleConfirm = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
-  handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
   // 获取角色列表
   // getMerchantRoles = async () => {
@@ -95,48 +89,36 @@ class Query extends React.Component<P, S> {
     const currentRole = {
       id,
       name: role.props.children,
-    };
+    }
     this.onSubmit().then(() => {
-      this.props.onSetCurrentRole(currentRole);
-    });
-  };
+      this.props.onSetCurrentRole(currentRole)
+    })
+  }
 
   renderRoleList = () => {
-    const { roleList } = this.props;
+    const { roleList } = this.props
     return roleList.map((item: Character, index) => {
       return (
         <Option key={index} value={item.id}>
           {item.name}
         </Option>
-      );
-    });
-  };
+      )
+    })
+  }
 
   render() {
-    const { roleList, currentRole } = this.props;
-    const form = this.props.form;
-    const defalutRoleId = currentRole ? currentRole.id : '';
+    const { currentRole } = this.props
+    const form = this.props.form
+    const defalutRoleId = currentRole ? currentRole.id : ''
     return (
       <div>
         <Form layout="inline" className="search-form">
           <div className="search-form-condition">
             <FormItemDecorator label="商品ID" field="productId" form={form}>
-              <Input
-                style={{ width: 200 }}
-                placeholder="请输入商品编号"
-                onPressEnter={this.onSubmit}
-              />
+              <Input style={{ width: 200 }} placeholder="请输入商品ID" onPressEnter={this.onSubmit} />
             </FormItemDecorator>
-            <FormItemDecorator
-              label="角色"
-              field="characterId"
-              form={form}
-              options={{ initialValue: defalutRoleId }}
-            >
-              <CustRoleSelect
-                style={{ width: 200 }}
-                onSubmit={(e, role) => this.setCurrentRole(e, role)}
-              />
+            <FormItemDecorator label="角色" field="characterId" form={form} options={{ initialValue: defalutRoleId }}>
+              <CustRoleSelect style={{ width: 200 }} onSubmit={(e, role) => this.setCurrentRole(e, role)} />
             </FormItemDecorator>
             {/* <FormItemDecorator label="原价区间" form={form} field="originPrice">
               <RangePrice form={this.props.form} field="originPrice"/>
@@ -146,12 +128,7 @@ class Query extends React.Component<P, S> {
             </FormItemDecorator> */}
           </div>
           <div className="search-form-btn">
-            <Button
-              icon="search"
-              type="primary"
-              style={{ marginRight: 10 }}
-              onClick={this.onSubmit}
-            >
+            <Button icon="search" type="primary" style={{ marginRight: 10 }} onClick={this.onSubmit}>
               查询
             </Button>
             {/* <Button icon="close" onClick={this.showBacthSetModal}>
@@ -160,8 +137,8 @@ class Query extends React.Component<P, S> {
           </div>
         </Form>
       </div>
-    );
+    )
   }
 }
 
-export default Form.create()(Query);
+export default Form.create<P>()(Query)

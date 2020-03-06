@@ -1,10 +1,11 @@
 @import '../../assets/css/_var.scss';
 
 .sider-view {
-  .sider-view--children{
+  .sider-view--children {
     position: fixed;
     width: 220px;
-    background: #eaeaed;
+    background: rgba(250, 251, 254, 1) !important;
+    box-shadow: 1px 0px 0px 0px rgba(234, 234, 237, 1);
     height: 100%;
   }
   .ant-menu-submenu-selected,
@@ -42,6 +43,14 @@
       background: url(../../assets/images/icon_nav_order.png) no-repeat center;
       background-size: 100%;
     }
+    .icon-award {
+      background: url(../../assets/images/ico_nav_reward@2x.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-scm {
+      background: url(../../assets/images/ico_nav_supplier@2x.png) no-repeat center;
+      background-size: 100%;
+    }
   }
   .ant-menu-submenu-selected {
     .icon-merchant {
@@ -58,6 +67,14 @@
     }
     .icon-order {
       background: url(../../assets/images/icon_nav_order_active.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-award {
+      background: url(../../assets/images/ico_nav_reward_active.png) no-repeat center;
+      background-size: 100%;
+    }
+    .icon-scm {
+      background: url(../../assets/images/ico_nav_supplier_active@2x.png) no-repeat center;
       background-size: 100%;
     }
   }

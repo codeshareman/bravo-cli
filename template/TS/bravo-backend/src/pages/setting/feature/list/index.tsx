@@ -17,7 +17,7 @@ class FeatureManage extends Component<P, S> {
     ];
     return (
       <div className="price-setting">
-        <CustBreadcrumb routes={routes} showCurrentPosition></CustBreadcrumb>
+        <CustBreadcrumb routes={routes}></CustBreadcrumb>
         <h2>功能管理</h2>
         <Query />
         <Divider />

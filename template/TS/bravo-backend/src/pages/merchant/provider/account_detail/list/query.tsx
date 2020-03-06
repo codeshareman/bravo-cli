@@ -3,7 +3,7 @@ import { Form, Input, Select, DatePicker, Button } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { FormComponentProps } from 'antd/lib/form';
 import FormItemDecorator from '@/components/FormItemDecorator';
-import { AccountRole, TradeType } from '@/client/portal/service/oss/AccountService';
+import { TradeType } from '@xmly/cbp-spec/lib/portal/service/oss/AccountService';
 
 type P = FormComponentProps &
   RouteComponentProps & {
@@ -15,7 +15,6 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 // 列表查询
-@(withRouter as any)
 class Query extends React.Component<P, S> {
   
   onSubmit = () => {
@@ -31,27 +30,27 @@ class Query extends React.Component<P, S> {
   renderTradeType = () => {
     const options = [
       {
-        value: 'RECHARGE',
+        value: TradeType.RECHARGE,
         name: '充值',
       },
       {
-        value: 'WITHDRAW',
+        value: TradeType.WITHDRAW,
         name: '提现',
       },
       {
-        value: 'UNKNOWN',
+        value: TradeType.PURCHASE,
         name: '采购',
       },
       {
-        value: 'TRANSER_IN',
+        value: TradeType.TRANSER_IN,
         name: '转入',
       },
       {
-        value: 'TRANSER_OUT',
+        value: TradeType.TRANSER_OUT,
         name: '转出',
       },
       {
-        value: 'WITHDRAW_FEE',
+        value: TradeType.WITHDRAW_FEE,
         name: '提现手续费',
       },
     ];
@@ -108,4 +107,4 @@ class Query extends React.Component<P, S> {
   }
 }
 
-export default Form.create()(Query);
+export default withRouter(Form.create<P>()(Query));

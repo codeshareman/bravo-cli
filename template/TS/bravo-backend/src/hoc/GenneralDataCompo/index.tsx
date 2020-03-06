@@ -42,7 +42,8 @@ function GenneralDataCompo(Compo: any) {
           message.error(res.message);
         }
       } catch (err) {
-        throw new Error(err);
+        //console.log(err)
+        //throw new Error(err);
       }
     };
 

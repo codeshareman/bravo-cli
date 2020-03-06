@@ -1,30 +1,30 @@
-import React, { FC, useMemo } from "react";
-import { Checkbox } from "antd";
-import NestTable from "./children/NestTable";
-import { CheckedStatus } from "./children/NestTable/type";
+import React, { FC, useMemo } from 'react'
+import { Checkbox } from 'antd'
+import NestTable from './children/NestTable'
+import { CheckedStatus } from './children/NestTable/type'
 
-import "./index.scss";
+import './index.scss'
 
 type P = {
-  checkable?: boolean; //是否开始选择框
-  checkedStatus?: CheckedStatus;
-  productList: Array<any>;
-  onChange?(productList);
-  onCheckAll?(checked);
-};
+  checkable?: boolean //是否开始选择框
+  checkedStatus?: CheckedStatus
+  productList: Array<any>
+  onChange?(productList)
+  onCheckAll?(checked)
+}
 
 const NestOrderList: FC<P> = props => {
-  const { checkable, onChange, productList, checkedStatus } = props;
+  const { checkable, onChange, productList, checkedStatus } = props
 
   useMemo(() => {
-    productList;
-  }, [productList]);
+    productList
+  }, [productList])
 
   const renderThead = () => {
     const columns = [
       {
-        key: "product",
-        title: "商品",
+        key: 'product',
+        title: '商品',
         render: product => {
           return (
             <div className="product-info">
@@ -36,55 +36,55 @@ const NestOrderList: FC<P> = props => {
                 <p className="product-num">{product.num}</p>
               </div>
             </div>
-          );
-        }
+          )
+        },
       },
       {
-        key: "unitPrice",
-        title: "价格",
+        key: 'unitPrice',
+        title: '价格',
         render: curVal => {
-          const price = curVal.toFixed(2).toString();
-          return "￥" + price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
+          const price = curVal.toFixed(2).toString()
+          return '￥' + price.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        },
       },
       {
-        key: "discount",
-        title: "采购价"
+        key: 'discount',
+        title: '采购价',
       },
       {
-        key: "shopNum",
-        title: "数量"
+        key: 'shopNum',
+        title: '数量',
       },
       {
-        key: "offer",
+        key: 'offer',
         //width: 150,
-        title: "优惠"
+        title: '优惠',
       },
       {
-        key: "price",
+        key: 'price',
         //width: 150,
-        title: "金额",
+        title: '金额',
         render: curVal => {
-          const price = curVal.toFixed(2).toString();
-          return "￥" + price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-      }
-    ];
+          const price = curVal.toFixed(2).toString()
+          return '￥' + price.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        },
+      },
+    ]
 
     return columns.map((item, index) => {
       return (
         <div key={item.key} className={`col-${index + 1}`}>
           {item.title}
         </div>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
     <div className="nest-order-table">
       <div className="tb-header">
         {checkable ? (
-          <div key={"check-all"} className={`col-0`}>
+          <div key={'check-all'} className={`col-0`}>
             <Checkbox
               checked={CheckedStatus.All === checkedStatus}
               indeterminate={CheckedStatus.INDETERMINATE === checkedStatus}
@@ -98,15 +98,11 @@ const NestOrderList: FC<P> = props => {
       </div>
       <div className="tb-body">
         {!productList || !productList.length ? null : (
-          <NestTable
-            checkable={checkable}
-            dataSource={productList}
-            onChange={onChange}
-          />
+          <NestTable checkable={checkable} dataSource={productList} onChange={onChange} />
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NestOrderList;
+export default NestOrderList

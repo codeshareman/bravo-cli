@@ -55,11 +55,13 @@
             height: 38px;
             float: left;
             margin-right: 10px;
+            border-radius: 4px;
           }
           .brief-info {
             float: left;
             > p {
               margin: 0;
+              text-align: left;
               &.number {
                 color: #7f8fa4;
                 margin-top: 5px;

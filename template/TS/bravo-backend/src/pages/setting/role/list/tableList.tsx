@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import { Table } from 'antd';
+import React, { Component } from 'react'
+import { Table } from 'antd'
+import './index.scss'
 
-import './index.scss';
-import PriceModal from '@/components/PriceModal';
-
-type P = {};
+type P = {}
 type S = {
-  visible: boolean;
-  listDataSource: Array<any>;
-  productId: string;
-};
+  visible: boolean
+  listDataSource: Array<any>
+  productId: string
+}
 
 class TableList extends Component<P, S> {
   readonly state: S = {
@@ -35,29 +33,26 @@ class TableList extends Component<P, S> {
       },
     ],
     productId: '',
-  };
+  }
 
   showSpuModal = row => {
     this.setState({
       visible: true,
       productId: row.productInfo.num,
-    });
-  };
+    })
+  }
 
-  handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleConfirm = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
-  handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
-    });
-  };
-
-  // 取消设置特殊价
-  cancelSpecialPrice = row => {};
+    })
+  }
 
   render() {
     const columns = [
@@ -95,29 +90,24 @@ class TableList extends Component<P, S> {
         title: '操作',
         dataIndex: 'actions',
         key: 'actions',
-        render: (val, row, index) => {
+        render: () => {
           return (
             <>
               <a style={{ marginRight: 10 }}>修改</a>
               <a style={{ marginRight: 10 }}>清空角色</a>
               <a>管辖地区</a>
             </>
-          );
+          )
         },
       },
-    ];
+    ]
 
     return (
       <div>
-        <Table
-          className="table-list"
-          dataSource={this.state.listDataSource}
-          columns={columns}
-          rowKey="uid"
-        />
+        <Table className="table-list" dataSource={this.state.listDataSource} columns={columns} rowKey="uid" />
       </div>
-    );
+    )
   }
 }
 
-export default TableList;
+export default TableList

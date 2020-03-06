@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import { AJAX_STATUS } from '@/shared/common/constants'
+import { message, Button, Table, Form, Input, Modal } from 'antd'
+import FormItemDecorator from '@/components/FormItemDecorator'
+import TextArea from 'antd/lib/input/TextArea'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { FormComponentProps } from 'antd/lib/form'
+import { Character, CreateCharacterRequest } from '@xmly/cbp-spec/lib/portal/service/oss/ChannelStrategyService'
+import API from '@/api'
+import './index.scss'
 
-import './index.scss';
-
-import API from '@/api';
-import { CustBreadcrumb } from '@/components/CustComponents';
-import { AJAX_STATUS } from '@/shared/common/constants';
-import { message, Button, Table, Form, Input, Modal } from 'antd';
-import FormItemDecorator from '@/components/FormItemDecorator';
-import TextArea from 'antd/lib/input/TextArea';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { FormComponentProps } from 'antd/lib/form';
-import {
-  Character,
-  CreateCharacterRequest,
-} from '@/client/portal/service/oss/ChannelStrategyService';
-
-type P = RouteComponentProps & FormComponentProps & {};
+type P = RouteComponentProps & FormComponentProps & {}
 type S = {
-  dataSource: Array<any>;
-  searchParams: any;
-  loading: boolean;
-  isEdit: boolean;
-  visible: boolean;
-  curRole: { id: number; name: string };
-};
+  dataSource: Array<any>
+  searchParams: any
+  loading: boolean
+  isEdit: boolean
+  visible: boolean
+  curRole: { id: number; name: string }
+}
 
 @observer
 class MerchantRole extends Component<P, S> {
@@ -35,47 +29,46 @@ class MerchantRole extends Component<P, S> {
     isEdit: false,
     visible: false,
     curRole: null,
-  };
+  }
 
   componentDidMount() {
-    this.initialRequest();
+    this.initialRequest()
   }
 
   initialRequest = () => {
-    const { searchParams } = this.state;
-    this.getMerchantRoles(searchParams);
-  };
+    this.getMerchantRoles()
+  }
 
-  getMerchantRoles = async (params: any) => {
+  getMerchantRoles = async () => {
     this.setState({
       loading: true,
       dataSource: [],
-    });
+    })
     try {
-      const res = await API.channel.getAllCharacters();
+      const res = await API.channel.getAllCharacters()
       if (res.code === AJAX_STATUS.SUCCESS) {
-        const dataSource = res.data;
+        const dataSource = res.data
         this.setState({
           loading: false,
           dataSource,
-        });
+        })
       } else {
-        message.error(res.message);
+        message.error(res.message)
       }
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
     }
-  };
+  }
 
   getTableProps = () => {
-    const { dataSource, searchParams } = this.state;
+    const { dataSource } = this.state
     const columns = [
       {
         title: '序号',
         dataIndex: 'id',
         key: 'id',
         render: (id: number, rows, index) => {
-          return index + 1;
+          return index + 1
         },
       },
       {
@@ -88,7 +81,7 @@ class MerchantRole extends Component<P, S> {
         dataIndex: 'description',
         key: 'description',
         render: curVal => {
-          return curVal ? curVal : '无';
+          return curVal ? curVal : '无'
         },
       },
       {
@@ -104,83 +97,82 @@ class MerchantRole extends Component<P, S> {
               {/* <a>开通权益充值</a> */}
               {/* <a onClick={() => this.handleDelete(row)}>删除</a> */}
             </>
-          );
+          )
         },
       },
-    ];
-    return { dataSource, columns, rowKey: 'id' };
-  };
+    ]
+    return { dataSource, columns, rowKey: 'id' }
+  }
 
   // 设置价盘
   setPricePlate = (rows: Character) => {
     this.props.history.push({
       pathname: `/business/role/channelPrice/${rows.id}`,
-    });
-  };
+    })
+  }
 
   handleAddRole = () => {
     this.setState({
       visible: true,
       isEdit: false,
-    });
-  };
+    })
+  }
 
-  handleEdit = (row: Character) => {
+  handleEdit = () => {
     this.setState({
       visible: true,
       isEdit: true,
-    });
-  };
+    })
+  }
 
-  handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleConfirm = () => {
     this.props.form.validateFields((err, params) => {
       if (!err) {
         const createParams = {
           name: params.name || '',
           description: params.description || '',
-        };
-        this.createCharacter(createParams);
+        }
+        this.createCharacter(createParams)
         this.setState({
           visible: false,
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   createCharacter = async (params: CreateCharacterRequest) => {
-    const { searchParams } = this.state;
-    const res = await API.channel.createCharacter(params);
+    const res = await API.channel.createCharacter(params)
     if (res.code === AJAX_STATUS.SUCCESS) {
-      message.success('角色创建成功');
-      this.getMerchantRoles(searchParams);
+      message.success('角色创建成功')
+      this.getMerchantRoles()
     } else {
-      message.error(res.message);
+      message.error(res.message)
     }
-  };
+  }
 
-  handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
   render() {
-    const { curRole, loading } = this.state;
-    const { form } = this.props;
-    const routes = [
-      { path: '', name: '商户管理' },
-      { path: '', name: '商户角色' },
-    ];
+    const { loading } = this.state
+    const { form } = this.props
+
     return (
       <div className="merchant-role">
-        <CustBreadcrumb routes={routes} showCurrentPosition />
+        {/* <CustBreadcrumb routes={routes} showCurrentPosition /> */}
+        <h2 className="first-title">商户角色</h2>
         <div className="table-actions">
           <Button type="primary" onClick={this.handleAddRole}>
             添加
           </Button>
         </div>
+        {/* <div className="stastic">
+          共 <span className="total"> {dataSource.length} </span> 条数据
+        </div> */}
         <Table
-          className="table-list"
           {...this.getTableProps()}
           loading={{
             spinning: loading,
@@ -194,6 +186,7 @@ class MerchantRole extends Component<P, S> {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           onOk={this.handleConfirm}
+          maskClosable={false}
           destroyOnClose
         >
           <FormItemDecorator
@@ -221,15 +214,12 @@ class MerchantRole extends Component<P, S> {
             labelCol={{ span: 4, style: { textAlign: 'right', lineHeight: 'normal' } }}
             wrapperCol={{ span: 20 }}
           >
-            <TextArea
-              placeholder="请输入备注(选填)"
-              autoSize={{ minRows: 5, maxRows: 5 }}
-            ></TextArea>
+            <TextArea placeholder="请输入备注(选填)" autoSize={{ minRows: 5, maxRows: 5 }}></TextArea>
           </FormItemDecorator>
         </Modal>
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(Form.create<P>()(MerchantRole));
+export default withRouter(Form.create<P>()(MerchantRole))

@@ -1,7 +1,10 @@
 import axios, { AxiosInstance } from 'axios'
 import { AsyncReply } from '../../../shared/shared'
 import { int64, int32, float64 } from '../../../shared/type'
-import { PurchaseProductGroup, PurchaseProductGroupDetail } from '../provider/CartService'
+import {
+    PurchaseProductGroup,
+    PurchaseProductGroupDetail,
+} from '../provider/CartService'
 import { PurchaseList } from '../provider/PurchaseService'
 
 export default class OrderService {
@@ -21,49 +24,64 @@ export default class OrderService {
     /**
      * 获取订单详情
      */
-    purchaseList(id: int64): AsyncReply<PurchaseOrderDetail> {
+    purchaseList(id: string): AsyncReply<PurchaseOrderDetail> {
         return this.http
             .get(`/${OrderService.SERVICE_NAME}/detail/${id}`)
+            .then(r => r.data)
+    }
+
+    /**
+     * 导出订单
+     */
+    export(request: OrderQuery): AsyncReply<any> {
+        return this.http
+            .get(`/${OrderService.SERVICE_NAME}/export`, { params: request })
             .then(r => r.data)
     }
 }
 
 export interface OrderQuery {
+    // 供应商id
+    supplierIdList: int64[]
     // 代理地区
-    agentDistrict: string,
+    agentDistrict: string
     // 公司名称
-    companyName: string,
-    uid?: int64,
+    companyName: string
+    uid?: int64
     // 订单状态
-    state: OrderState,
+    state: OrderState
     // 创建时间-起
-    startDate: int64,
+    startDate: int64
     // 创建时间-止
-    endDate: int64,
+    endDate: int64
     // 订单编号
-    orderNo: string,
+    orderNo: string
     // 页号
-    pageNum: int32,
+    pageNum: int32
     // 每页数量
     pageSize: int32
 }
 
 export interface PurchaseOrder {
     list: {
-        id: int64,
-        orderNo: string,
-        createTime: string,
-        productTypeCount: int32,
-        totalQuantity: int32,
-        totalAmount: string,
-        state: OrderState,
-        completedTime: string,
-        companyName: string,
+        id: int64
+        orderNo: string
+        expressOrderNo: string
+        expressName: string
+        createTime: string
+        productTypeCount: int32
+        totalQuantity: int32
+        totalAmount: string
+        state: OrderState
+        completedTime: string
+        companyName: string
         agentDistrict: string
+         // 供应商id
+        supplierId: int64
     }[]
-    total: int64,
-    totalPage: int64,
-    pageNum: int32,
+    total: int64
+    totalPage: int64
+    pageNum: int32
     pageSize: int32
 }
 
@@ -73,28 +91,26 @@ export enum OrderState {
     // 待收货
     WAIT_RECEIVE = 2,
     // 已完成
-    COMPLETE = 3
+    COMPLETE = 3,
 }
 
 export interface PurchaseOrderDetail {
-    id: int64,
-    orderNo: string,
-    createTime: string,
-    productTypeCount: int32,
-    totalQuantity: int32,
-    totalAmount: string,
-    state: OrderState,
-    completedTime: string,
-    companyName: string,
-    agentDistrict: string,
-    purchaseList: PurchaseList,
-    contactName: string,
-    phone: string,
-    orderContactName: string,
-    orderContactAddressLine: string,
-    orderContactPhone: string,
+    id: int64
+    orderNo: string
+    expressOrderNo: string
+    createTime: string
+    productTypeCount: int32
+    totalQuantity: int32
+    totalAmount: string
+    state: OrderState
+    completedTime: string
+    companyName: string
+    agentDistrict: string
+    purchaseList: PurchaseList
+    contactName: string
+    phone: string
+    orderContactName: string
+    orderContactAddressLine: string
+    orderContactPhone: string
     comment: string
 }
-
-
-

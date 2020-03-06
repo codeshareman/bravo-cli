@@ -2,8 +2,9 @@ import axios, { AxiosInstance } from 'axios'
 import { AsyncReply } from '../../../shared/shared'
 import { int64, int32, float64 } from '../../../shared/type'
 
+
 export default class CartService {
-    static readonly SERVICE_NAME = 'cart'
+    static readonly SERVICE_NAME = 'portal-provider/cart'
 
     constructor(private readonly http: AxiosInstance) {}
 
@@ -12,7 +13,7 @@ export default class CartService {
      */
     add(request: PurchaseProductGroup[]): AsyncReply<any> {
         return this.http
-            .post(`/${CartService.SERVICE_NAME}/status`, request)
+            .post(`/${CartService.SERVICE_NAME}/add`, request)
             .then(r => r.data)
     }
 
@@ -62,7 +63,7 @@ export interface PurchaseProductGroupDetail {
     // 商品id
     productId: int64,
     // 商品名称
-    name: String,
+    name: string,
     // 商品item详情
     productItemDetails: PurchaseProductItemDetail[],
     // 商品item总数量
@@ -79,9 +80,9 @@ export interface PurchaseProductItemDetail {
     // 数量
     quantity: int32
     // 商品item名称
-    name: String,
+    name: string,
     // 封面
-    coverUrl: String,
+    coverUrl: string,
     // 原价
     price: float64,
     // 采购价

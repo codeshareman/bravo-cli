@@ -1,0 +1,21 @@
+#homepage {
+  position: relative;
+  height: 100%;
+  .welcome {
+    height: 100%;
+    width: 562px;
+    margin: 100px auto;
+    img {
+      width: 100%;
+    }
+    p {
+      margin-bottom: 60px;
+      text-align: center;
+      color: rgba(50, 65, 80, 1);
+      line-height: 22px;
+      font-size: 24px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+    }
+  }
+}

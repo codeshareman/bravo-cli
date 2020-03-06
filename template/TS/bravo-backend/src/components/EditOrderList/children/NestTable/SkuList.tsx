@@ -3,7 +3,7 @@ import { Checkbox } from 'antd';
 import { IProductItem4Cart, CheckedStatus, CartStatisticsType } from './type';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import Counter from '@/components/Counter';
-import { getLocalePrice } from '@/shared/common/utils';
+import { getLocalePrice, limitWord } from '@/shared/common/utils';
 
 type P = {
   cartStatisticsType?: CartStatisticsType;
@@ -89,8 +89,8 @@ function SkuItem({ checkable, item, onChange }) {
       <div className="col-1">
         <img src={item.coverUrl} alt={item.name} />
         <div className="brief-info">
-          <p>{item.name}</p>
-          <p className="number">{item.productItemId}</p>
+          <p>{limitWord(item.name, 16)}</p>
+          <p className="number">商品ID:{item.productItemId}</p>
         </div>
       </div>
       <div className="col-2">{getLocalePrice(item.price)}</div>

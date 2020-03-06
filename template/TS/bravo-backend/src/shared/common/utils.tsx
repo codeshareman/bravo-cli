@@ -55,16 +55,30 @@ export const getDisplayTime = (time: any) => {
   return `${time.year}-${time.month}-${time.day} ${time.hour}:${time.min}:${time.seconds}`;
 };
 
+export const getRangePickerDate = (rangeTime: Array<any>) => {
+  if (!rangeTime || rangeTime.length === 0) return { start: null, end: null };
+
+  const start: number = +new Date(
+    new Date(rangeTime[0].format('YYYY-MM-DD HH:mm:ss')).setHours(0, 0, 0, 0),
+  );
+  const end: number = +new Date(
+    new Date(rangeTime[1].format('YYYY-MM-DD HH:mm:ss')).setHours(23, 59, 59, 0),
+  );
+  return {
+    start,
+    end,
+  };
+};
+
 export const getLocalePrice = (price: string | number) => {
+  if (!price) return '--';
 
-  if (!price) return '无';
-
-  const priceInterval =  price.toString();
+  const priceInterval = price.toString();
   const priceArr = priceInterval.split('~');
 
   if (priceArr.length === 0) return;
   if (priceArr.length === 1) {
-    if (priceArr[0] === '') return '无';
+    if (priceArr[0] === '') return '--';
     const price = +priceArr[0];
     return `¥ ${price.toFixed(2).replace(Regex.thounsand, ',')}`;
   } else {
@@ -86,9 +100,37 @@ export const getCityInfoByCode = (codeStr: string) => {
 };
 
 export const limitWord = (str: string, len: number) => {
+  if(!str){
+    return ''
+  }
   const strLen = str.length;
 
   return strLen > len ? <Tooltip title={str}>{str.substring(0, len) + '...'}</Tooltip> : str;
+};
+
+export const optimizePic = (url: string) => {
+  const env = getEnv();
+  let imgUrl = url;
+
+  if (!url) return '';
+  if (env === 'prod') {
+    const url_prefix = url.replace(/fdfs.xmcdn.com/, 'imagev2.xmcdn.com');
+    const url_params = '!op_type=2&columns=80&rows=80&strip=1&quality=8&unlimited=1';
+    imgUrl = url_prefix + url_params;
+  }
+  return imgUrl;
+};
+
+export const download = (downloadUrl: string, params) => {
+  const paramKeys = Object.keys(params);
+
+  if (!downloadUrl || !paramKeys.length) return;
+
+  paramKeys.forEach((key, index) => {
+    downloadUrl += `${index === 0 ? '?' : '&'}${key}=${params[key]}`;
+  });
+
+  window.location.href = downloadUrl;
 };
 
 export const multi = (a, b) => {

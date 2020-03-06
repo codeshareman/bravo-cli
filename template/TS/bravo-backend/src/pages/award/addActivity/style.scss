@@ -1,0 +1,43 @@
+.award-add-activity{
+    .title-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        .title{
+            font-size:18px;
+            font-weight:600;
+            color:rgba(50,65,80,1);
+        }
+        .msg-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .msg{
+                font-size:12px;
+                font-weight:400;
+                color:rgba(33,95,255,1);
+                line-height:18px;
+            }
+            .icon{
+                width: 6px;
+                height: 10px;
+                margin-left: 4px;
+            }
+        }
+    }
+    .form-wrapper{
+        width: 550px;
+        .ant-form-item{
+            margin-bottom: 16px;
+        }
+        .icon{
+            width: 16px;
+            height: 16px;
+            margin: -2px 3px 0px;
+        }
+        .button-wrapper{
+            margin-top: 24px;
+        }
+    }
+}

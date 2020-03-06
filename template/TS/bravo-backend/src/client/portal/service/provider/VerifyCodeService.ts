@@ -1,26 +1,25 @@
-import {AxiosInstance} from "axios";
-import {Reply} from "../../../shared/shared";
-
+import { AxiosInstance } from 'axios'
+import { Reply, AsyncReply } from '../../../shared/shared'
 
 export default class VerifyCodeService {
+    static readonly SERVICE_NAME = 'portal-provider'
+    constructor(private readonly http: AxiosInstance) {}
 
-    constructor(private readonly http: AxiosInstance) {
+    getEmailVerifyCode(
+        params: Required<{ email: string }>,
+    ): AsyncReply<string> {
+        return this.http
+            .get(`/${VerifyCodeService.SERVICE_NAME}/verify/code/email`, {
+                params,
+            })
+            .then(r => r.data)
     }
 
-    /**
-     * 获取邮件验证码
-     * @param params
-     */
-    getEmailVerifyCode(params: Required<{ email: string }>): Promise<Reply<string>> {
-        return this.http.get(`verify/code/email`, {params}).then(r => r.data)
+    getSmsVerifyCode(params: Required<{ mobile: string }>): AsyncReply<string> {
+        return this.http
+            .get(`/${VerifyCodeService.SERVICE_NAME}/verify/code/sms`, {
+                params,
+            })
+            .then(r => r.data)
     }
-
-    /**
-     * 获取短信验证码
-     * @param params
-     */
-    getSmsVerifyCode(params: Required<{ mobile: string }>): Promise<Reply<string>> {
-        return this.http.get(`verify/code/sms`, {params}).then(r => r.data)
-    }
-
 }

@@ -39,50 +39,57 @@ export default class TempStrategyService {
 }
 
 export interface ProductQueryRequest {
-    pageIndex:int32
-    pageSize:int32
-    productId?:int64
-    userId:int64
-    status:int32
+    pageIndex: int32
+    pageSize: int32
+    productId?: int64
+    userId: int64
+    status: int32
+}
+
+export enum StrategyStatus {
+    BEFORE_EFFECTIVE = 0, //"未生效"
+    EFFECTIVE = 1,        //"已生效"
+    EXPIRED = 2,          //"已失效"
+    CANCELED = 3          // "已取消"
 }
 
 export interface TempProduct {
-    strategyId:int64
-    productId:int64
-    productName:string
-    coverPath:string
-    price:string
-    channelPrice:string
-    tempPrice:string
-    startTime:int64
-    endTime:int64
-    remark:string
-    approvalId:string
-    items:Array<TempProductItem>
+    strategyId: int64
+    productId: int64
+    productName: string
+    coverPath: string
+    price: string
+    channelPrice: string
+    tempPrice: string
+    startTime: int64
+    endTime: int64
+    remark: string
+    approvalId: string
+    items: Array<TempProductItem>
 }
 
 export interface TempProductItem {
-    strategyId:int64
-    itemId:int64
-    itemName:string
-    coverPath:string
-    price:string
-    channelPrice:string
-    tempPrice:string
+    strategyId: int64
+    itemId: int64
+    itemName: string
+    coverPath: string
+    price: string
+    channelPrice: string
+    tempPrice: string
 }
 
 export interface StrategyCreateRequest {
-    productId:int64
-    userId:int64
-    remark:string
-    startTime:int64
-    endTime:int64
-    approvalId:string
-    items:Array<StrategyItemCreateRequest>
+    productId: int64
+    userId: int64
+    remark: string
+    startTime: int64
+    endTime: int64
+    approvalId: string
+    items: Array<StrategyItemCreateRequest>
 
 }
 
 export interface StrategyItemCreateRequest {
-    itemId:int64
-    strategyPrice:string
+    itemId: int64
+    strategyPrice: string
 }

@@ -15,7 +15,12 @@
   @include btn-normal($main-lighter, '#fff', $main-lighter);
   &:hover,
   &:active,
-  &:focus{
+  &:focus {
     @include btn-normal('#fff', $default-hover--color, $main-lighter);
   }
+}
+
+.btn-reset {
+  color: #7f8fa4;
+  border: 1px solid rgba(220, 224, 224, 1);
 }

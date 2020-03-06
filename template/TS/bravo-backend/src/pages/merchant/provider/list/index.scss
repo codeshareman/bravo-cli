@@ -1,25 +1,49 @@
+@import '../../../../assets/css/_mixin';
+
+.ant-modal-root {
+  .modal-wrap--role {
+    top: 20%;
+  }
+}
+
 .provider-list {
   .stastic {
     margin: 20px 0 10px 0;
+    line-height: 30px;
+    overflow: hidden;
     .total {
       color: #215fff;
     }
-  }
-  .search-field {
-    width: 90%;
-    overflow: hidden;
-    > .ant-form-item {
-      float: left;
+    button {
+      float: right;
     }
   }
-  .search-btn {
-    margin-top: 20px;
+  .provider-query {
+    overflow: hidden;
+    display: flex;
+    .search-field {
+      overflow: hidden;
+      .ant-form-item {
+        float: left;
+        margin-right: 24px;
+      }
+      .creatTime {
+        .ant-form-item-label {
+          margin-right: 4px;
+        }
+      }
+    }
+    .search-btn {
+      margin-top: 4px;
+    }
   }
+
   .account-status {
     padding: 4px 10px;
     border-radius: 2px;
     font-size: 12px;
     color: #fff;
+    letter-spacing: 1px;
     &.account-disabled {
       background: #bec7d2;
     }
@@ -35,15 +59,22 @@
   .sub-info {
     color: #7f8fa4;
     font-size: 12px;
+    margin-top: 4px;
   }
   .table-list {
     p {
       margin-bottom: 0;
+      &.company-name {
+        @include text-ellipsis;
+      }
     }
     .table-actions {
       a {
         display: block;
         margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

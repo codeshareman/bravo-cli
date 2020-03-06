@@ -1,0 +1,52 @@
+.award-merchant-list {
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(50, 65, 80, 1);
+    margin-bottom: 24px;
+  }
+  .query-area {
+    display: flex;
+    margin-bottom: 24px;
+    .search-field {
+      overflow: hidden;
+      > .ant-form-item {
+        float: left;
+      }
+    }
+    .search-btn {
+      padding-top: 4px;
+      margin: 0;
+      text-align: left;
+    }
+  }
+
+  .table-list {
+    p {
+      margin-bottom: 0;
+    }
+    .table-actions {
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .account-status {
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #fff;
+    &.account-disabled {
+      background: #bec7d2;
+    }
+    &.account-enabled {
+      background: #62c1ad;
+    }
+  }
+  .sub-info {
+    color: #7f8fa4;
+    font-size: 12px;
+  }
+}

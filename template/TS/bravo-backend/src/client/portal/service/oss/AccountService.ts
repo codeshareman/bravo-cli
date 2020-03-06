@@ -63,6 +63,15 @@ export default class AccountService {
     }
 
     /**
+     * 导出商户列表
+     */
+    export(input: SearchAccountRequest): AsyncReply<any> {
+        return this.http
+            .post(`/${AccountService.SERVICE_NAME}/export`, input)
+            .then(r => r.data)
+    }
+
+    /**
      * 查询账号明细
      */
     detail(uid: int64): AsyncReply<AccountDetail> {
@@ -78,6 +87,17 @@ export default class AccountService {
             .post(
                 `/${AccountService.SERVICE_NAME}/deal/statement/query`,
                 request,
+            )
+            .then(r => r.data)
+    }
+
+    downloadDealStatement(
+        request: DealStatementQueryRequest,
+    ): AsyncReply<void> {
+        return this.http
+            .get(
+                `/${AccountService.SERVICE_NAME}/deal/statement/query/download`,
+                { params: request },
             )
             .then(r => r.data)
     }
@@ -109,7 +129,6 @@ export interface Account {
     developerId: int64
     companyName: string
     spreaderId: int64
-    agentDistrict: string
     distributor: boolean
     cautionMoney: string
     balance: string
@@ -121,11 +140,13 @@ export interface Account {
     updateTime: int64
     status: int32
     role: int32
+    availableAmount: string
+    businessOpsId: int64
+    depositCert: string
 }
 
 export interface SearchAccountRequest {
     companyName: string
-    agentDistrict: string
     developerId: int64
     contractNo: string
     startTs: int64
@@ -187,14 +208,16 @@ export interface Approval {
 }
 
 export enum TradeType {
-    WITHDRAW = 1, // 撤销
-    RECHARGE = 2, // 充值
-    TRANSER_IN = 3, //转入
-    TRANSER_OUT = 4, // 转出
-    DEDUCT = 5, //  扣除
-    COMMISSION = 6, // 佣金
-    WITHDRAW_FEE = 7, // 免费撤销
-    UNKNOWN = 23, //未知
+    WITHDRAW = 'WITHDRAW', // 提现
+    RECHARGE = 'RECHARGE', // 充值
+    TRANSER_IN = 'TRANSER_IN', //转入
+    TRANSER_OUT = 'TRANSER_OUT', // 转出
+    WITHDRAW_FEE = 'WITHDRAW_FEE', //  提现手续费
+    DEDUCT = 'DEDUCT', //分销扣款
+    COMMISSION = 'COMMISSION', // 分销佣金
+    REWARD = 'REWARD', //奖励佣金
+    PURCHASE = 'PURCHASE', // 采购
+    UNKNOWN = 'UNKNOWN', //未知
 }
 
 export enum ApprovalStatus {
@@ -215,31 +238,39 @@ export interface AccountDetail {
     // 开发者id
     developerId: int64
     // 公司名称
-    companyName: String
+    companyName: string
     // 推广者id
     spreaderId: int64
     // 代理地区
-    agentDistrict: String
+    agentDistrict: string
     // 是否分销商
     distributor: Boolean
+    // 现金账户余额
+    availableAmount: string
     // 保险金
-    cautionMoney: String
+    cautionMoney: string
     // 余额
-    balance: String
+    balance: string
     // 冻结金额
-    freezeMoney: String
+    freezeMoney: string
     // 合同编号
-    contractNo: String
+    contractNo: string
     // 合同开始时间
-    contractStart: String
+    contractStart: string
     // 合同结束时间
-    contractEnd: String
+    contractEnd: string
     // 创建时间
-    createTime: String
+    createTime: string
     // 修改时间
-    updateTime: String
+    updateTime: string
     // 用户状态（1:启用 0:停用）
     status: int32
     // 角色
     role: AccountRole
+    // 角色名称
+    roleName: string
+    //  opsId
+    businessOpsId: string
+    // 保证金凭证
+    depositCert: string
 }

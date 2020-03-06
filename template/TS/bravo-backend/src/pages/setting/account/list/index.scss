@@ -1,8 +1,22 @@
-.price-setting {
+.account-setting {
+  > h2 {
+    .feature-btns {
+      float: right;
+      .btn-role--create {
+        display: flex;
+        align-items: center;
+        color: #4a83ff;
+        background-color: #fff;
+        border-color: #4a83ff;
+        >i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
   .query-area {
     overflow: hidden;
     margin: 15px 0;
-
     .search-form-condition {
       float: left;
       .ant-form-item {
@@ -12,24 +26,6 @@
     .search-form-btn {
       float: left;
       margin-top: 4px;
-    }
-  }
-
-  .company-info {
-    margin-bottom: 24px;
-    > .item {
-      display: inline-block;
-      margin-right: 48px;
-      font-size: 12px;
-      font-family: PingFangSC-Regular, PingFang SC;
-      font-weight: 400;
-      color: rgba(50, 65, 80, 1);
-      font-weight: 400;
-      span {
-        color: #324150;
-        margin-right: 16px;
-        font-weight: 600;
-      }
     }
   }
 }

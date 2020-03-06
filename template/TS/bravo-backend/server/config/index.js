@@ -1,23 +1,24 @@
-const path = require('path');
-const utils = require('../build/utils');
+const path = require('path')
+const utils = require('../build/utils')
 
-const projectName = 'merchant-b';
-const distDir = 'dist';
+const projectName = 'merchant-b'
+const distDir = 'dist'
+const { version } = require('../../package.json')
 
 module.exports = {
-  port: 8888,
+  port: 8000,
   sourcemapUrl: `http://sourcemap.ximalaya.com/${projectName}/${distDir}/`,
   test: {
     assetsRoot: '',
-    assetsPublicPath: '//static2.test.ximalaya.com/yx/merchant-b/last/dist/',
+    assetsPublicPath: `//static2.test.ximalaya.com/yx/merchant-b/${version}/dist/`,
     chunkFilename: 'js/[name].js',
   },
   uat: {
-    assetsPublicPath: '//s1.uat.xmcdn.com/yx/merchant-b/last/dist/',
+    assetsPublicPath: `//s1.uat.xmcdn.com/yx/merchant-b/${version}/dist/`,
     chunkFilename: 'js/[name].js',
   },
   production: {
-    assetsPublicPath: '//s1.xmcdn.com/yx/merchant-b/last/dist/',
+    assetsPublicPath: `//s1.xmcdn.com/yx/merchant-b/${version}/dist/`,
     chunkFilename: 'js/[name].js',
   },
   theme: {
@@ -35,4 +36,4 @@ module.exports = {
     //"border-color-base": "#E1A661", // 边框色
     // "box-shadow-base": "0 2px 8px rgba(0, 0, 0, .15)" // 浮层阴影
   },
-};
+}

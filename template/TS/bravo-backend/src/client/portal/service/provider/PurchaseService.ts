@@ -1,13 +1,13 @@
-import axios, {AxiosInstance} from 'axios'
-import {AsyncReply} from '../../../shared/shared'
-import {int64, int32, float64} from '../../../shared/type'
-import {PurchaseProductGroup, PurchaseProductGroupDetail} from '../provider/CartService'
+import axios, { AxiosInstance } from 'axios'
+import { AsyncReply } from '../../../shared/shared'
+import { int64, int32, float64 } from '../../../shared/type'
+
+import { PurchaseProductGroup, PurchaseProductGroupDetail } from './CartService'
 
 export default class PurchaseService {
-    static readonly SERVICE_NAME = 'purchase'
+    static readonly SERVICE_NAME = 'portal-provider/purchase'
 
-    constructor(private readonly http: AxiosInstance) {
-    }
+    constructor(private readonly http: AxiosInstance) {}
 
     /**
      * 获取采购单
@@ -33,9 +33,9 @@ export default class PurchaseService {
      * 获取确认支付参数
      * @param contextId
      */
-    getConfirmParams(contextId: string): AsyncReply<ConfirmParams> {
+    getConfirmParams(params): AsyncReply<ConfirmParams> {
         return this.http
-            .post(`/${PurchaseService.SERVICE_NAME}/confirmParams`, contextId)
+            .get(`/${PurchaseService.SERVICE_NAME}/confirmParams`, { params })
             .then(r => r.data)
     }
 
@@ -55,9 +55,11 @@ export default class PurchaseService {
      * @param request
      * @returns 订单编号
      */
-    getPurchaseProducts(request: string): AsyncReply<PurchaseProductGroupDetail[]> {
+    getPurchaseProducts(params): AsyncReply<PurchaseProductGroupDetail[]> {
         return this.http
-            .get(`/${PurchaseService.SERVICE_NAME}/products`, {params: request})
+            .get(
+                `/${PurchaseService.SERVICE_NAME}/products?contextId=${params}`,
+            )
             .then(r => r.data)
     }
 }
@@ -66,7 +68,7 @@ export interface PurchaseList {
     // 采购商品列表
     purchaseList: PurchaseProductGroupDetail[]
     // 余额
-    balance: string,
+    balance: string
     // 商品种类
     productTypeCount: int32
     // 商品item总数量
@@ -83,7 +85,7 @@ export interface PurchaseCreateDTO {
     // 收货地址
     contactId: int64
     // 备注
-    comment: string,
+    comment: string
     // 采购商品
     purchaseProductGroups: PurchaseProductGroup[]
 }
@@ -97,22 +99,22 @@ export enum PurchaseMethod {
 
 export interface PurchaseConfirmDTO {
     // 采购上下文id
-    contextId: string,
+    contextId: string
     // 验证码
     verifyCode: string
 }
 
 export interface ConfirmParams {
     // 公司名称
-    companyName: string,
+    companyName: string
     // 公司联系人
-    contactName: string,
+    contactName: string
     // 现金账户可用余额
-    balance: string,
+    balance: string
     // 订单金额
-    totalAmount: string,
+    totalAmount: string
     // 应付货款
-    payAmount: string,
+    payAmount: string
     // 联系人手机
     phone: string
 }

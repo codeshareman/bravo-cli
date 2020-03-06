@@ -1,23 +1,24 @@
-import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import Pages from './page';
+import React from 'react'
+import { RouteComponentProps, RouteProps } from 'react-router-dom'
+import Pages from './page'
 
-export type RouteItem = {
-  id: number;
-  path: string;
-  sort?: number;
-  title?: string;
-  name?: string;
-  icon?: string;
-  exact?: boolean;
-  hideMenu?: boolean; //隐藏当前菜单
-  hideSubMenu?: boolean; //隐藏下级菜单
-  redirect?: boolean;
-  component?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
-  children: RouteItem[];
-};
+export type IRouteItem = {
+  id: number
+  path: string
+  sort?: number
+  title?: string
+  name?: string
+  icon?: string
+  exact?: boolean
+  hideMenu?: boolean //隐藏当前菜单
+  hideSubMenu?: boolean //隐藏下级菜单
+  redirect?: string
+  noAuth?: boolean
+  component?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>
+  childRoute?: IRouteItem[]
+} & RouteProps
 
-const config: RouteItem[] = [
+const config: IRouteItem[] = [
   {
     id: 100,
     sort: 1,
@@ -28,28 +29,29 @@ const config: RouteItem[] = [
     component: Pages.Home,
     // hideMenu: true,
     // hideSubMenu: true,
-    children: [],
+    childRoute: [],
   },
-  {
-    id: 101,
-    sort: 2,
-    title: '审批中心',
-    icon: 'approval',
-    name: 'approval-center',
-    path: '/approval',
-    component: Pages.Approval,
-    children: [
-      {
-        id: 101001,
-        sort: 1,
-        title: '入驻审批',
-        name: 'dashboard',
-        path: '/approval/settle',
-        component: Pages.Approval,
-        children: [],
-      },
-    ],
-  },
+  // {
+  //   id: 101,
+  //   sort: 2,
+  //   title: '审批中心',
+  //   icon: 'approval',
+  //   name: 'approval-center',
+  //   path: '/approval',
+  //   component: Pages.Approval,
+  //   noAuth: false,
+  //   childRoute: [
+  //     {
+  //       id: 101001,
+  //       sort: 1,
+  //       title: '入驻审批',
+  //       name: 'dashboard',
+  //       path: '/approval/settle',
+  //       component: Pages.Approval,
+  //       childRoute: [],
+  //     },
+  //   ],
+  // },
   {
     id: 102,
     sort: 3,
@@ -58,7 +60,8 @@ const config: RouteItem[] = [
     name: 'business-management',
     path: '/business',
     component: Pages.ServiceList,
-    children: [
+    noAuth: false,
+    childRoute: [
       {
         id: 102001,
         sort: 1,
@@ -67,7 +70,8 @@ const config: RouteItem[] = [
         path: '/business/provider',
         component: Pages.ServiceList,
         hideSubMenu: true,
-        children: [
+        noAuth: false,
+        childRoute: [
           {
             id: 102001001,
             sort: 1,
@@ -75,7 +79,8 @@ const config: RouteItem[] = [
             name: 'price_add',
             path: '/business/provider/specialPrice/add/:uid',
             component: Pages.speicalPriceAdd,
-            children: [],
+            noAuth: false,
+            childRoute: [],
           },
           {
             id: 102001002,
@@ -84,7 +89,8 @@ const config: RouteItem[] = [
             name: 'account_detail',
             path: '/business/provider/account/:uid',
             component: Pages.AccountDetail,
-            children: [],
+            noAuth: false,
+            childRoute: [],
           },
           {
             id: 102001003,
@@ -93,7 +99,8 @@ const config: RouteItem[] = [
             name: 'price_setting',
             path: '/business/provider/specialPrice/:uid',
             component: Pages.specialPriceSetting,
-            children: [],
+            noAuth: false,
+            childRoute: [],
           },
           {
             id: 102001004,
@@ -102,7 +109,8 @@ const config: RouteItem[] = [
             name: 'price_add',
             path: '/business/provider/specialPrice',
             component: Pages.specialPriceSetting,
-            children: [],
+            noAuth: false,
+            childRoute: [],
           },
         ],
       },
@@ -114,7 +122,8 @@ const config: RouteItem[] = [
         path: '/business/role',
         component: Pages.Channel,
         hideSubMenu: true,
-        children: [
+        noAuth: false,
+        childRoute: [
           {
             id: 102003001,
             sort: 1,
@@ -122,7 +131,8 @@ const config: RouteItem[] = [
             name: 'channel_price',
             path: '/business/role/channelPrice/:roleId',
             component: Pages.ChannelPriceSet,
-            children: [],
+            noAuth: false,
+            childRoute: [],
           },
         ],
       },
@@ -136,17 +146,19 @@ const config: RouteItem[] = [
     name: 'order-management',
     path: '/order',
     component: Pages.Order,
+    noAuth: false,
     // hideMenu: true,
     // hideSubMenu: true,
-    children: [
+    childRoute: [
       {
         id: 103001,
         sort: 1,
         title: '实物订单',
         name: 'dashboard',
-        path: '/order/physical/list',
+        path: '/order/physical',
         component: Pages.Order,
-        children: [],
+        noAuth: false,
+        childRoute: [],
       },
       {
         id: 103002,
@@ -156,7 +168,99 @@ const config: RouteItem[] = [
         path: '/order/physical/detail/:id',
         component: Pages.OrderDetails,
         hideMenu: true,
-        children: [],
+        noAuth: false,
+        childRoute: [],
+      },
+    ],
+  },
+  {
+    id: 105,
+    sort: 5,
+    title: '奖励中心',
+    icon: 'award',
+    name: 'award-center',
+    path: '/award',
+    component: Pages.MerchantList,
+    noAuth: false,
+    // hideMenu: true,
+    // hideSubMenu: true,
+    childRoute: [
+      {
+        id: 105001,
+        sort: 1,
+        title: '商户列表',
+        name: 'dashboard',
+        path: '/award/merchant/list',
+        component: Pages.MerchantList,
+        hideSubMenu: true,
+        noAuth: false,
+        childRoute: [
+          {
+            id: 105001001,
+            sort: 1,
+            title: '奖励账户明细',
+            name: 'dashboard',
+            path: '/award/account/detail/:id',
+            component: Pages.AwardDetail,
+            noAuth: false,
+            childRoute: [],
+          },
+        ],
+      },
+      {
+        id: 105002,
+        sort: 2,
+        title: '拉新活动',
+        name: 'dashboard',
+        path: '/award/activity/list',
+        component: Pages.ActivityList,
+        noAuth: false,
+        hideSubMenu: true,
+        childRoute: [
+          {
+            id: 105002001,
+            sort: 1,
+            title: '编辑拉新活动',
+            name: 'dashboard',
+            path: '/award/activity/edit',
+            component: Pages.AddActivity,
+            noAuth: false,
+            childRoute: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 106,
+    sort: 6,
+    title: '供应商管理',
+    icon: 'scm',
+    name: 'scm',
+    path: '/scm',
+    component: Pages.SCMList,
+    // hideMenu: true,
+    // hideSubMenu: true,
+    childRoute: [
+      {
+        id: 106001,
+        sort: 1,
+        title: '供应商列表',
+        name: 'dashboard',
+        path: '/scm/scmList',
+        component: Pages.SCMList,
+        hideSubMenu: true,
+        childRoute: [
+          {
+            id: 106001001,
+            sort: 1,
+            title: '供应商详情',
+            name: 'dashboard',
+            path: '/scm/scmList/detail/:id',
+            component: Pages.SCMDetail,
+            children: [],
+          },
+        ],
       },
     ],
   },
@@ -168,7 +272,8 @@ const config: RouteItem[] = [
     name: 'setting',
     path: '/setting',
     component: Pages.AccountManage,
-    children: [
+    noAuth: false,
+    childRoute: [
       {
         id: 104001,
         sort: 1,
@@ -176,28 +281,110 @@ const config: RouteItem[] = [
         name: 'dashboard',
         path: '/setting/account',
         component: Pages.AccountManage,
-        children: [],
-      },
-      {
-        id: 104002,
-        sort: 2,
-        title: '角色管理',
-        name: 'dashboard',
-        path: '/setting/role',
-        component: Pages.RoleManage,
-        children: [],
-      },
-      {
-        id: 104003,
-        sort: 3,
-        title: '功能管理',
-        name: 'dashboard',
-        path: '/setting/feature',
-        component: Pages.FeatureManage,
-        children: [],
+        hideSubMenu: true,
+        noAuth: false,
+        childRoute: [
+          {
+            id: 104001,
+            sort: 1,
+            title: '编辑用户',
+            name: 'dashboard',
+            path: '/setting/account/edit/:uid',
+            component: Pages.AccountEdit,
+            noAuth: false,
+            childRoute: [],
+          },
+          {
+            id: 104001,
+            sort: 1,
+            title: '新增用户',
+            name: 'dashboard',
+            path: '/setting/account/add',
+            component: Pages.AccountEdit,
+            noAuth: false,
+            childRoute: [],
+          },
+        ],
       },
     ],
   },
-];
+]
 
-export default config;
+export const enum PermsKey {
+  default = 'default',
+  business = 'business',
+  finance = 'finance',
+  channel = 'channel',
+  tech = 'tech',
+  supply_chain = 'supply_chain',
+}
+
+//权限控制preset
+export const permsConfig = {
+  // [PermsKey.default]: ['/business', '/business/provider'],
+  [PermsKey.business]: [
+    '/business',
+    '/business/provider',
+    '/business/provider/account/:uid',
+    '/order',
+    '/order/physical',
+    '/order/physical/detail/:id',
+    '/award/merchant/list',
+    '/award/account/detail/:id',
+    '/award/activity/list',
+  ],
+  [PermsKey.finance]: [
+    '/business',
+    '/business/provider',
+    '/business/provider/account/:uid',
+    '/order',
+    '/order/physical',
+    '/order/physical/detail/:id',
+    '/award',
+    '/award/merchant/list',
+    '/award/account/detail/:id',
+    '/award/activity/list',
+  ],
+  [PermsKey.channel]: [
+    '/business',
+    '/business/provider',
+    '/business/provider/account/:uid',
+    '/business/role',
+    '/business/role/channelPrice/:roleId',
+    '/order',
+    '/order/physical',
+    '/order/physical/detail/:id',
+    '/award',
+    '/award/merchant/list',
+    '/award/account/detail/:id',
+    '/award/activity/list',
+    '/scm',
+    '/scm/scmList',
+    '/scm/scmList/detail/:id',
+  ],
+  [PermsKey.supply_chain]: [
+    '/business',
+    '/business/provider',
+    '/business/provider/specialPrice',
+    '/business/provider/specialPrice/add/:uid',
+    '/business/provider/specialPrice/:uid',
+    '/order',
+    '/order/physical',
+    '/order/physical/detail/:id',
+    '/scm',
+    '/scm/scmList',
+    '/scm/scmList/detail/:id',
+  ],
+  [PermsKey.tech]: [
+    '/setting',
+    '/setting/account',
+    '/setting/account/edit/:uid',
+    '/award',
+    '/award/merchant/list',
+    '/award/account/detail/:id',
+    '/award/activity/list',
+    '/award/activity/edit',
+  ],
+}
+
+export default config

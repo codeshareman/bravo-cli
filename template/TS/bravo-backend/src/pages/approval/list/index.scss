@@ -1,7 +1,21 @@
-
 .approval-search {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   margin-bottom: 25px;
+  .search-form--btn {
+    padding-top: 4px;
+  }
+}
+
+.modal-approval {
+  .ant-form-item {
+    margin-bottom: 14px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.reject-reason {
+      .ant-form-item-label {
+        line-height: 18px;
+      }
+    }
+  }
 }

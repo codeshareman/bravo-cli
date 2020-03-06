@@ -15,7 +15,7 @@ export enum TreeLevel {
 import {
   PurchaseProductItemDetail,
   PurchaseProductGroupDetail,
-} from '@/client/portal/service/provider/CartService';
+} from '@xmly/cbp-spec/lib/portal/service/provider/CartService';
 
 //选中状态
 export const enum CheckedStatus {

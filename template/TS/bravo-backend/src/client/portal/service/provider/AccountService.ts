@@ -1,12 +1,11 @@
-import axios, {AxiosInstance} from 'axios'
-import {AsyncReply, Page} from '../../../shared/shared'
-import {int64, int32} from '../../../shared/type'
+import axios, { AxiosInstance } from 'axios'
+import { AsyncReply, Page } from '../../../shared/shared'
+import { int64, int32 } from '../../../shared/type'
 
 export default class AccountService {
-    static readonly SERVICE_NAME = "portal-provider/account";
+    static readonly SERVICE_NAME = 'portal-provider/account'
 
-    constructor(private readonly http: AxiosInstance) {
-    }
+    constructor(private readonly http: AxiosInstance) {}
 
     /**
      * 查询用户状态
@@ -14,7 +13,7 @@ export default class AccountService {
     status(): AsyncReply<AccountStatusDTO> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/status`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -23,7 +22,7 @@ export default class AccountService {
     basicInfo(): AsyncReply<BasicUserInfo> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/basic`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -32,7 +31,7 @@ export default class AccountService {
     perms(): AsyncReply<string[]> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/perm`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -41,7 +40,7 @@ export default class AccountService {
     developerInfo(): AsyncReply<DeveloperAccount> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/developer`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -50,7 +49,7 @@ export default class AccountService {
     detail(): AsyncReply<AccountDetail> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/detail`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -60,7 +59,7 @@ export default class AccountService {
     apply(request: AccountApplyRequest): AsyncReply<any> {
         return this.http
             .post(`/${AccountService.SERVICE_NAME}/create`, request)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -70,7 +69,7 @@ export default class AccountService {
     applyInfo(): AsyncReply<AccountApplyInfo> {
         return this.http
             .get(`/${AccountService.SERVICE_NAME}/applyInfo`)
-            .then(r => r.data);
+            .then(r => r.data)
     }
 
     /**
@@ -79,16 +78,32 @@ export default class AccountService {
      */
     verifyCompanyName(request: VerifyCompanyNameRequest): AsyncReply<boolean> {
         return this.http
-            .post(`/${AccountService.SERVICE_NAME}/verify/company/name`, request)
-            .then(r => r.data);
-    }
-
-    queryDealStatement(request: DealStatementQueryRequest): AsyncReply<Page<DealStatementResult>> {
-        return this.http
-            .post(`/${AccountService.SERVICE_NAME}/deal/statement/query`, request)
+            .post(
+                `/${AccountService.SERVICE_NAME}/verify/company/name`,
+                request,
+            )
             .then(r => r.data)
     }
 
+    queryDealStatement(
+        request: DealStatementQueryRequest,
+    ): AsyncReply<Page<DealStatementResult>> {
+        return this.http
+            .post(
+                `/${AccountService.SERVICE_NAME}/deal/statement/query`,
+                request,
+            )
+            .then(r => r.data)
+    }
+
+    downloadDealStatement(params: DealStatementQueryRequest) {
+        let downloadUrl = `/${AccountService.SERVICE_NAME}/deal/statement/query/download`
+        params &&
+            Object.keys(params).forEach((key, index) => {
+                downloadUrl += `${index === 0 ? '?' : '&'}${key}=${params[key]}`
+            })
+        window.location.href = downloadUrl
+    }
 }
 
 export interface DealStatementResult {
@@ -102,232 +117,244 @@ export interface DealStatementResult {
 }
 
 export enum TradeType {
-    WITHDRAW = 1, // 撤销
-    RECHARGE = 2,// 充值
-    TRANSER_IN = 3,//转入
-    TRANSER_OUT = 4,// 转出
-    DEDUCT = 5,   //  扣除
-    COMMISSION = 6,  // 佣金
-    WITHDRAW_FEE = 7,   // 免费撤销
-    UNKNOWN = 23   //未知
+    WITHDRAW = 'WITHDRAW', // 提现
+    RECHARGE = 'RECHARGE', // 充值
+    TRANSER_IN = 'TRANSER_IN', //转入
+    TRANSER_OUT = 'TRANSER_OUT', // 转出
+    WITHDRAW_FEE = 'WITHDRAW_FEE', //  提现手续费
+    DEDUCT = 'DEDUCT', //分销扣款
+    COMMISSION = 'COMMISSION', // 分销佣金
+    REWARD = 'REWARD', //奖励佣金
+    PURCHASE = 'PURCHASE', // 采购
+    UNKNOWN = 'UNKNOWN', //未知
 }
 
 export interface DealStatementQueryRequest {
     tradeTimeStart?: int64
-    tradeTimeEnd?: int64,
-    tradeType?: string,
-    trxNo?: string,
-    pageIndex: int32,
+    tradeTimeEnd?: int64
+    tradeType?: string
+    trxNo?: string
+    pageIndex: int32
     pageSize: int32
 }
 
 export interface AccountStatusDTO {
-    accountStatus: AccountStatus;
-    extra: Extra;
+    accountStatus: AccountStatus
+    extra: Extra
 }
 
-export const enum AccountStatus {
+export  enum AccountStatus {
     DISABLE = 0, // "停用"
     NORMAL = 1, // "启用"
     WAITING_APPROVAL = 2, // "审核中"
     APPROVAL_REJECT = 3, // "审核失败"
     NON_DEVELOPER = 4, // "未注册开发者账号"
     NON_CSP = 5, // "已成为开发者账号，未入驻城市服务商"
-    UNKNOWN = 99 // "未知状态"
+    DEVELOPER_APPROVAL_REJECT = 6, // 开发者账号,审核失败
+    UNKNOWN = 99, // "未知状态"
 }
 
 export interface Extra {
     // 公司名称
-    companyName: string;
+    companyName: string
     // 审批拒绝原因
-    approvalRejectReason: string;
+    approvalRejectReason: string
+    //开发者ID
+    developerId?: string
 }
 
 export interface BasicUserInfo {
     // 头像
-    logoPic: string;
+    logoPic: string
     // 喜马昵称
-    nickname: string;
-    uid: number;
-    ptitle: string;
-    personDescribe: string;
-    country: string;
-    province: string;
-    city: string;
-    personalSignature: string;
-    hasLive: boolean;
-    errorMsg: string;
-    errorCode: string;
-    success: true;
-    vipExpireTime: number;
-    nicknameModifyAvailableCount: number;
-    anchorGrade: number;
-    userGrade: number;
-    userTitle: string;
-    robot: string;
-    vip: string;
-    loginBan: string;
-    vcategoryId: string;
-    verified: string;
+    nickname: string
+    uid: number
+    ptitle: string
+    personDescribe: string
+    country: string
+    province: string
+    city: string
+    personalSignature: string
+    hasLive: boolean
+    errorMsg: string
+    errorCode: string
+    success: true
+    vipExpireTime: number
+    nicknameModifyAvailableCount: number
+    anchorGrade: number
+    userGrade: number
+    userTitle: string
+    robot: string
+    vip: string
+    loginBan: string
+    vcategoryId: string
+    verified: string
 }
 
 export interface DeveloperAccount {
-    id: string;
-    uid: string;
+    id: string
+    uid: string
     registerInfo: {
         // 公司名称
-        companyName: string;
+        companyName: string
         // 公司主页
-        companyUrl: string;
+        companyUrl: string
         // 公司简介
-        companyDesc: string;
+        companyDesc: string
         // 公司地址
-        address: string;
+        address: string
         // 详细地址
-        companyAddr: string;
+        companyAddr: string
         // 营业执照
-        businessLicenseUrl: string;
+        businessLicenseUrl: string
         // 联系人
-        name: string;
+        name: string
         // 手机号
-        mobile: string;
+        mobile: string
         // 邮箱
-        email: string;
+        email: string
 
-        desc: string;
+        desc: string
 
-        devIdCardNo: any;
+        devIdCardNo: any
 
-        developerType: string;
+        developerType: string
 
-        idCardNoUrl: string;
+        idCardNoUrl: string
 
-        sysName: string;
+        sysName: string
 
-        userId: number;
-    };
+        userId: number
+    }
     extraInfo: {
-        auditFailReason: string;
-        businessTypeCategoryId: number;
-        closeReason: string;
-        closedAt: number;
-        closedBy: string;
-        createSource: string;
-        createdAt: number;
-        developerIntro: string;
-        hardwareAppNum: number;
-        mobileAppNum: number;
-        rewardTypesCode: string;
-        updatedAt: number;
-        webAppNum: number;
-    };
+        auditFailReason: string
+        businessTypeCategoryId: number
+        closeReason: string
+        closedAt: number
+        closedBy: string
+        createSource: string
+        createdAt: number
+        developerIntro: string
+        hardwareAppNum: number
+        mobileAppNum: number
+        rewardTypesCode: string
+        updatedAt: number
+        webAppNum: number
+    }
 }
 
 export interface AccountDetail {
     // uid
-    uid: int64;
+    uid: int64
     // 开发者id
-    developerId: int64;
+    developerId: int64
     // 公司名称
-    companyName: String;
+    companyName: String
     // 推广者id
-    spreaderId: int64;
+    spreaderId: int64
     // 代理地区
-    agentDistrict: string;
+    agentDistrict: string
     // 是否分销商
-    distributor: boolean;
+    distributor: boolean
     // 保险金
-    cautionMoney: string;
+    cautionMoney: string
     // 余额
-    balance: string;
+    balance: string
     // 冻结金额
-    freezeMoney: string;
+    freezeMoney: string
     // 合同编号
-    contractNo: string;
+    contractNo: string
     // 合同开始时间
-    contractStart: string;
+    contractStart: string
     // 合同结束时间
-    contractEnd: string;
+    contractEnd: string
     // 创建时间
-    createTime: string;
+    createTime: string
     // 修改时间
-    updateTime: string;
+    updateTime: string
     // 用户状态（1:启用 0:停用）
-    status: int32;
+    status: int32
     // 角色
-    role: AccountRole;
+    role: AccountRole
+    //角色名
+    roleName: string
+    // 可用余额
+    availableAmount: string
 }
 
-export const enum AccountRole {
+export  enum AccountRole {
     SERVICE_PROVIDER = 1, // "服务商"
     DEALER = 2, // "经销商"
-    DIRECT_CUSTOMER = 3 // "直客"
+    DIRECT_CUSTOMER = 3, // "直客"
 }
 
 export interface AccountApplyRequest {
-    developerId?: number | string;
+    developerId?: number | string
     // uid
-    uid: int64;
+    uid: int64
     // 公司名称
-    companyName: string;
+    companyName: string
     // 公司主页
-    companyHomePage: string;
+    companyHomePage: string
     // 公司简介
-    companyIntro: string;
+    companyIntro: string
     /** 公司所在地区*/
-    companyArea: string;
+    companyArea: string
     // 公司地址
-    companyAddr: string;
+    companyAddr: string
     // 营业执照
-    companyBusinessLicense: string;
+    companyBusinessLicense: string
     // 代理地区
-    agencyArea: any;
+    agencyArea: any
     // 联系人
-    contactName: string;
+    contactName: string
     // 手机号
-    contactMobile: string;
+    contactMobile: string
     // 邮箱
-    contactEmail: string;
+    contactEmail: string
     // 手机验证码
-    contactMobileVerifyCode: string;
+    contactMobileVerifyCode: string
     // 邮箱验证码
-    contactEmailVerifyCode: string;
+    contactEmailVerifyCode: string
+    //入驻业务类型
+    businessScope?:string
+    //商户入驻区域
+    businessArea?:string
 }
 
 export interface AccountApplyInfo {
     /** 公司所在地区*/
-    companyArea: string;
-    agencyArea: string;
-    approvalId: string;
-    cautionMoney: string;
-    companyAddr: string;
-    companyBusinessLicense: string;
-    companyHomePage: string;
-    companyIntro: string;
-    companyName: string;
-    contactEmail: string;
-    contactMobile: string;
-    contactName: string;
-    contractEndTime: number;
-    contractId: string;
-    contractStartTime: number;
-    createAt: number;
-    id: int32;
-    merchantTypeId: number;
-    remark: string;
-    status: ApprovalStatus;
-    uid: number;
-    updateAt: number;
+    companyArea: string
+    agencyArea: string
+    approvalId: string
+    cautionMoney: string
+    companyAddr: string
+    companyBusinessLicense: string
+    companyHomePage: string
+    companyIntro: string
+    companyName: string
+    contactEmail: string
+    contactMobile: string
+    contactName: string
+    contractEndTime: number
+    contractId: string
+    contractStartTime: number
+    createAt: number
+    id: int32
+    merchantTypeId: number
+    remark: string
+    status: ApprovalStatus
+    uid: number
+    updateAt: number
 }
 
-export const enum ApprovalStatus {
+export  enum ApprovalStatus {
     WAITING_APPROVAL = 100, //待审核
     ACCEPTED = 200, //审核已通过
-    REJECTED = -100 //审核未通过
+    REJECTED = -100, //审核未通过
 }
 
 export interface VerifyCompanyNameRequest {
-    developerId?: int64;
-    companyName: string;
+    developerId?: int64
+    companyName: string
 }
-  

@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { Menu } from 'antd';
-import { getRoutesMenu, getMenuDefaultKeyByPath } from '@/router/utils';
+import * as React from 'react'
+import { Menu } from 'antd'
+import { getRoutesMenu, getMenuDefaultKeyByPath } from '@/router/utils'
 
-import './index.scss';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import './index.scss'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-type P = RouteComponentProps & {};
+type P = RouteComponentProps & {}
 type S = {
-  openKeys: string[];
-  selectedKeys: string[];
+  openKeys: string[]
+  selectedKeys: string[]
   menuConfig: {
-    defaultOpenKeys: string[];
-    defaultSelectedKeys: string[];
-  };
-};
+    defaultOpenKeys: string[]
+    defaultSelectedKeys: string[]
+  }
+}
 
 // 侧边栏
 class SiderView extends React.Component<P, S> {
@@ -24,48 +24,45 @@ class SiderView extends React.Component<P, S> {
     },
     openKeys: [],
     selectedKeys: [],
-  };
+  }
 
   UNSAFE_componentWillMount() {
-    this.setDefaultMenuKeys();
+    this.setDefaultMenuKeys()
   }
 
   componentDidMount() {
-    this.props.history.listen(info => {
-      this.setDefaultMenuKeys();
-    });
+    this.props.history.listen(() => {
+      this.setDefaultMenuKeys()
+    })
   }
 
   setDefaultMenuKeys = () => {
-    const menuConfig = getMenuDefaultKeyByPath();
+    const menuConfig = getMenuDefaultKeyByPath()
     this.setState({
       menuConfig,
       openKeys: menuConfig.defaultOpenKeys,
       selectedKeys: menuConfig.defaultSelectedKeys,
-    });
-  };
+    })
+  }
 
   handleMenuOpenChange = (openkeys: string[]) => {
-    const lastOpenkey = openkeys.pop();
-    const { menuConfig } = this.state;
-    const curOpenKey = menuConfig.defaultOpenKeys;
+    const lastOpenkey = openkeys.pop()
     this.setState({
       openKeys: [lastOpenkey],
       selectedKeys: [],
-    });
-  };
+    })
+  }
 
   handleSelect = params => {
-    const pId = params.key.substring(0, 3);
+    const pId = params.key.substring(0, 3)
     this.setState({
       openKeys: [pId],
       selectedKeys: params.selectedKeys,
-    });
-  };
+    })
+  }
 
   render() {
-    const { menuConfig } = this.state;
-
+    const { menuConfig } = this.state
     return (
       <div className="sider-view">
         <div className="sider-view--children">
@@ -82,8 +79,8 @@ class SiderView extends React.Component<P, S> {
           </Menu>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default withRouter(SiderView);
+export default withRouter(SiderView)

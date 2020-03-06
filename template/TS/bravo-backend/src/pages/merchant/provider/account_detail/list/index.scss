@@ -1,4 +1,44 @@
 .account-detail {
+  .account-info {
+    display: flex;
+    height: 160px;
+    padding: 16px 0;
+    margin: 16px 0;
+    background: white;
+    box-shadow: 0px -1px 0px 0px #eaeaed, 0px 1px 0px 0px #eaeaed, -1px 0px 0px 0px #eaeaed, 1px 0px 0px 0px #eaeaed;
+    .account-info-wrapper {
+      flex: 1;
+      padding: 0 16px;
+      .ant-typography {
+        overflow: hidden;
+        h4 {
+          display: inline-block;
+          width: 100px;
+          font-size: 12px;
+          color: #324150;
+          font-weight: 600;
+          float: left;
+        }
+        span {
+          display: block;
+          font-size: 12px;
+          color: #324150;
+          float: left;
+        }
+      }
+    }
+    .ant-divider-vertical {
+      height: auto;
+    }
+  }
+  .stastic {
+    margin-bottom: 20px;
+    line-height: 32px;
+    overflow: hidden;
+    button {
+      float: right;
+    }
+  }
   .query-area {
     overflow: hidden;
     margin: 15px 0;
@@ -21,6 +61,7 @@
     color: #62c1ad;
     font-size: 12px;
     line-height: 17px;
+    display: block;
   }
   .txt-expenditure {
     font-size: 12px;

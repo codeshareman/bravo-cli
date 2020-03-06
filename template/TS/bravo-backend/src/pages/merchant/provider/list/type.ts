@@ -1,5 +1,5 @@
 export enum AccountStatus {
-  NORMAL = 2,
-  DISABLE = 4,
+  NORMAL = 1,
+  DISABLE = 0,
   OTHER = -1
 }

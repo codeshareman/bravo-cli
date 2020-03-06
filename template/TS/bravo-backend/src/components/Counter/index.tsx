@@ -48,12 +48,12 @@ const Counter: FC<P> = props => {
   };
 
   const inputChange = e => {
-    let { value } = e.target;
+    const { value } = e.target
     setdisplayValue(value);
   };
 
   const onblur = e => {
-    let val = e.target.value;
+    const val = e.target.value
     if (!isNaN(val) && /^-?\\d+$/.test(val)) {
       validatorValue(Number(val));
     } else {

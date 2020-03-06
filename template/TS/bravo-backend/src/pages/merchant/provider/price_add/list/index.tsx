@@ -1,46 +1,39 @@
-import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
-import { Divider, Breadcrumb, Table, message, Input, Form, DatePicker } from 'antd';
+import React, { Component } from 'react'
+import { Divider, Table, message, Input, Form, DatePicker } from 'antd'
+import Query from './query'
+import { CustBreadcrumb } from '@/components/CustComponents'
+import PriceSetModal from '@/components/PriceSetModal'
+import { getLocalePrice, getTimestamp, limitWord, optimizePic } from '@/shared/common/utils'
+import { TempProduct, StrategyCreateRequest } from '@xmly/cbp-spec/lib/portal/service/oss/TempStrategyService'
+import { AJAX_STATUS } from '@/shared/common/constants'
+import { PriceModalType, EditType } from '@/components/PriceModal/type'
+import FormItemDecorator from '@/components/FormItemDecorator'
+import { FormComponentProps } from 'antd/lib/form'
+import Regex from '@/shared/common/regex'
+import { Price } from '@/components/PriceSetModal/helper'
+import TextArea from 'antd/lib/input/TextArea'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { ProductQueryRequest } from '@xmly/cbp-spec/lib/portal/service/oss/ChannelStrategyService'
+import { UserActionType } from '@/components/PriceSetModal/type'
+import GenneralDataCompo from '@/hoc/GenneralDataCompo'
+import './index.scss'
+import API from '@/api'
 
-import './index.scss';
-import API from '@/api';
+const { RangePicker } = DatePicker
 
-import Query from './query';
-import { CustBreadcrumb } from '@/components/CustComponents';
-import PriceSetModal from '@/components/PriceSetModal';
-import { getLocalePrice, getTimestamp } from '@/shared/common/utils';
-import {
-  TempProduct,
-  StrategyCreateRequest,
-} from '@/client/portal/service/oss/TempStrategyService';
-import { AJAX_STATUS } from '@/shared/common/constants';
-import { PriceModalType, EditType } from '@/components/PriceModal/type';
-import FormItemDecorator from '@/components/FormItemDecorator';
-import { FormComponentProps } from 'antd/lib/form';
-import Regex from '@/shared/common/regex';
-import { Price } from '@/components/PriceSetModal/helper';
-import TextArea from 'antd/lib/input/TextArea';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { AccountRole } from '@/client/portal/service/oss/AccountService';
-import { ProductQueryRequest } from '@/client/portal/service/oss/ChannelStrategyService';
-import { UserActionType } from '@/components/PriceSetModal/type';
-import GenneralDataCompo from '@/hoc/GenneralDataCompo';
-
-const { RangePicker } = DatePicker;
-
-type P = FormComponentProps & RouteComponentProps<{ uid: string }> & { roleList: Array<any> };
+type P = FormComponentProps & RouteComponentProps<{ uid: string }> & { roleList: Array<any> }
 type S = {
-  merchantInfo: any;
-  visible: boolean;
-  total: number;
-  searchParams: ProductQueryRequest;
-  dataSource: Array<TempProduct>;
-  loading: boolean;
-  curRows: any;
-  curDataSource: Array<TempProduct>;
-  nextIndex: number;
-  editType: EditType;
-};
+  merchantInfo: any
+  visible: boolean
+  total: number
+  searchParams: ProductQueryRequest
+  dataSource: Array<TempProduct>
+  loading: boolean
+  curRows: any
+  curDataSource: Array<TempProduct>
+  nextIndex: number
+  editType: EditType
+}
 
 @(withRouter as any)
 class PriceAdd extends Component<P, S> {
@@ -60,30 +53,30 @@ class PriceAdd extends Component<P, S> {
     dataSource: [],
     curDataSource: [],
     editType: null,
-  };
+  }
 
   componentDidMount() {
-    this.initialRequest();
+    this.initialRequest()
   }
 
   initialRequest = () => {
     const {
       match: { params },
-    } = this.props;
-    const developerId = +params.uid;
-    this.getMerchantList(developerId);
-  };
+    } = this.props
+    const developerId = +params.uid
+    this.getMerchantList(developerId)
+  }
 
   onSubmit = (values: ProductQueryRequest) => {
-    const { merchantInfo } = this.state;
+    const { merchantInfo } = this.state
     const params = {
       pageIndex: 1,
       pageSize: 10,
       productId: +values.productId || null,
       characterId: merchantInfo ? merchantInfo.role : null,
-    };
-    this.getSpecialPriceProducts(params);
-  };
+    }
+    this.getSpecialPriceProducts(params)
+  }
 
   // 获取商户列表
   getMerchantList = async developerId => {
@@ -97,13 +90,13 @@ class PriceAdd extends Component<P, S> {
       role: null,
       pageNum: 1,
       pageSize: 10,
-    };
+    }
     try {
-      const res = await API.account.searchAccount(searchParams);
+      const res = await API.account.searchAccount(searchParams)
       if (res) {
         if (res.code === AJAX_STATUS.SUCCESS) {
-          const resData: any = res.data;
-          const roleData = resData.list[0];
+          const resData: any = res.data
+          const roleData = resData.list[0]
           this.setState(
             {
               merchantInfo: {
@@ -112,37 +105,37 @@ class PriceAdd extends Component<P, S> {
               },
             },
             () => {
-              const { merchantInfo } = this.state;
+              const { merchantInfo } = this.state
               const params = {
                 ...this.state.searchParams,
                 characterId: merchantInfo ? merchantInfo.role : null,
-              };
-              this.getSpecialPriceProducts(params);
+              }
+              this.getSpecialPriceProducts(params)
             },
-          );
+          )
         } else {
-          message.error(res.message);
+          message.error(res.message)
         }
       }
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err)
     }
-  };
+  }
 
   getCurrentRole = (id: number) => {
-    const { roleList } = this.props;
-    const role = roleList.find(item => id === item.id);
-    return role ? role.name : '';
-  };
+    const { roleList } = this.props
+    const role = roleList.find(item => id === item.id)
+    return role ? role.name : ''
+  }
 
   getSpecialPriceProducts = async (params: ProductQueryRequest) => {
     this.setState({
       loading: true,
       dataSource: [],
-    });
-    const res = await API.channel.queryProducts(params);
+    })
+    const res = await API.channel.queryProducts(params)
     if (res.code === AJAX_STATUS.SUCCESS) {
-      const resData = res.data;
+      const resData = res.data
       this.setState({
         dataSource: Price.getFilteredPriceList(resData.data),
         total: resData.total,
@@ -151,21 +144,21 @@ class PriceAdd extends Component<P, S> {
           ...params,
           pageIndex: resData.current,
         },
-      });
+      })
     } else {
-      message.error(res.message);
+      message.error(res.message)
     }
-  };
+  }
 
   handleCancel = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
   handleConfirm = () => {
-    this.updateDataSource(UserActionType.BTN_CONFIRM);
-  };
+    this.updateDataSource(UserActionType.BTN_CONFIRM)
+  }
 
   // 设置特殊价
   setSpecialPrice = row => {
@@ -173,180 +166,188 @@ class PriceAdd extends Component<P, S> {
       return {
         ...item,
         index,
-      };
-    });
+      }
+    })
     const curDataSource = [
       {
         ...row,
         items: skuList,
       },
-    ];
-    const newSkuList = curDataSource[0].items;
+    ]
+    const newSkuList = curDataSource[0].items
 
     this.setState({
       curDataSource,
       curRows: newSkuList[0],
       editType: EditType.SPECIAL,
       visible: true,
-    });
-  };
+    })
+  }
 
   // 更新价格数据
   updateDataSource = (type: UserActionType) => {
-    let { curDataSource } = this.state;
+    const { curDataSource } = this.state
     setTimeout(() => {
       if (type === UserActionType.BTN_CONFIRM) {
         this.props.form.validateFieldsAndScroll((err, values) => {
           if (!err) {
-            const validMoment = values['validTime'];
-            const newDataSource = curDataSource.map(rows => {
-              rows.remark = values.remark || '';
-              rows.approvalId = values.approvalId || '';
-              rows.startTime = validMoment && getTimestamp(validMoment[0]);
-              rows.endTime = validMoment && getTimestamp(validMoment[1]);
-              const skuList = rows.items;
+            const validMoment = values['validTime']
+            const specialPriceList = curDataSource.map(row => {
+              const rowData = { ...row }
+              rowData.remark = values.remark || ''
+              rowData.approvalId = values.approvalId || ''
+              rowData.startTime = validMoment && getTimestamp(validMoment[0])
+              rowData.endTime = validMoment && getTimestamp(validMoment[1])
+              const skuList = rowData.items
 
               return {
-                ...rows,
-                items: skuList.map((sku, index) => {
-                  const fields = Object.keys(values).filter(item => ~item.indexOf(`tempPrice`));
-                  const matchStr = `tempPrice-${sku.itemId}`;
-                  if (~fields.indexOf(matchStr)) {
-                    const index = fields.indexOf(matchStr);
-                    const key = fields[index];
-                    sku.tempPrice = values[key];
-                  }
-                  return sku;
-                }),
-              };
-            });
+                ...rowData,
+                items: skuList
+                  ? skuList.map(sku => {
+                      const skuData = { ...sku }
+                      const fields = Object.keys(values).filter(item => ~item.indexOf(`tempPrice`))
+                      const matchStr = `tempPrice-${skuData.itemId}`
+                      if (~fields.indexOf(matchStr)) {
+                        const index = fields.indexOf(matchStr)
+                        const key = fields[index]
+                        skuData.tempPrice = values[key]
+                      }
+                      return skuData
+                    })
+                  : [],
+              }
+            })
 
             if (type === UserActionType.BTN_CONFIRM) {
-              const savePriceParams = this.getSavePriceParams(newDataSource);
-              this.createStrategy(savePriceParams[0]);
+              const savePriceParams = this.getSavePriceParams(specialPriceList)
+              this.createStrategy(savePriceParams[0])
             }
           }
-        });
+        })
       }
-    });
-  };
+    })
+  }
 
   getSavePriceParams = dataSource => {
-    const { merchantInfo } = this.state;
-    return dataSource.map(rows => {
-      if (rows.productId) {
-        return {
-          productId: rows.id,
-          userId: merchantInfo && merchantInfo.uid,
-          remark: rows.remark,
-          startTime: rows.startTime,
-          endTime: rows.endTime,
-          approvalId: rows.approvalId || '',
-          characterId: merchantInfo && merchantInfo.role,
-          items: rows.items.length > 0 ? this.getSavePriceParams(rows.items) : [],
-        };
-      }
-      if (rows.itemId) {
-        return {
-          itemId: rows.itemId,
-          strategyPrice: rows.tempPrice,
-        };
-      }
-    });
-  };
+    const { merchantInfo } = this.state
+    const saveList: any = []
+    const skuPriceList = []
+    dataSource.forEach((rows: any) => {
+      rows.items.forEach(sku => {
+        if (sku.tempPrice) {
+          const skuPriceItem = {
+            itemId: sku.itemId,
+            strategyPrice: sku.tempPrice,
+          }
+          skuPriceList.push(skuPriceItem)
+        }
+      })
+      saveList.push({
+        productId: rows.id,
+        userId: merchantInfo && merchantInfo.uid,
+        remark: rows.remark,
+        startTime: rows.startTime,
+        endTime: rows.endTime,
+        approvalId: rows.approvalId || '',
+        characterId: merchantInfo && merchantInfo.role,
+        items: skuPriceList,
+      })
+    })
+    return saveList
+  }
 
   createStrategy = async (params: StrategyCreateRequest) => {
-    const { searchParams } = this.state;
-    const res = await API.tempStrategy.createStrategy(params);
+    const { searchParams } = this.state
+    const res = await API.tempStrategy.createStrategy(params)
     if (res.code === AJAX_STATUS.SUCCESS) {
       this.setState({
         visible: false,
-      });
-      message.success('特殊价设置成功');
-      this.getSpecialPriceProducts(searchParams);
+      })
+      message.success('特殊价设置成功')
+      this.getSpecialPriceProducts(searchParams)
     } else {
-      message.error(res.message);
+      message.error(res.message)
     }
-  };
+  }
 
   handleSetSpecialPrice = rows => {
-    this.updatePriceNoClose();
+    this.updatePriceNoClose()
     this.setState({
       curRows: rows,
       editType: EditType.SPECIAL,
-    });
-  };
+    })
+  }
 
   updatePriceNoClose = () => {
-    let { curDataSource } = this.state;
-    const { getFieldValue } = this.props.form;
-    const { curRows } = this.state;
-    const fieldName = `tempPrice-${curRows.id}`;
-    const fieldValue = getFieldValue(fieldName);
+    const { curDataSource } = this.state
+    const { getFieldValue } = this.props.form
+    const { curRows } = this.state
+    const fieldName = `tempPrice-${curRows.id}`
+    const fieldValue = getFieldValue(fieldName)
 
     curDataSource.map(rows => {
-      rows.remark = '';
-      rows.approvalId = '';
-      rows.startTime = null;
-      rows.endTime = null;
-      const skuList = rows.items;
+      rows.remark = ''
+      rows.approvalId = ''
+      rows.startTime = null
+      rows.endTime = null
+      const skuList = rows.items
       return {
         ...rows,
-        items: skuList.map((sku, index) => {
-          const matchStr = `tempPrice-${sku.itemId}`;
+        items: skuList.map(sku => {
+          const matchStr = `tempPrice-${sku.itemId}`
           if (matchStr === fieldName) {
-            sku.tempPrice = fieldValue;
+            sku.tempPrice = fieldValue
           }
-          return sku;
+          return sku
         }),
-      };
-    });
+      }
+    })
 
-    const skuList = curDataSource[0].items;
-    const nextIndex = this.state.nextIndex < skuList.length - 1 ? ++this.state.nextIndex : 0;
+    const skuList = curDataSource[0].items
+    let curNextIndex = this.state.nextIndex
+    const nextIndex = curNextIndex < skuList.length - 1 ? ++curNextIndex : 0
 
     this.setState({
       curRows: skuList[nextIndex],
       nextIndex,
-    });
-  };
+    })
+  }
 
   getTableProps = () => {
-    const { dataSource } = this.state;
+    const { dataSource } = this.state
     const columns = [
       {
         title: '商品',
         dataIndex: 'productInfo',
         key: 'productInfo',
-        width: 400,
         render: (info: any, rows: TempProduct) => {
           return (
             <div className="product">
               <div className="cover">
-                <img src={rows.coverPath} />
+                <img src={optimizePic(rows.coverPath)} />
               </div>
               <div className="info">
-                <p>{rows.productName}</p>
-                <p>商品编号: {rows.productId}</p>
+                <p>{limitWord(rows.productName, 18)}</p>
+                <p>商品ID: {rows.productId}</p>
               </div>
             </div>
-          );
+          )
         },
       },
       {
         title: '原价',
         dataIndex: 'price',
         key: 'price',
-        render: (curVal: string, rows, index) => {
-          return getLocalePrice(curVal);
+        render: (curVal: string) => {
+          return getLocalePrice(curVal)
         },
       },
       {
         title: '价盘价',
         dataIndex: 'channelPrice',
         key: 'channelPrice',
-        render: (curVal: string, rows, index: number) => {
-          return getLocalePrice(curVal);
+        render: (curVal: string) => {
+          return getLocalePrice(curVal)
         },
       },
       {
@@ -358,12 +359,12 @@ class PriceAdd extends Component<P, S> {
             <>
               <a onClick={() => this.setSpecialPrice(row)}>设置特殊价</a>
             </>
-          );
+          )
         },
       },
-    ];
-    return { dataSource, columns, rowKey: 'productId' };
-  };
+    ]
+    return { dataSource, columns, rowKey: 'productId' }
+  }
 
   getTableColumns = () => {
     const columns = [
@@ -376,26 +377,26 @@ class PriceAdd extends Component<P, S> {
         title: '原价',
         dataIndex: 'price',
         key: 'price',
-        render: (curVal: string, rows, index) => {
-          return getLocalePrice(curVal);
+        render: (curVal: string) => {
+          return getLocalePrice(curVal)
         },
       },
       {
         title: '价盘价',
         dataIndex: 'channelPrice',
         key: 'channelPrice',
-        render: (curVal: string, rows, index: number) => {
-          return getLocalePrice(curVal);
+        render: (curVal: string) => {
+          return getLocalePrice(curVal)
         },
       },
       {
         title: '特殊价',
         dataIndex: 'tempPrice',
         key: 'tempPrice',
-        render: (price: string, rows: any, index: number) => {
-          const { curRows, editType } = this.state;
-          const autoFocus = curRows ? curRows.id === rows.id : true;
-          const isEdit = curRows && curRows.id === rows.id && editType === EditType.SPECIAL;
+        render: (price: string, rows: any) => {
+          const { curRows, editType } = this.state
+          const autoFocus = curRows ? curRows.id === rows.id : true
+          const isEdit = curRows && curRows.id === rows.id && editType === EditType.SPECIAL
 
           return !isEdit ? (
             <div className="price-text" onClick={() => this.handleSetSpecialPrice(rows)}>
@@ -425,22 +426,22 @@ class PriceAdd extends Component<P, S> {
                 addonBefore={'¥'}
                 autoFocus={autoFocus}
                 onPressEnter={this.updatePriceNoClose}
-                onFocus={(e) => {
+                onFocus={() => {
                   this.setState({
                     curRows: rows,
                     nextIndex: rows.index,
-                  });
+                  })
                 }}
               />
             </FormItemDecorator>
-          );
+          )
         },
       },
       {
         title: '特殊价有效期',
         dataIndex: 'validDate',
         key: 'validDate',
-        render: (timeStr: string, rows: any) => {
+        render: () => {
           return (
             <FormItemDecorator
               form={this.props.form}
@@ -457,12 +458,12 @@ class PriceAdd extends Component<P, S> {
             >
               <RangePicker style={{ width: '90%' }} format={'YYYY-MM-DD HH:mm:ss'} showTime />
             </FormItemDecorator>
-          );
+          )
         },
       },
-    ];
-    return columns;
-  };
+    ]
+    return columns
+  }
 
   renderExtralInfo = () => {
     return (
@@ -491,26 +492,29 @@ class PriceAdd extends Component<P, S> {
           </FormItemDecorator>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   render() {
-    const { merchantInfo } = this.state;
-    const { curDataSource, loading, total, searchParams } = this.state;
-    const developId = merchantInfo && merchantInfo.developerId;
+    const { merchantInfo } = this.state
+    const { curDataSource, loading, total, searchParams } = this.state
+    const developId = merchantInfo && merchantInfo.developerId
     const routes = [
-      { path: '/business/provider', name: '商户管理' },
+      // { path: '/business/provider', name: '商户管理' },
       { path: '/business/provider', name: '商户列表' },
       { path: `/business/provider/specialPrice/${developId}`, name: '设置特殊价' },
       { path: '', name: '新增特殊价' },
-    ];
+    ]
 
     return (
       <div className="price-add">
-        <CustBreadcrumb routes={routes} showCurrentPosition></CustBreadcrumb>
+        <CustBreadcrumb routes={routes}></CustBreadcrumb>
         <h2>新增特殊价</h2>
         <Query onSubmit={this.onSubmit} />
         <Divider />
+        {/* <div className="stastic">
+          共 <span className="total"> {total} </span>条数据
+        </div> */}
         <Table
           className="table-list"
           scroll={{ x: 1300 }}
@@ -520,15 +524,29 @@ class PriceAdd extends Component<P, S> {
             total,
             current: searchParams.pageIndex,
             pageSize: searchParams.pageSize,
+            showTotal: total => `共 ${total} 条数据`,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            onShowSizeChange: (current, pageSize) => {
+              const searchParams = {
+                ...this.state.searchParams,
+                pageIndex: 1,
+                pageSize,
+              }
+              this.getSpecialPriceProducts(searchParams)
+              this.setState({
+                searchParams,
+              })
+            },
             onChange: pageIndex => {
               const searchParams = {
                 ...this.state.searchParams,
                 pageIndex,
-              };
-              this.getSpecialPriceProducts(searchParams);
+              }
+              this.getSpecialPriceProducts(searchParams)
               this.setState({
                 searchParams,
-              });
+              })
             },
           }}
         />
@@ -546,8 +564,8 @@ class PriceAdd extends Component<P, S> {
           destroyOnClose
         />
       </div>
-    );
+    )
   }
 }
 
-export default Form.create()(GenneralDataCompo(PriceAdd));
+export default Form.create()(GenneralDataCompo(PriceAdd))

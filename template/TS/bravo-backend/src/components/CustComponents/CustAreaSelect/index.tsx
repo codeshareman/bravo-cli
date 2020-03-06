@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import cx from "classnames";
 
-import './index.scss';
-import CityChoose from '@/components/CityChoose';
-import { selectedInfo, selectAreaType } from '@/components/CityChoose/type';
-import { WrappedFormUtils } from 'antd/lib/form/Form';
-import { Tag } from 'antd';
+import "./index.scss";
+import CityChoose from "@/components/CityChoose";
+import { selectedInfo, selectAreaType } from "@/components/CityChoose/type";
+import { WrappedFormUtils } from "antd/lib/form/Form";
+import { Tag } from "antd";
 
 type P = {
+  fieldName?: string;
+  fieldType?: string;
   form: WrappedFormUtils;
   type?: selectAreaType;
   onChange?: (value: any) => {};
@@ -21,53 +24,63 @@ type S = {
 class CustAreaSelect extends Component<P, S> {
   state: S = {
     visible: false,
-    selectedArea: [],
+    selectedArea: []
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { fieldName } = this.props;
     if (nextProps.form !== this.props.form) {
       const { form } = nextProps;
       this.setState({
-        selectedArea: form.getFieldValue('agencyArea'),
+        selectedArea: form.getFieldValue(fieldName || "agencyArea") || []
       });
     }
   }
 
   showAreaCompo = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
   };
 
   onCancel = () => {
     this.setState({
-      visible: false,
+      visible: false
     });
   };
 
   onOk = (info: selectedInfo) => {
+    const { fieldType } = this.props;
     this.props.onChange(info.selectedDicts);
-    this.props.onSubmit();
+    fieldType !== "box" && this.props.onSubmit();
     this.setState({
       visible: false,
-      selectedArea: info.selectedDicts,
+      selectedArea: info.selectedDicts
     });
   };
 
-  onTagClose = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, index: number) => {
-    e.preventDefault();
+  onTagClose = (
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+    index: number
+  ) => {
+    e.stopPropagation();
     const { selectedArea } = this.state;
+    const { fieldType } = this.props;
 
     selectedArea.splice(index, 1);
     this.props.onChange(selectedArea);
-    this.props.onSubmit();
-    
+    fieldType !== "box" && this.props.onSubmit();
+
     this.setState({
-      selectedArea,
+      selectedArea
     });
   };
 
-  renderSelectedArea = () => {
+  onTagClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>,) => {
+    e.stopPropagation();
+  } 
+
+  renderSelectedTags = () => {
     const { selectedArea } = this.state;
     return (
       selectedArea &&
@@ -77,6 +90,7 @@ class CustAreaSelect extends Component<P, S> {
           <Tag
             closable
             key={code}
+            onClick={this.onTagClick}
             onClose={(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) =>
               this.onTagClose(e, index)
             }
@@ -88,18 +102,44 @@ class CustAreaSelect extends Component<P, S> {
     );
   };
 
+  renderFields = () => {
+    const { selectedArea } = this.state;
+    const { fieldType } = this.props;
+    if (!selectedArea) return null;
+    switch (fieldType) {
+      case "box":
+        return (
+          <div
+            className={cx({
+              "selected-box": fieldType === "box"
+            })}
+            onClick={this.showAreaCompo}
+          >
+            {selectedArea.length > 0 ? (
+              this.renderSelectedTags()
+            ) : (
+              <span className="placeholder">请选择负责地区</span>
+            )}
+          </div>
+        );
+      default:
+        return selectedArea.length > 0 ? (
+          <div className="selected-list">{this.renderSelectedTags()}</div>
+        ) : (
+          <div className="area-choose" onClick={this.showAreaCompo}>
+            选择地区
+          </div>
+        );
+    }
+  };
+
   render() {
     const { selectedArea } = this.state;
     const { type = selectAreaType.MULTI } = this.props;
 
     return (
       <>
-        <div className="selected-list">{this.renderSelectedArea()}</div>
-        {selectedArea.length === 0 && (
-          <div className="area-choose" onClick={this.showAreaCompo}>
-            选择地区
-          </div>
-        )}
+        {this.renderFields()}
         <CityChoose
           type={type}
           tagData={selectedArea}

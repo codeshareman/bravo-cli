@@ -7,3 +7,5 @@ declare module '*.bmp';
 declare module '*.tiff';
 declare module '#.json';
 
+declare let window:any;
+declare let sessionStorage: any;

@@ -1,4 +1,4 @@
-import config from "./config";
-import { renderRouter } from "./utils";
+import config from './config'
+import { getAuthorizedRoutes } from './utils'
 
-export default renderRouter(config);
+export default getAuthorizedRoutes(config)

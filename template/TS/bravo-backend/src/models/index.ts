@@ -1,3 +1,3 @@
-import orderStore from './order';
+import authStore from './auth'
 
-export default { orderStore };
+export { authStore }

@@ -1,5 +1,11 @@
 export const hotCityData = [
   {
+    code: '00',
+    name: '全国',
+    group: 'Q',
+    pinyin: ' 全国',
+  },
+  {
     code: '11',
     name: '北京市',
     group: 'B',

@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Input } from 'antd';
+import React, { Component } from 'react'
+import { Table, Button, Modal, Form, Input } from 'antd'
 
-import './index.scss';
+import './index.scss'
 
-import FormItemDecorator from '@/components/FormItemDecorator';
-import { FormComponentProps } from 'antd/lib/form';
-import TextArea from 'antd/lib/input/TextArea';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import FormItemDecorator from '@/components/FormItemDecorator'
+import { FormComponentProps } from 'antd/lib/form'
+import TextArea from 'antd/lib/input/TextArea'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-type P = FormComponentProps & RouteComponentProps & {};
+type P = FormComponentProps & RouteComponentProps & {}
 type S = {
-  isEdit: boolean;
-  setModalVisible: boolean;
-  visible: boolean;
-  productId: string | number;
-  dataSource: Array<any>;
-};
+  isEdit: boolean
+  setModalVisible: boolean
+  visible: boolean
+  productId: string | number
+  dataSource: Array<any>
+}
 
 @(withRouter as any)
 class TableList extends Component<P, S> {
@@ -24,35 +24,22 @@ class TableList extends Component<P, S> {
     visible: false,
     setModalVisible: false,
     productId: '',
-    dataSource: [
-      {
-        roleId: 1,
-        roleName: '服务商',
-      },
-      {
-        roleId: 2,
-        roleName: '经销商',
-      },
-      {
-        roleId: 3,
-        roleName: '直客',
-      },
-    ],
-  };
+    dataSource: [],
+  }
 
   // 设置价盘
   setPricePlate = () => {
     this.props.history.push({
       pathname: '/business/provider/specialPrice/add',
-    });
-  };
+    })
+  }
 
   handleAddRole = () => {
     this.setState({
       visible: true,
       isEdit: false,
-    });
-  };
+    })
+  }
 
   handleEdit = row => {
     this.setState(
@@ -61,30 +48,28 @@ class TableList extends Component<P, S> {
         isEdit: true,
       },
       () => {
-        this.props.form.setFieldsValue(row);
+        this.props.form.setFieldsValue(row)
       },
-    );
-  };
+    )
+  }
 
-  handleDelete = row => {};
-
-  handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleConfirm = () => {
     if (this.state.isEdit) {
-      this.props.form.validateFields((err, value) => {
+      this.props.form.validateFields(err => {
         if (!err) {
           this.setState({
             visible: false,
-          });
+          })
         }
-      });
+      })
     }
-  };
+  }
 
-  handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleCancel = () => {
     this.setState({
       visible: false,
-    });
-  };
+    })
+  }
 
   render() {
     const columns = [
@@ -103,7 +88,7 @@ class TableList extends Component<P, S> {
         dataIndex: 'remark',
         key: 'remark',
         render: curVal => {
-          return curVal ? curVal : '无';
+          return curVal ? curVal : '无'
         },
       },
       {
@@ -121,10 +106,10 @@ class TableList extends Component<P, S> {
               </a>
               {/* <a onClick={() => this.handleDelete(row)}>删除</a> */}
             </>
-          );
+          )
         },
       },
-    ];
+    ]
 
     return (
       <div className="content-view">
@@ -149,6 +134,7 @@ class TableList extends Component<P, S> {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           onOk={this.handleConfirm}
+          maskClosable={false}
           destroyOnClose
         >
           <Form>
@@ -158,9 +144,6 @@ class TableList extends Component<P, S> {
               wrapperCol={{ span: 20 }}
               form={this.props.form}
               field="roleName"
-              options={{
-                initialValue: '服务商',
-              }}
             >
               <Input disabled={this.state.isEdit} placeholder="请输入角色名称"></Input>
             </FormItemDecorator>
@@ -176,8 +159,8 @@ class TableList extends Component<P, S> {
           </Form>
         </Modal>
       </div>
-    );
+    )
   }
 }
 
-export default Form.create<P>()(TableList);
+export default Form.create<P>()(TableList)
