@@ -5,12 +5,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
-      <BrowserRouter>
-        <Global>
-          <Router></Router>
-        </Global>
-      </BrowserRouter>
-  );
+    <BrowserRouter>
+      <Global>
+        <Router></Router>
+      </Global>
+    </BrowserRouter>
+  ); 
 };
 
 export default App;
