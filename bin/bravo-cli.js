@@ -48,7 +48,6 @@ function initQuestion() {
         question.version,
       ])
       .then((result) => {
-        console.log(result, "0000");
         configs.anwsers.name = result.name;
         configs.anwsers.package = result.package;
         configs.anwsers.version = result.version;
@@ -101,7 +100,7 @@ function copyTemplate() {
 
 // 安装项目依赖
 function installDependence() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     let installCmd = "yarn install";
     const installType = configs.anwsers.package;
     const installTips = `正在安装 ${configs.anwsers.name} 的依赖包...`;
