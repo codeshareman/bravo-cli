@@ -66,7 +66,7 @@
     "@types/validatorjs": "^3.15.0",
     "@xmly/cbp-spec": "^0.0.3",
     "antd": "^3.24.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "better-scroll": "^1.15.2",
     "classnames": "^2.2.6",
     "mobx": "^5.14.2",
